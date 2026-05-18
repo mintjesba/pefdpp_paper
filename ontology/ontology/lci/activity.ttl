@@ -1,0 +1,233 @@
+##############################################################
+# PEFDPP Ontology — Activity Module
+# https://w3id.org/mintjesba/pefdpp/activity
+# Covers: Activity, ActivityType, Geography, GeographyType,
+#         TemporalScope, AllocationMethod
+##############################################################
+
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix om:       <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix dq:       <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix flow:     <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix act:      <https://w3id.org/mintjesba/pefdpp/activity#> .
+
+##############################################################
+# Ontology declaration
+##############################################################
+
+<https://w3id.org/mintjesba/pefdpp/activity>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/activity/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "PEFDPP Activity Module"@en ;
+    dcterms:description "Classes and properties for activities in the PEFDPP ontology, including geography, temporal scope, and allocation."@en ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    dcterms:references <http://www.ontology-of-units-of-measure.org/resource/om-2/> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+##############################################################
+# Classes
+##############################################################
+
+act:Activity
+    a owl:Class ;
+    rdfs:label "Activity"@en ;
+    skos:definition "A unit process or activity within the life cycle inventory, characterised by its type, geography, temporal scope, and data quality."@en ;
+    skos:scopeNote "Use dq:hasDataQuality to associate a DataQuality assessment with this activity."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    
+    # Required properties
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty act:hasActivityType ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty act:hasGeography ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty act:hasDeterminingFlow ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    .
+
+act:ActivityType
+    a owl:Class ;
+    rdfs:label "Activity Type"@en ;
+    skos:definition "The type of activity. Instances should be mapped to the ILCD process category system using skos:exactMatch, skos:closeMatch, or skos:broadMatch."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:Geography
+    a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Geography"@en ;
+    skos:definition "A geographic location or region associated with an activity, drawn from the PEFGeographies classification scheme."@en ;
+    skos:scopeNote "Instances should use skos:inScheme to reference the PEFGeographies classification scheme."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:TemporalScope
+    a owl:Class ;
+    rdfs:label "Temporal Scope"@en ;
+    skos:definition "The time period covered by an activity, defined by a start and end date."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty act:startDate ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty act:endDate ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    .
+
+act:AllocationMethod
+    a owl:Class ;
+    rdfs:label "Allocation Method"@en ;
+    skos:definition "The method used to allocate environmental burdens between co-products of an activity."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+##############################################################
+# Individuals — AllocationMethod
+##############################################################
+
+act:PhysicalAllocation
+    a act:AllocationMethod ;
+    rdfs:label "Physical Allocation"@en ;
+    skos:definition "Allocation based on a physical relationship between co-products, such as mass or energy content."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:EconomicAllocation
+    a act:AllocationMethod ;
+    rdfs:label "Economic Allocation"@en ;
+    skos:definition "Allocation based on the relative economic value of co-products."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+##############################################################
+# Object properties — Activity
+##############################################################
+
+act:hasActivityType
+    a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:label "has activity type"@en ;
+    skos:definition "The type of this activity."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range act:ActivityType ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:hasGeography
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has geography"@en ;
+    skos:definition "The geography associated with this activity."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range act:Geography ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:hasTemporalScope
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has temporal scope"@en ;
+    skos:definition "The temporal scope of this activity."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range act:TemporalScope ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:allocatedBy
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "allocated by"@en ;
+    skos:definition "The allocation method applied to this activity, if allocation has been performed."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range act:AllocationMethod ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:allocationBasis
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "allocation basis"@en ;
+    skos:definition "The physical or economic quantity used as the basis for allocation."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range om:Quantity ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:inputOf
+    a owl:ObjectProperty ;
+    rdfs:label "input of"@en ;
+    skos:definition "A flow that is an input to this activity."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range flow:Flow ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:outputOf
+    a owl:ObjectProperty ;
+    rdfs:label "output of"@en ;
+    skos:definition "A flow that is an output of this activity."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range flow:Flow ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:hasDeterminingFlow
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has determining flow"@en ;
+    skos:definition "The flow that determines the reference quantity of this activity."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range flow:Flow ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+##############################################################
+# Datatype properties — Activity
+##############################################################
+
+act:isAllocated
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "is allocated"@en ;
+    skos:definition "Indicates whether allocation has been applied to this activity."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range xsd:boolean ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+##############################################################
+# Datatype properties — TemporalScope
+##############################################################
+
+act:startDate
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "start date"@en ;
+    skos:definition "The start date of the temporal scope of an activity."@en ;
+    rdfs:domain act:TemporalScope ;
+    rdfs:range xsd:date ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+act:endDate
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "end date"@en ;
+    skos:definition "The end date of the temporal scope of an activity."@en ;
+    rdfs:domain act:TemporalScope ;
+    rdfs:range xsd:date ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .

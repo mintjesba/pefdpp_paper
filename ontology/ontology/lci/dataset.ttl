@@ -1,0 +1,135 @@
+##############################################################
+# PEFDPP Ontology — Dataset Module
+# https://w3id.org/mintjesba/pefdpp/dataset
+# Covers: LCIDataset, DatasetType, EFComplianceLevel
+##############################################################
+
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcat:     <http://www.w3.org/ns/dcat#> .
+@prefix dq:       <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix act:      <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix dataset:  <https://w3id.org/mintjesba/pefdpp/dataset#> .
+
+##############################################################
+# Ontology declaration
+##############################################################
+
+<https://w3id.org/mintjesba/pefdpp/dataset>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataset/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "PEFDPP Dataset Module"@en ;
+    dcterms:description "Classes and properties for LCI datasets in the PEFDPP ontology."@en ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    dcterms:references <http://www.w3.org/ns/dcat#> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+##############################################################
+# Classes
+##############################################################
+
+dataset:LCIDataset
+    a owl:Class ;
+    rdfs:subClassOf dcat:Dataset ;
+    rdfs:label "LCI Dataset"@en ;
+    skos:definition "A dataset containing life cycle inventory data, conforming to either a DPP or secondary data format."@en ;
+    skos:scopeNote "Use dq:hasDataQuality to associate a DataQuality assessment with this dataset."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+dataset:DatasetType
+    a owl:Class ;
+    rdfs:label "Dataset Type"@en ;
+    skos:definition "The type of LCI dataset, indicating whether it is a Digital Product Passport dataset or a secondary dataset."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+dataset:EFComplianceLevel
+    a owl:Class ;
+    rdfs:label "EF Compliance Level"@en ;
+    skos:definition "The level of compliance of an LCI dataset with the EF (Environmental Footprint) methodology."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+##############################################################
+# Individuals — DatasetType
+##############################################################
+
+dataset:DPP
+    a dataset:DatasetType ;
+    rdfs:label "DPP"@en ;
+    skos:definition "A Digital Product Passport dataset."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+dataset:Secondary
+    a dataset:DatasetType ;
+    rdfs:label "Secondary"@en ;
+    skos:definition "A secondary dataset, not originating from a DPP."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+##############################################################
+# Individuals — EFComplianceLevel
+##############################################################
+
+dataset:EFCompliant
+    a dataset:EFComplianceLevel ;
+    rdfs:label "EF Compliant"@en ;
+    skos:definition "The dataset fully complies with the EF methodology."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+dataset:ILCDEntryLevelCompliant
+    a dataset:EFComplianceLevel ;
+    rdfs:label "ILCD Entry Level Compliant"@en ;
+    skos:definition "The dataset complies with the ILCD entry level requirements."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+dataset:NotEFCompliant
+    a dataset:EFComplianceLevel ;
+    rdfs:label "Not EF Compliant"@en ;
+    skos:definition "The dataset does not comply with the EF methodology."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+##############################################################
+# Object properties
+##############################################################
+
+dataset:hasDatasetType
+    a owl:ObjectProperty ;
+    rdfs:label "has dataset type"@en ;
+    skos:definition "The type of this LCI dataset."@en ;
+    rdfs:domain dataset:LCIDataset ;
+    rdfs:range dataset:DatasetType ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+dataset:hasComplianceLevel
+    a owl:ObjectProperty ;
+    rdfs:label "has compliance level"@en ;
+    skos:definition "The EF compliance level of this LCI dataset."@en ;
+    rdfs:domain dataset:LCIDataset ;
+    rdfs:range dataset:EFComplianceLevel ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .
+
+dataset:containsActivity
+    a owl:ObjectProperty ;
+    rdfs:label "contains activity"@en ;
+    skos:definition "An activity contained within this LCI dataset."@en ;
+    rdfs:domain dataset:LCIDataset ;
+    rdfs:range act:Activity ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    .

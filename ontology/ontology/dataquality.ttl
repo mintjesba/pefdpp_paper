@@ -1,0 +1,142 @@
+##############################################################
+# PEFDPP Ontology — Data Quality Module
+# https://w3id.org/mintjesba/pefdpp/dataquality
+##############################################################
+
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix :        <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+
+##############################################################
+# Ontology declaration
+##############################################################
+
+<https://w3id.org/mintjesba/pefdpp/dataquality>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataquality/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "PEFDPP Data Quality Module"@en ;
+    dcterms:description "Classes and properties for representing data quality scores in the PEFDPP ontology, following the EF Data Quality Rating (DQR) approach."@en ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    .
+
+##############################################################
+# Classes
+##############################################################
+
+dq:DataQuality
+    a owl:Class ;
+    rdfs:label "Data Quality"@en ;
+    skos:definition "A structured assessment of the quality of data associated with an Activity or LCIDataset, composed of individual DQR scores and aggregate indicators."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+dq:DQRScore
+    a owl:Class ;
+    rdfs:label "DQR Score"@en ;
+    skos:definition "A single Data Quality Rating score for one quality dimension, comprising a numeric value and optional reasoning."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+##############################################################
+# Object properties — DataQuality → DQRScore
+##############################################################
+
+dq:technologicalRepresentativeness
+    a owl:ObjectProperty ;
+    rdfs:label "technological representativeness"@en ;
+    skos:definition "DQR score for the degree to which the data reflect the actual technology used."@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:range dq:DQRScore ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+dq:timeRepresentativeness
+    a owl:ObjectProperty ;
+    rdfs:label "time representativeness"@en ;
+    skos:definition "DQR score for the degree to which the data reflect the intended time period."@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:range dq:DQRScore ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+dq:geographicalRepresentativeness
+    a owl:ObjectProperty ;
+    rdfs:label "geographical representativeness"@en ;
+    skos:definition "DQR score for the degree to which the data reflect the intended geography."@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:range dq:DQRScore ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+dq:precisionScore
+    a owl:ObjectProperty ;
+    rdfs:label "precision score"@en ;
+    skos:definition "DQR score for the degree of exactness and variability of the data."@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:range dq:DQRScore ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+##############################################################
+# Datatype properties — DataQuality aggregates
+##############################################################
+
+dq:aggregateDQR
+    a owl:DatatypeProperty ;
+    rdfs:label "aggregate DQR"@en ;
+    skos:definition "The aggregate Data Quality Rating score, calculated from the individual DQR scores."@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+dq:overallUncertainty
+    a owl:DatatypeProperty ;
+    rdfs:label "overall uncertainty"@en ;
+    skos:definition "A measure of the overall uncertainty associated with the data."@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+##############################################################
+# Datatype properties — DQRScore
+##############################################################
+
+dq:DQRValue
+    a owl:DatatypeProperty ;
+    rdfs:label "DQR value"@en ;
+    skos:definition "The numeric DQR score, expressed as an integer on the EF 1–5 scale."@en ;
+    rdfs:domain dq:DQRScore ;
+    rdfs:range xsd:integer ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+dq:DQRReasoning
+    a owl:DatatypeProperty ;
+    rdfs:label "DQR reasoning"@en ;
+    skos:definition "A textual justification for the assigned DQR score."@en ;
+    rdfs:domain dq:DQRScore ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+##############################################################
+# Object property — links DataQuality to its subject
+##############################################################
+
+dq:hasDataQuality
+    a owl:ObjectProperty ;
+    rdfs:label "has data quality"@en ;
+    skos:definition "Associates an Activity, LCIDataset, or PEFStudy with its data quality assessment."@en ;
+    rdfs:range dq:DataQuality ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .

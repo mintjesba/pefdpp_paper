@@ -1,0 +1,2465 @@
+##############################################################
+# PEFDPP Ontology — PEF Geographies SKOS Concept Scheme
+# https://w3id.org/mintjesba/pefdpp/skos/pef-geographies
+##############################################################
+
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/pefdpp#> .
+@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix eu:      <http://publications.europa.eu/resource/authority/country/> .
+
+##############################################################
+# Ontology declaration
+##############################################################
+
+<https://w3id.org/mintjesba/pefdpp/skos/pef-geographies>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "PEF Geographies"@en ;
+    dcterms:description "SKOS concept scheme of geographic regions used in PEF life cycle inventory data. Countries are thin concepts delegating identity to the EU Publications Office authority list via skos:exactMatch. Ecoinvent supranational regions and electricity grids are defined here."@en ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-05-12"^^xsd:date ;
+    dcterms:source <https://eplca.jrc.ec.europa.eu/> ;
+    dcterms:references <http://publications.europa.eu/resource/authority/country/> ;
+    dcterms:references <https://geography.ecoinvent.org/> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+##############################################################
+# Concept scheme
+##############################################################
+
+pefdpp:PEFGeographies
+    a skos:ConceptScheme ;
+    dcterms:title "PEF Geographies"@en ;
+    skos:definition "Geographic regions used in PEF life cycle inventory data. Includes all ISO 3166-1 alpha-2 countries, plus ecoinvent supranational regions and electricity grids."@en ;
+    skos:hasTopConcept geo:GLO ;
+    .
+
+##############################################################
+# Supranational regions (ecoinvent conventions)
+##############################################################
+
+geo:GLO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Global"@en ;
+    skos:notation "GLO" ;
+    skos:scopeNote "Global geography covering all regions. Corresponds to ecoinvent region code GLO."@en ;
+    skos:topConceptOf pefdpp:PEFGeographies ;
+    .
+
+geo:RoW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Rest of World"@en ;
+    skos:notation "RoW" ;
+    skos:scopeNote "All regions not explicitly modelled. Corresponds to ecoinvent region code RoW. Defined dynamically per activity as global minus all explicitly modelled geographies."@en ;
+    skos:broader geo:GLO ;
+    .
+
+geo:RER
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Europe"@en ;
+    skos:notation "RER" ;
+    skos:scopeNote "European region. Corresponds to ecoinvent region code RER."@en ;
+    skos:broader geo:GLO ;
+    .
+
+geo:WEU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Western Europe"@en ;
+    skos:notation "WEU" ;
+    skos:scopeNote "Western European region. Corresponds to ecoinvent region code WEU."@en ;
+    skos:broader geo:RER ;
+    .
+
+geo:EEU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Eastern Europe"@en ;
+    skos:notation "EEU" ;
+    skos:scopeNote "Eastern European region. Corresponds to ecoinvent region code EEU."@en ;
+    skos:broader geo:RER ;
+    .
+
+geo:EUR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Europe (EU27+)"@en ;
+    skos:notation "EUR" ;
+    skos:scopeNote "European Union 27 member states."@en ;
+    skos:broader geo:RER ;
+    .
+
+geo:NAM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "North America"@en ;
+    skos:notation "NAM" ;
+    skos:scopeNote "North American region. Corresponds to ecoinvent region code NAM."@en ;
+    skos:broader geo:GLO ;
+    .
+
+geo:SAM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "South America"@en ;
+    skos:notation "SAM" ;
+    skos:scopeNote "South American and Caribbean region. Corresponds to ecoinvent region code SAM."@en ;
+    skos:broader geo:GLO ;
+    .
+
+geo:RAF
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Africa"@en ;
+    skos:notation "RAF" ;
+    skos:scopeNote "African region. Corresponds to ecoinvent region code RAF."@en ;
+    skos:broader geo:GLO ;
+    .
+
+geo:RNA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "North Africa"@en ;
+    skos:notation "RNA" ;
+    skos:scopeNote "North African region. Corresponds to ecoinvent region code RNA."@en ;
+    skos:broader geo:RAF ;
+    .
+
+geo:RSA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Sub-Saharan Africa"@en ;
+    skos:notation "RSA" ;
+    skos:scopeNote "Sub-Saharan African region. Corresponds to ecoinvent region code RSA."@en ;
+    skos:broader geo:RAF ;
+    .
+
+geo:RAS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Asia"@en ;
+    skos:notation "RAS" ;
+    skos:scopeNote "Asian region. Corresponds to ecoinvent region code RAS."@en ;
+    skos:broader geo:GLO ;
+    .
+
+geo:RME
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Middle East"@en ;
+    skos:notation "RME" ;
+    skos:scopeNote "Middle Eastern region. Corresponds to ecoinvent region code RME."@en ;
+    skos:broader geo:RAS ;
+    .
+
+geo:OCE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Oceania"@en ;
+    skos:notation "OCE" ;
+    skos:scopeNote "Oceanian region. Corresponds to ecoinvent region code OCE."@en ;
+    skos:broader geo:GLO ;
+    .
+
+geo:BRICS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "BRICS"@en ;
+    skos:notation "BRICS" ;
+    skos:scopeNote "Brazil, Russia, India, China, South Africa."@en ;
+    skos:broader geo:GLO ;
+    .
+
+geo:OECD
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "OECD"@en ;
+    skos:notation "OECD" ;
+    skos:scopeNote "Organisation for Economic Co-operation and Development member countries."@en ;
+    skos:broader geo:GLO ;
+    .
+
+##############################################################
+# Electricity grids
+##############################################################
+
+geo:ENTSO_E
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "ENTSO-E electricity grid"@en ;
+    skos:notation "ENTSO-E" ;
+    skos:scopeNote "European Network of Transmission System Operators for Electricity."@en ;
+    skos:broader geo:RER ;
+    .
+
+geo:NORDEL
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Nordic electricity grid"@en ;
+    skos:notation "NORDEL" ;
+    skos:scopeNote "Nordic electricity grid covering Denmark, Finland, Iceland, Norway, and Sweden. Corresponds to ecoinvent region NORDEL."@en ;
+    skos:broader geo:RER ;
+    .
+
+geo:UCTE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "UCTE electricity grid"@en ;
+    skos:notation "UCTE" ;
+    skos:scopeNote "Union for the Co-ordination of Transmission of Electricity grid. Corresponds to ecoinvent region UCTE."@en ;
+    skos:broader geo:RER ;
+    .
+
+geo:RFC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "ReliabilityFirst Corporation grid"@en ;
+    skos:notation "RFC" ;
+    skos:scopeNote "US regional transmission organisation. Corresponds to ecoinvent region RFC."@en ;
+    skos:broader geo:NAM ;
+    .
+
+geo:SERC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "SERC Reliability Corporation grid"@en ;
+    skos:notation "SERC" ;
+    skos:scopeNote "US regional electricity reliability organisation. Corresponds to ecoinvent region SERC."@en ;
+    skos:broader geo:NAM ;
+    .
+
+geo:WECC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Western Electricity Coordinating Council grid"@en ;
+    skos:notation "WECC" ;
+    skos:scopeNote "Western North American electricity grid. Corresponds to ecoinvent region WECC."@en ;
+    skos:broader geo:NAM ;
+    .
+
+geo:MRO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Midwest Reliability Organization grid"@en ;
+    skos:notation "MRO" ;
+    skos:scopeNote "US Midwest electricity reliability organisation. Corresponds to ecoinvent region MRO."@en ;
+    skos:broader geo:NAM ;
+    .
+
+geo:HICC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Hawaiian Islands Coordinating Council grid"@en ;
+    skos:notation "HICC" ;
+    skos:scopeNote "Hawaiian Islands electricity grid. Corresponds to ecoinvent region HICC."@en ;
+    skos:broader geo:NAM ;
+    .
+
+geo:ASCC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Alaska Systems Coordinating Council grid"@en ;
+    skos:notation "ASCC" ;
+    skos:scopeNote "Alaskan electricity grid. Corresponds to ecoinvent region ASCC."@en ;
+    skos:broader geo:NAM ;
+    .
+
+geo:CN_SGCC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "China State Grid Corporation grid"@en ;
+    skos:notation "CN-SGCC" ;
+    skos:scopeNote "Chinese State Grid Corporation electricity grid. Corresponds to ecoinvent region CN-SGCC."@en ;
+    skos:broader geo:RAS ;
+    .
+
+geo:CN_CSG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "China Southern Power Grid"@en ;
+    skos:notation "CN-CSG" ;
+    skos:scopeNote "Chinese Southern Power Grid. Corresponds to ecoinvent region CN-CSG."@en ;
+    skos:broader geo:RAS ;
+    .
+
+geo:IN_IN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Indian electricity grid"@en ;
+    skos:notation "IN-IN" ;
+    skos:scopeNote "Indian national electricity grid. Corresponds to ecoinvent region IN-IN."@en ;
+    skos:broader geo:RAS ;
+    .
+
+geo:JP_JP
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Japanese electricity grid"@en ;
+    skos:notation "JP-JP" ;
+    skos:scopeNote "Japanese national electricity grid. Corresponds to ecoinvent region JP-JP."@en ;
+    skos:broader geo:RAS ;
+    .
+
+geo:AU_NEM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Australian National Electricity Market grid"@en ;
+    skos:notation "AU-NEM" ;
+    skos:scopeNote "Australian National Electricity Market grid. Corresponds to ecoinvent region AU-NEM."@en ;
+    skos:broader geo:OCE ;
+    .
+
+geo:BR_SIN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Brazilian Sistema Interligado Nacional grid"@en ;
+    skos:notation "BR-SIN" ;
+    skos:scopeNote "Brazilian national interconnected electricity grid. Corresponds to ecoinvent region BR-SIN."@en ;
+    skos:broader geo:SAM ;
+    .
+
+geo:ZA_ZA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "South African electricity grid"@en ;
+    skos:notation "ZA-ZA" ;
+    skos:scopeNote "South African national electricity grid. Corresponds to ecoinvent region ZA-ZA."@en ;
+    skos:broader geo:RSA ;
+    .
+
+##############################################################
+# Countries (ISO 3166-1 alpha-2)
+# Thin concepts — identity delegated to EU Publications Office
+# via skos:exactMatch. Labels and hierarchy maintained here
+# for use within the PEFGeographies scheme.
+##############################################################
+
+geo:AF
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Afghanistan"@en ;
+    skos:notation "AF" ;
+    skos:exactMatch eu:AFG ;
+    skos:broader geo:RAS ;
+    .
+
+geo:AL
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Albania"@en ;
+    skos:notation "AL" ;
+    skos:exactMatch eu:ALB ;
+    skos:broader geo:EEU ;
+    .
+
+geo:DZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Algeria"@en ;
+    skos:notation "DZ" ;
+    skos:exactMatch eu:DZA ;
+    skos:broader geo:RNA ;
+    .
+
+geo:AD
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Andorra"@en ;
+    skos:notation "AD" ;
+    skos:exactMatch eu:AND ;
+    skos:broader geo:WEU ;
+    .
+
+geo:AO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Angola"@en ;
+    skos:notation "AO" ;
+    skos:exactMatch eu:AGO ;
+    skos:broader geo:RSA ;
+    .
+
+geo:AG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Antigua and Barbuda"@en ;
+    skos:notation "AG" ;
+    skos:exactMatch eu:ATG ;
+    skos:broader geo:SAM ;
+    .
+
+geo:AR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Argentina"@en ;
+    skos:notation "AR" ;
+    skos:exactMatch eu:ARG ;
+    skos:broader geo:SAM ;
+    .
+
+geo:AM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Armenia"@en ;
+    skos:notation "AM" ;
+    skos:exactMatch eu:ARM ;
+    skos:broader geo:RAS ;
+    skos:broader geo:RER ;
+    .
+
+geo:AU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Australia"@en ;
+    skos:notation "AU" ;
+    skos:exactMatch eu:AUS ;
+    skos:broader geo:OCE ;
+    skos:broader geo:OECD ;
+    .
+
+geo:AT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Austria"@en ;
+    skos:notation "AT" ;
+    skos:exactMatch eu:AUT ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:AZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Azerbaijan"@en ;
+    skos:notation "AZ" ;
+    skos:exactMatch eu:AZE ;
+    skos:broader geo:RAS ;
+    skos:broader geo:RER ;
+    .
+
+geo:BS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Bahamas"@en ;
+    skos:notation "BS" ;
+    skos:exactMatch eu:BHS ;
+    skos:broader geo:SAM ;
+    .
+
+geo:BH
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Bahrain"@en ;
+    skos:notation "BH" ;
+    skos:exactMatch eu:BHR ;
+    skos:broader geo:RME ;
+    .
+
+geo:BD
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Bangladesh"@en ;
+    skos:notation "BD" ;
+    skos:exactMatch eu:BGD ;
+    skos:broader geo:RAS ;
+    .
+
+geo:BB
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Barbados"@en ;
+    skos:notation "BB" ;
+    skos:exactMatch eu:BRB ;
+    skos:broader geo:SAM ;
+    .
+
+geo:BY
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Belarus"@en ;
+    skos:notation "BY" ;
+    skos:exactMatch eu:BLR ;
+    skos:broader geo:EEU ;
+    .
+
+geo:BE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Belgium"@en ;
+    skos:notation "BE" ;
+    skos:exactMatch eu:BEL ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:BZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Belize"@en ;
+    skos:notation "BZ" ;
+    skos:exactMatch eu:BLZ ;
+    skos:broader geo:SAM ;
+    .
+
+geo:BJ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Benin"@en ;
+    skos:notation "BJ" ;
+    skos:exactMatch eu:BEN ;
+    skos:broader geo:RSA ;
+    .
+
+geo:BT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Bhutan"@en ;
+    skos:notation "BT" ;
+    skos:exactMatch eu:BTN ;
+    skos:broader geo:RAS ;
+    .
+
+geo:BO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Bolivia, Plurinational State of"@en ;
+    skos:notation "BO" ;
+    skos:exactMatch eu:BOL ;
+    skos:broader geo:SAM ;
+    .
+
+geo:BA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Bosnia and Herzegovina"@en ;
+    skos:notation "BA" ;
+    skos:exactMatch eu:BIH ;
+    skos:broader geo:EEU ;
+    .
+
+geo:BW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Botswana"@en ;
+    skos:notation "BW" ;
+    skos:exactMatch eu:BWA ;
+    skos:broader geo:RSA ;
+    .
+
+geo:BR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Brazil"@en ;
+    skos:notation "BR" ;
+    skos:exactMatch eu:BRA ;
+    skos:broader geo:SAM ;
+    skos:broader geo:BRICS ;
+    .
+
+geo:BN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Brunei Darussalam"@en ;
+    skos:notation "BN" ;
+    skos:exactMatch eu:BRN ;
+    skos:broader geo:RAS ;
+    .
+
+geo:BG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Bulgaria"@en ;
+    skos:notation "BG" ;
+    skos:exactMatch eu:BGR ;
+    skos:broader geo:EEU ;
+    skos:broader geo:EUR ;
+    .
+
+geo:BF
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Burkina Faso"@en ;
+    skos:notation "BF" ;
+    skos:exactMatch eu:BFA ;
+    skos:broader geo:RSA ;
+    .
+
+geo:BI
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Burundi"@en ;
+    skos:notation "BI" ;
+    skos:exactMatch eu:BDI ;
+    skos:broader geo:RSA ;
+    .
+
+geo:CV
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Cabo Verde"@en ;
+    skos:notation "CV" ;
+    skos:exactMatch eu:CPV ;
+    skos:broader geo:RSA ;
+    .
+
+geo:KH
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Cambodia"@en ;
+    skos:notation "KH" ;
+    skos:exactMatch eu:KHM ;
+    skos:broader geo:RAS ;
+    .
+
+geo:CM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Cameroon"@en ;
+    skos:notation "CM" ;
+    skos:exactMatch eu:CMR ;
+    skos:broader geo:RSA ;
+    .
+
+geo:CA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Canada"@en ;
+    skos:notation "CA" ;
+    skos:exactMatch eu:CAN ;
+    skos:broader geo:NAM ;
+    skos:broader geo:OECD ;
+    .
+
+geo:CF
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Central African Republic"@en ;
+    skos:notation "CF" ;
+    skos:exactMatch eu:CAF ;
+    skos:broader geo:RSA ;
+    .
+
+geo:TD
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Chad"@en ;
+    skos:notation "TD" ;
+    skos:exactMatch eu:TCD ;
+    skos:broader geo:RSA ;
+    .
+
+geo:CL
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Chile"@en ;
+    skos:notation "CL" ;
+    skos:exactMatch eu:CHL ;
+    skos:broader geo:SAM ;
+    skos:broader geo:OECD ;
+    .
+
+geo:CN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "China"@en ;
+    skos:notation "CN" ;
+    skos:exactMatch eu:CHN ;
+    skos:broader geo:RAS ;
+    skos:broader geo:BRICS ;
+    .
+
+geo:CO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Colombia"@en ;
+    skos:notation "CO" ;
+    skos:exactMatch eu:COL ;
+    skos:broader geo:SAM ;
+    skos:broader geo:OECD ;
+    .
+
+geo:KM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Comoros"@en ;
+    skos:notation "KM" ;
+    skos:exactMatch eu:COM ;
+    skos:broader geo:RSA ;
+    .
+
+geo:CG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Congo"@en ;
+    skos:notation "CG" ;
+    skos:exactMatch eu:COG ;
+    skos:broader geo:RSA ;
+    .
+
+geo:CD
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Congo, The Democratic Republic of the"@en ;
+    skos:notation "CD" ;
+    skos:exactMatch eu:COD ;
+    skos:broader geo:RSA ;
+    .
+
+geo:CR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Costa Rica"@en ;
+    skos:notation "CR" ;
+    skos:exactMatch eu:CRI ;
+    skos:broader geo:SAM ;
+    skos:broader geo:OECD ;
+    .
+
+geo:HR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Croatia"@en ;
+    skos:notation "HR" ;
+    skos:exactMatch eu:HRV ;
+    skos:broader geo:EEU ;
+    skos:broader geo:EUR ;
+    .
+
+geo:CU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Cuba"@en ;
+    skos:notation "CU" ;
+    skos:exactMatch eu:CUB ;
+    skos:broader geo:SAM ;
+    .
+
+geo:CY
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Cyprus"@en ;
+    skos:notation "CY" ;
+    skos:exactMatch eu:CYP ;
+    skos:broader geo:WEU ;
+    skos:broader geo:EUR ;
+    .
+
+geo:CZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Czechia"@en ;
+    skos:notation "CZ" ;
+    skos:exactMatch eu:CZE ;
+    skos:broader geo:EEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:CI
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Côte d'Ivoire"@en ;
+    skos:notation "CI" ;
+    skos:exactMatch eu:CIV ;
+    skos:broader geo:RSA ;
+    .
+
+geo:DK
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Denmark"@en ;
+    skos:notation "DK" ;
+    skos:exactMatch eu:DNK ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:DJ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Djibouti"@en ;
+    skos:notation "DJ" ;
+    skos:exactMatch eu:DJI ;
+    skos:broader geo:RSA ;
+    .
+
+geo:DM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Dominica"@en ;
+    skos:notation "DM" ;
+    skos:exactMatch eu:DMA ;
+    skos:broader geo:SAM ;
+    .
+
+geo:DO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Dominican Republic"@en ;
+    skos:notation "DO" ;
+    skos:exactMatch eu:DOM ;
+    skos:broader geo:SAM ;
+    .
+
+geo:EC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Ecuador"@en ;
+    skos:notation "EC" ;
+    skos:exactMatch eu:ECU ;
+    skos:broader geo:SAM ;
+    .
+
+geo:EG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Egypt"@en ;
+    skos:notation "EG" ;
+    skos:exactMatch eu:EGY ;
+    skos:broader geo:RNA ;
+    .
+
+geo:SV
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "El Salvador"@en ;
+    skos:notation "SV" ;
+    skos:exactMatch eu:SLV ;
+    skos:broader geo:SAM ;
+    .
+
+geo:GQ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Equatorial Guinea"@en ;
+    skos:notation "GQ" ;
+    skos:exactMatch eu:GNQ ;
+    skos:broader geo:RSA ;
+    .
+
+geo:ER
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Eritrea"@en ;
+    skos:notation "ER" ;
+    skos:exactMatch eu:ERI ;
+    skos:broader geo:RSA ;
+    .
+
+geo:EE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Estonia"@en ;
+    skos:notation "EE" ;
+    skos:exactMatch eu:EST ;
+    skos:broader geo:EEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:SZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Eswatini"@en ;
+    skos:notation "SZ" ;
+    skos:exactMatch eu:SWZ ;
+    skos:broader geo:RSA ;
+    .
+
+geo:ET
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Ethiopia"@en ;
+    skos:notation "ET" ;
+    skos:exactMatch eu:ETH ;
+    skos:broader geo:RSA ;
+    .
+
+geo:FJ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Fiji"@en ;
+    skos:notation "FJ" ;
+    skos:exactMatch eu:FJI ;
+    skos:broader geo:OCE ;
+    .
+
+geo:FI
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Finland"@en ;
+    skos:notation "FI" ;
+    skos:exactMatch eu:FIN ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:FR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "France"@en ;
+    skos:notation "FR" ;
+    skos:exactMatch eu:FRA ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:GA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Gabon"@en ;
+    skos:notation "GA" ;
+    skos:exactMatch eu:GAB ;
+    skos:broader geo:RSA ;
+    .
+
+geo:GM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Gambia"@en ;
+    skos:notation "GM" ;
+    skos:exactMatch eu:GMB ;
+    skos:broader geo:RSA ;
+    .
+
+geo:GE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Georgia"@en ;
+    skos:notation "GE" ;
+    skos:exactMatch eu:GEO ;
+    skos:broader geo:RAS ;
+    skos:broader geo:RER ;
+    .
+
+geo:DE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Germany"@en ;
+    skos:notation "DE" ;
+    skos:exactMatch eu:DEU ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:GH
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Ghana"@en ;
+    skos:notation "GH" ;
+    skos:exactMatch eu:GHA ;
+    skos:broader geo:RSA ;
+    .
+
+geo:GR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Greece"@en ;
+    skos:notation "GR" ;
+    skos:exactMatch eu:GRC ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:GD
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Grenada"@en ;
+    skos:notation "GD" ;
+    skos:exactMatch eu:GRD ;
+    skos:broader geo:SAM ;
+    .
+
+geo:GT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Guatemala"@en ;
+    skos:notation "GT" ;
+    skos:exactMatch eu:GTM ;
+    skos:broader geo:SAM ;
+    .
+
+geo:GN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Guinea"@en ;
+    skos:notation "GN" ;
+    skos:exactMatch eu:GIN ;
+    skos:broader geo:RSA ;
+    .
+
+geo:GW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Guinea-Bissau"@en ;
+    skos:notation "GW" ;
+    skos:exactMatch eu:GNB ;
+    skos:broader geo:RSA ;
+    .
+
+geo:GY
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Guyana"@en ;
+    skos:notation "GY" ;
+    skos:exactMatch eu:GUY ;
+    skos:broader geo:SAM ;
+    .
+
+geo:HT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Haiti"@en ;
+    skos:notation "HT" ;
+    skos:exactMatch eu:HTI ;
+    skos:broader geo:SAM ;
+    .
+
+geo:VA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Holy See (Vatican City State)"@en ;
+    skos:notation "VA" ;
+    skos:exactMatch eu:VAT ;
+    skos:broader geo:WEU ;
+    .
+
+geo:HN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Honduras"@en ;
+    skos:notation "HN" ;
+    skos:exactMatch eu:HND ;
+    skos:broader geo:SAM ;
+    .
+
+geo:HK
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Hong Kong"@en ;
+    skos:notation "HK" ;
+    skos:exactMatch eu:HKG ;
+    skos:broader geo:RAS ;
+    .
+
+geo:HU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Hungary"@en ;
+    skos:notation "HU" ;
+    skos:exactMatch eu:HUN ;
+    skos:broader geo:EEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:IS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Iceland"@en ;
+    skos:notation "IS" ;
+    skos:exactMatch eu:ISL ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    .
+
+geo:IN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "India"@en ;
+    skos:notation "IN" ;
+    skos:exactMatch eu:IND ;
+    skos:broader geo:RAS ;
+    skos:broader geo:BRICS ;
+    .
+
+geo:ID
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Indonesia"@en ;
+    skos:notation "ID" ;
+    skos:exactMatch eu:IDN ;
+    skos:broader geo:RAS ;
+    .
+
+geo:IR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Iran, Islamic Republic of"@en ;
+    skos:notation "IR" ;
+    skos:exactMatch eu:IRN ;
+    skos:broader geo:RME ;
+    .
+
+geo:IQ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Iraq"@en ;
+    skos:notation "IQ" ;
+    skos:exactMatch eu:IRQ ;
+    skos:broader geo:RME ;
+    .
+
+geo:IE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Ireland"@en ;
+    skos:notation "IE" ;
+    skos:exactMatch eu:IRL ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:IL
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Israel"@en ;
+    skos:notation "IL" ;
+    skos:exactMatch eu:ISR ;
+    skos:broader geo:RME ;
+    skos:broader geo:OECD ;
+    .
+
+geo:IT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Italy"@en ;
+    skos:notation "IT" ;
+    skos:exactMatch eu:ITA ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:JM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Jamaica"@en ;
+    skos:notation "JM" ;
+    skos:exactMatch eu:JAM ;
+    skos:broader geo:SAM ;
+    .
+
+geo:JP
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Japan"@en ;
+    skos:notation "JP" ;
+    skos:exactMatch eu:JPN ;
+    skos:broader geo:RAS ;
+    skos:broader geo:OECD ;
+    .
+
+geo:JO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Jordan"@en ;
+    skos:notation "JO" ;
+    skos:exactMatch eu:JOR ;
+    skos:broader geo:RME ;
+    .
+
+geo:KZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Kazakhstan"@en ;
+    skos:notation "KZ" ;
+    skos:exactMatch eu:KAZ ;
+    skos:broader geo:RAS ;
+    .
+
+geo:KE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Kenya"@en ;
+    skos:notation "KE" ;
+    skos:exactMatch eu:KEN ;
+    skos:broader geo:RSA ;
+    .
+
+geo:KI
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Kiribati"@en ;
+    skos:notation "KI" ;
+    skos:exactMatch eu:KIR ;
+    skos:broader geo:OCE ;
+    .
+
+geo:KP
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Korea, Democratic People's Republic of"@en ;
+    skos:notation "KP" ;
+    skos:exactMatch eu:PRK ;
+    skos:broader geo:RAS ;
+    .
+
+geo:KR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Korea, Republic of"@en ;
+    skos:notation "KR" ;
+    skos:exactMatch eu:KOR ;
+    skos:broader geo:RAS ;
+    skos:broader geo:OECD ;
+    .
+
+geo:KW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Kuwait"@en ;
+    skos:notation "KW" ;
+    skos:exactMatch eu:KWT ;
+    skos:broader geo:RME ;
+    .
+
+geo:KG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Kyrgyzstan"@en ;
+    skos:notation "KG" ;
+    skos:exactMatch eu:KGZ ;
+    skos:broader geo:RAS ;
+    .
+
+geo:LA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Lao People's Democratic Republic"@en ;
+    skos:notation "LA" ;
+    skos:exactMatch eu:LAO ;
+    skos:broader geo:RAS ;
+    .
+
+geo:LV
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Latvia"@en ;
+    skos:notation "LV" ;
+    skos:exactMatch eu:LVA ;
+    skos:broader geo:EEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:LB
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Lebanon"@en ;
+    skos:notation "LB" ;
+    skos:exactMatch eu:LBN ;
+    skos:broader geo:RME ;
+    .
+
+geo:LS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Lesotho"@en ;
+    skos:notation "LS" ;
+    skos:exactMatch eu:LSO ;
+    skos:broader geo:RSA ;
+    .
+
+geo:LR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Liberia"@en ;
+    skos:notation "LR" ;
+    skos:exactMatch eu:LBR ;
+    skos:broader geo:RSA ;
+    .
+
+geo:LY
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Libya"@en ;
+    skos:notation "LY" ;
+    skos:exactMatch eu:LBY ;
+    skos:broader geo:RNA ;
+    .
+
+geo:LI
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Liechtenstein"@en ;
+    skos:notation "LI" ;
+    skos:exactMatch eu:LIE ;
+    skos:broader geo:WEU ;
+    .
+
+geo:LT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Lithuania"@en ;
+    skos:notation "LT" ;
+    skos:exactMatch eu:LTU ;
+    skos:broader geo:EEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:LU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Luxembourg"@en ;
+    skos:notation "LU" ;
+    skos:exactMatch eu:LUX ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:MO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Macao"@en ;
+    skos:notation "MO" ;
+    skos:exactMatch eu:MAC ;
+    skos:broader geo:RAS ;
+    .
+
+geo:MG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Madagascar"@en ;
+    skos:notation "MG" ;
+    skos:exactMatch eu:MDG ;
+    skos:broader geo:RSA ;
+    .
+
+geo:MW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Malawi"@en ;
+    skos:notation "MW" ;
+    skos:exactMatch eu:MWI ;
+    skos:broader geo:RSA ;
+    .
+
+geo:MY
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Malaysia"@en ;
+    skos:notation "MY" ;
+    skos:exactMatch eu:MYS ;
+    skos:broader geo:RAS ;
+    .
+
+geo:MV
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Maldives"@en ;
+    skos:notation "MV" ;
+    skos:exactMatch eu:MDV ;
+    skos:broader geo:RAS ;
+    .
+
+geo:ML
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Mali"@en ;
+    skos:notation "ML" ;
+    skos:exactMatch eu:MLI ;
+    skos:broader geo:RSA ;
+    .
+
+geo:MT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Malta"@en ;
+    skos:notation "MT" ;
+    skos:exactMatch eu:MLT ;
+    skos:broader geo:WEU ;
+    skos:broader geo:EUR ;
+    .
+
+geo:MH
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Marshall Islands"@en ;
+    skos:notation "MH" ;
+    skos:exactMatch eu:MHL ;
+    skos:broader geo:OCE ;
+    .
+
+geo:MR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Mauritania"@en ;
+    skos:notation "MR" ;
+    skos:exactMatch eu:MRT ;
+    skos:broader geo:RSA ;
+    .
+
+geo:MU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Mauritius"@en ;
+    skos:notation "MU" ;
+    skos:exactMatch eu:MUS ;
+    skos:broader geo:RSA ;
+    .
+
+geo:MX
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Mexico"@en ;
+    skos:notation "MX" ;
+    skos:exactMatch eu:MEX ;
+    skos:broader geo:NAM ;
+    skos:broader geo:OECD ;
+    .
+
+geo:FM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Micronesia, Federated States of"@en ;
+    skos:notation "FM" ;
+    skos:exactMatch eu:FSM ;
+    skos:broader geo:OCE ;
+    .
+
+geo:MD
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Moldova, Republic of"@en ;
+    skos:notation "MD" ;
+    skos:exactMatch eu:MDA ;
+    skos:broader geo:EEU ;
+    .
+
+geo:MC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Monaco"@en ;
+    skos:notation "MC" ;
+    skos:exactMatch eu:MCO ;
+    skos:broader geo:WEU ;
+    .
+
+geo:MN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Mongolia"@en ;
+    skos:notation "MN" ;
+    skos:exactMatch eu:MNG ;
+    skos:broader geo:RAS ;
+    .
+
+geo:ME
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Montenegro"@en ;
+    skos:notation "ME" ;
+    skos:exactMatch eu:MNE ;
+    skos:broader geo:EEU ;
+    .
+
+geo:MA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Morocco"@en ;
+    skos:notation "MA" ;
+    skos:exactMatch eu:MAR ;
+    skos:broader geo:RNA ;
+    .
+
+geo:MZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Mozambique"@en ;
+    skos:notation "MZ" ;
+    skos:exactMatch eu:MOZ ;
+    skos:broader geo:RSA ;
+    .
+
+geo:MM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Myanmar"@en ;
+    skos:notation "MM" ;
+    skos:exactMatch eu:MMR ;
+    skos:broader geo:RAS ;
+    .
+
+geo:NA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Namibia"@en ;
+    skos:notation "NA" ;
+    skos:exactMatch eu:NAM ;
+    skos:broader geo:RSA ;
+    .
+
+geo:NR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Nauru"@en ;
+    skos:notation "NR" ;
+    skos:exactMatch eu:NRU ;
+    skos:broader geo:OCE ;
+    .
+
+geo:NP
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Nepal"@en ;
+    skos:notation "NP" ;
+    skos:exactMatch eu:NPL ;
+    skos:broader geo:RAS ;
+    .
+
+geo:NL
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Netherlands"@en ;
+    skos:notation "NL" ;
+    skos:exactMatch eu:NLD ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:NZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "New Zealand"@en ;
+    skos:notation "NZ" ;
+    skos:exactMatch eu:NZL ;
+    skos:broader geo:OCE ;
+    skos:broader geo:OECD ;
+    .
+
+geo:NI
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Nicaragua"@en ;
+    skos:notation "NI" ;
+    skos:exactMatch eu:NIC ;
+    skos:broader geo:SAM ;
+    .
+
+geo:NE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Niger"@en ;
+    skos:notation "NE" ;
+    skos:exactMatch eu:NER ;
+    skos:broader geo:RSA ;
+    .
+
+geo:NG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Nigeria"@en ;
+    skos:notation "NG" ;
+    skos:exactMatch eu:NGA ;
+    skos:broader geo:RSA ;
+    .
+
+geo:MK
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "North Macedonia"@en ;
+    skos:notation "MK" ;
+    skos:exactMatch eu:MKD ;
+    skos:broader geo:EEU ;
+    .
+
+geo:NO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Norway"@en ;
+    skos:notation "NO" ;
+    skos:exactMatch eu:NOR ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    .
+
+geo:OM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Oman"@en ;
+    skos:notation "OM" ;
+    skos:exactMatch eu:OMN ;
+    skos:broader geo:RME ;
+    .
+
+geo:PK
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Pakistan"@en ;
+    skos:notation "PK" ;
+    skos:exactMatch eu:PAK ;
+    skos:broader geo:RAS ;
+    .
+
+geo:PW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Palau"@en ;
+    skos:notation "PW" ;
+    skos:exactMatch eu:PLW ;
+    skos:broader geo:OCE ;
+    .
+
+geo:PS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Palestine, State of"@en ;
+    skos:notation "PS" ;
+    skos:exactMatch eu:PSE ;
+    skos:broader geo:RME ;
+    .
+
+geo:PA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Panama"@en ;
+    skos:notation "PA" ;
+    skos:exactMatch eu:PAN ;
+    skos:broader geo:SAM ;
+    .
+
+geo:PG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Papua New Guinea"@en ;
+    skos:notation "PG" ;
+    skos:exactMatch eu:PNG ;
+    skos:broader geo:OCE ;
+    .
+
+geo:PY
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Paraguay"@en ;
+    skos:notation "PY" ;
+    skos:exactMatch eu:PRY ;
+    skos:broader geo:SAM ;
+    .
+
+geo:PE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Peru"@en ;
+    skos:notation "PE" ;
+    skos:exactMatch eu:PER ;
+    skos:broader geo:SAM ;
+    .
+
+geo:PH
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Philippines"@en ;
+    skos:notation "PH" ;
+    skos:exactMatch eu:PHL ;
+    skos:broader geo:RAS ;
+    .
+
+geo:PL
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Poland"@en ;
+    skos:notation "PL" ;
+    skos:exactMatch eu:POL ;
+    skos:broader geo:EEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:PT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Portugal"@en ;
+    skos:notation "PT" ;
+    skos:exactMatch eu:PRT ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:QA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Qatar"@en ;
+    skos:notation "QA" ;
+    skos:exactMatch eu:QAT ;
+    skos:broader geo:RME ;
+    .
+
+geo:RO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Romania"@en ;
+    skos:notation "RO" ;
+    skos:exactMatch eu:ROU ;
+    skos:broader geo:EEU ;
+    skos:broader geo:EUR ;
+    .
+
+geo:RU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Russian Federation"@en ;
+    skos:notation "RU" ;
+    skos:exactMatch eu:RUS ;
+    skos:broader geo:EEU ;
+    skos:broader geo:BRICS ;
+    .
+
+geo:RW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Rwanda"@en ;
+    skos:notation "RW" ;
+    skos:exactMatch eu:RWA ;
+    skos:broader geo:RSA ;
+    .
+
+geo:KN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Saint Kitts and Nevis"@en ;
+    skos:notation "KN" ;
+    skos:exactMatch eu:KNA ;
+    skos:broader geo:SAM ;
+    .
+
+geo:LC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Saint Lucia"@en ;
+    skos:notation "LC" ;
+    skos:exactMatch eu:LCA ;
+    skos:broader geo:SAM ;
+    .
+
+geo:VC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Saint Vincent and the Grenadines"@en ;
+    skos:notation "VC" ;
+    skos:exactMatch eu:VCT ;
+    skos:broader geo:SAM ;
+    .
+
+geo:WS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Samoa"@en ;
+    skos:notation "WS" ;
+    skos:exactMatch eu:WSM ;
+    skos:broader geo:OCE ;
+    .
+
+geo:SM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "San Marino"@en ;
+    skos:notation "SM" ;
+    skos:exactMatch eu:SMR ;
+    skos:broader geo:WEU ;
+    .
+
+geo:ST
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Sao Tome and Principe"@en ;
+    skos:notation "ST" ;
+    skos:exactMatch eu:STP ;
+    skos:broader geo:RSA ;
+    .
+
+geo:SA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Saudi Arabia"@en ;
+    skos:notation "SA" ;
+    skos:exactMatch eu:SAU ;
+    skos:broader geo:RME ;
+    .
+
+geo:SN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Senegal"@en ;
+    skos:notation "SN" ;
+    skos:exactMatch eu:SEN ;
+    skos:broader geo:RSA ;
+    .
+
+geo:RS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Serbia"@en ;
+    skos:notation "RS" ;
+    skos:exactMatch eu:SRB ;
+    skos:broader geo:EEU ;
+    .
+
+geo:SC
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Seychelles"@en ;
+    skos:notation "SC" ;
+    skos:exactMatch eu:SYC ;
+    skos:broader geo:RSA ;
+    .
+
+geo:SL
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Sierra Leone"@en ;
+    skos:notation "SL" ;
+    skos:exactMatch eu:SLE ;
+    skos:broader geo:RSA ;
+    .
+
+geo:SG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Singapore"@en ;
+    skos:notation "SG" ;
+    skos:exactMatch eu:SGP ;
+    skos:broader geo:RAS ;
+    .
+
+geo:SK
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Slovakia"@en ;
+    skos:notation "SK" ;
+    skos:exactMatch eu:SVK ;
+    skos:broader geo:EEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:SI
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Slovenia"@en ;
+    skos:notation "SI" ;
+    skos:exactMatch eu:SVN ;
+    skos:broader geo:EEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:SB
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Solomon Islands"@en ;
+    skos:notation "SB" ;
+    skos:exactMatch eu:SLB ;
+    skos:broader geo:OCE ;
+    .
+
+geo:SO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Somalia"@en ;
+    skos:notation "SO" ;
+    skos:exactMatch eu:SOM ;
+    skos:broader geo:RSA ;
+    .
+
+geo:ZA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "South Africa"@en ;
+    skos:notation "ZA" ;
+    skos:exactMatch eu:ZAF ;
+    skos:broader geo:RSA ;
+    skos:broader geo:BRICS ;
+    .
+
+geo:SS
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "South Sudan"@en ;
+    skos:notation "SS" ;
+    skos:exactMatch eu:SSD ;
+    skos:broader geo:RSA ;
+    .
+
+geo:ES
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Spain"@en ;
+    skos:notation "ES" ;
+    skos:exactMatch eu:ESP ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:LK
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Sri Lanka"@en ;
+    skos:notation "LK" ;
+    skos:exactMatch eu:LKA ;
+    skos:broader geo:RAS ;
+    .
+
+geo:SD
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Sudan"@en ;
+    skos:notation "SD" ;
+    skos:exactMatch eu:SDN ;
+    skos:broader geo:RNA ;
+    .
+
+geo:SR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Suriname"@en ;
+    skos:notation "SR" ;
+    skos:exactMatch eu:SUR ;
+    skos:broader geo:SAM ;
+    .
+
+geo:SE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Sweden"@en ;
+    skos:notation "SE" ;
+    skos:exactMatch eu:SWE ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    skos:broader geo:EUR ;
+    .
+
+geo:CH
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Switzerland"@en ;
+    skos:notation "CH" ;
+    skos:exactMatch eu:CHE ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    .
+
+geo:SY
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Syrian Arab Republic"@en ;
+    skos:notation "SY" ;
+    skos:exactMatch eu:SYR ;
+    skos:broader geo:RME ;
+    .
+
+geo:TW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Taiwan, Province of China"@en ;
+    skos:notation "TW" ;
+    skos:exactMatch eu:TWN ;
+    skos:broader geo:RAS ;
+    .
+
+geo:TJ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Tajikistan"@en ;
+    skos:notation "TJ" ;
+    skos:exactMatch eu:TJK ;
+    skos:broader geo:RAS ;
+    .
+
+geo:TZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Tanzania, United Republic of"@en ;
+    skos:notation "TZ" ;
+    skos:exactMatch eu:TZA ;
+    skos:broader geo:RSA ;
+    .
+
+geo:TH
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Thailand"@en ;
+    skos:notation "TH" ;
+    skos:exactMatch eu:THA ;
+    skos:broader geo:RAS ;
+    .
+
+geo:TL
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Timor-Leste"@en ;
+    skos:notation "TL" ;
+    skos:exactMatch eu:TLS ;
+    skos:broader geo:RAS ;
+    .
+
+geo:TG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Togo"@en ;
+    skos:notation "TG" ;
+    skos:exactMatch eu:TGO ;
+    skos:broader geo:RSA ;
+    .
+
+geo:TO
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Tonga"@en ;
+    skos:notation "TO" ;
+    skos:exactMatch eu:TON ;
+    skos:broader geo:OCE ;
+    .
+
+geo:TT
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Trinidad and Tobago"@en ;
+    skos:notation "TT" ;
+    skos:exactMatch eu:TTO ;
+    skos:broader geo:SAM ;
+    .
+
+geo:TN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Tunisia"@en ;
+    skos:notation "TN" ;
+    skos:exactMatch eu:TUN ;
+    skos:broader geo:RNA ;
+    .
+
+geo:TM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Turkmenistan"@en ;
+    skos:notation "TM" ;
+    skos:exactMatch eu:TKM ;
+    skos:broader geo:RAS ;
+    .
+
+geo:TV
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Tuvalu"@en ;
+    skos:notation "TV" ;
+    skos:exactMatch eu:TUV ;
+    skos:broader geo:OCE ;
+    .
+
+geo:TR
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Türkiye"@en ;
+    skos:notation "TR" ;
+    skos:exactMatch eu:TUR ;
+    skos:broader geo:RME ;
+    skos:broader geo:RER ;
+    skos:broader geo:OECD ;
+    .
+
+geo:UG
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Uganda"@en ;
+    skos:notation "UG" ;
+    skos:exactMatch eu:UGA ;
+    skos:broader geo:RSA ;
+    .
+
+geo:UA
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Ukraine"@en ;
+    skos:notation "UA" ;
+    skos:exactMatch eu:UKR ;
+    skos:broader geo:EEU ;
+    .
+
+geo:AE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "United Arab Emirates"@en ;
+    skos:notation "AE" ;
+    skos:exactMatch eu:ARE ;
+    skos:broader geo:RME ;
+    .
+
+geo:GB
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "United Kingdom"@en ;
+    skos:notation "GB" ;
+    skos:exactMatch eu:GBR ;
+    skos:broader geo:WEU ;
+    skos:broader geo:OECD ;
+    .
+
+geo:US
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "United States"@en ;
+    skos:notation "US" ;
+    skos:exactMatch eu:USA ;
+    skos:broader geo:NAM ;
+    skos:broader geo:OECD ;
+    .
+
+geo:UY
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Uruguay"@en ;
+    skos:notation "UY" ;
+    skos:exactMatch eu:URY ;
+    skos:broader geo:SAM ;
+    .
+
+geo:UZ
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Uzbekistan"@en ;
+    skos:notation "UZ" ;
+    skos:exactMatch eu:UZB ;
+    skos:broader geo:RAS ;
+    .
+
+geo:VU
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Vanuatu"@en ;
+    skos:notation "VU" ;
+    skos:exactMatch eu:VUT ;
+    skos:broader geo:OCE ;
+    .
+
+geo:VE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Venezuela, Bolivarian Republic of"@en ;
+    skos:notation "VE" ;
+    skos:exactMatch eu:VEN ;
+    skos:broader geo:SAM ;
+    .
+
+geo:VN
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Viet Nam"@en ;
+    skos:notation "VN" ;
+    skos:exactMatch eu:VNM ;
+    skos:broader geo:RAS ;
+    .
+
+geo:EH
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Western Sahara"@en ;
+    skos:notation "EH" ;
+    skos:exactMatch eu:ESH ;
+    skos:broader geo:RNA ;
+    .
+
+geo:YE
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Yemen"@en ;
+    skos:notation "YE" ;
+    skos:exactMatch eu:YEM ;
+    skos:broader geo:RME ;
+    .
+
+geo:ZM
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Zambia"@en ;
+    skos:notation "ZM" ;
+    skos:exactMatch eu:ZMB ;
+    skos:broader geo:RSA ;
+    .
+
+geo:ZW
+    a skos:Concept ;
+    skos:inScheme pefdpp:PEFGeographies ;
+    skos:prefLabel "Zimbabwe"@en ;
+    skos:notation "ZW" ;
+    skos:exactMatch eu:ZWE ;
+    skos:broader geo:RSA ;
+    .
+
+##############################################################
+# Collections — group concepts by geography type
+##############################################################
+
+pefdpp:Countries
+    a skos:Collection ;
+    skos:prefLabel "Countries"@en ;
+    skos:definition "All sovereign country concepts in the PEFGeographies scheme."@en ;
+    skos:member geo:AF ;
+    skos:member geo:AL ;
+    skos:member geo:DZ ;
+    skos:member geo:AD ;
+    skos:member geo:AO ;
+    skos:member geo:AG ;
+    skos:member geo:AR ;
+    skos:member geo:AM ;
+    skos:member geo:AU ;
+    skos:member geo:AT ;
+    skos:member geo:AZ ;
+    skos:member geo:BS ;
+    skos:member geo:BH ;
+    skos:member geo:BD ;
+    skos:member geo:BB ;
+    skos:member geo:BY ;
+    skos:member geo:BE ;
+    skos:member geo:BZ ;
+    skos:member geo:BJ ;
+    skos:member geo:BT ;
+    skos:member geo:BO ;
+    skos:member geo:BA ;
+    skos:member geo:BW ;
+    skos:member geo:BR ;
+    skos:member geo:BN ;
+    skos:member geo:BG ;
+    skos:member geo:BF ;
+    skos:member geo:BI ;
+    skos:member geo:CV ;
+    skos:member geo:KH ;
+    skos:member geo:CM ;
+    skos:member geo:CA ;
+    skos:member geo:CF ;
+    skos:member geo:TD ;
+    skos:member geo:CL ;
+    skos:member geo:CN ;
+    skos:member geo:CO ;
+    skos:member geo:KM ;
+    skos:member geo:CG ;
+    skos:member geo:CD ;
+    skos:member geo:CR ;
+    skos:member geo:HR ;
+    skos:member geo:CU ;
+    skos:member geo:CY ;
+    skos:member geo:CZ ;
+    skos:member geo:CI ;
+    skos:member geo:DK ;
+    skos:member geo:DJ ;
+    skos:member geo:DM ;
+    skos:member geo:DO ;
+    skos:member geo:EC ;
+    skos:member geo:EG ;
+    skos:member geo:SV ;
+    skos:member geo:GQ ;
+    skos:member geo:ER ;
+    skos:member geo:EE ;
+    skos:member geo:SZ ;
+    skos:member geo:ET ;
+    skos:member geo:FJ ;
+    skos:member geo:FI ;
+    skos:member geo:FR ;
+    skos:member geo:GA ;
+    skos:member geo:GM ;
+    skos:member geo:GE ;
+    skos:member geo:DE ;
+    skos:member geo:GH ;
+    skos:member geo:GR ;
+    skos:member geo:GD ;
+    skos:member geo:GT ;
+    skos:member geo:GN ;
+    skos:member geo:GW ;
+    skos:member geo:GY ;
+    skos:member geo:HT ;
+    skos:member geo:VA ;
+    skos:member geo:HN ;
+    skos:member geo:HK ;
+    skos:member geo:HU ;
+    skos:member geo:IS ;
+    skos:member geo:IN ;
+    skos:member geo:ID ;
+    skos:member geo:IR ;
+    skos:member geo:IQ ;
+    skos:member geo:IE ;
+    skos:member geo:IL ;
+    skos:member geo:IT ;
+    skos:member geo:JM ;
+    skos:member geo:JP ;
+    skos:member geo:JO ;
+    skos:member geo:KZ ;
+    skos:member geo:KE ;
+    skos:member geo:KI ;
+    skos:member geo:KP ;
+    skos:member geo:KR ;
+    skos:member geo:KW ;
+    skos:member geo:KG ;
+    skos:member geo:LA ;
+    skos:member geo:LV ;
+    skos:member geo:LB ;
+    skos:member geo:LS ;
+    skos:member geo:LR ;
+    skos:member geo:LY ;
+    skos:member geo:LI ;
+    skos:member geo:LT ;
+    skos:member geo:LU ;
+    skos:member geo:MO ;
+    skos:member geo:MG ;
+    skos:member geo:MW ;
+    skos:member geo:MY ;
+    skos:member geo:MV ;
+    skos:member geo:ML ;
+    skos:member geo:MT ;
+    skos:member geo:MH ;
+    skos:member geo:MR ;
+    skos:member geo:MU ;
+    skos:member geo:MX ;
+    skos:member geo:FM ;
+    skos:member geo:MD ;
+    skos:member geo:MC ;
+    skos:member geo:MN ;
+    skos:member geo:ME ;
+    skos:member geo:MA ;
+    skos:member geo:MZ ;
+    skos:member geo:MM ;
+    skos:member geo:NA ;
+    skos:member geo:NR ;
+    skos:member geo:NP ;
+    skos:member geo:NL ;
+    skos:member geo:NZ ;
+    skos:member geo:NI ;
+    skos:member geo:NE ;
+    skos:member geo:NG ;
+    skos:member geo:MK ;
+    skos:member geo:NO ;
+    skos:member geo:OM ;
+    skos:member geo:PK ;
+    skos:member geo:PW ;
+    skos:member geo:PS ;
+    skos:member geo:PA ;
+    skos:member geo:PG ;
+    skos:member geo:PY ;
+    skos:member geo:PE ;
+    skos:member geo:PH ;
+    skos:member geo:PL ;
+    skos:member geo:PT ;
+    skos:member geo:QA ;
+    skos:member geo:RO ;
+    skos:member geo:RU ;
+    skos:member geo:RW ;
+    skos:member geo:KN ;
+    skos:member geo:LC ;
+    skos:member geo:VC ;
+    skos:member geo:WS ;
+    skos:member geo:SM ;
+    skos:member geo:ST ;
+    skos:member geo:SA ;
+    skos:member geo:SN ;
+    skos:member geo:RS ;
+    skos:member geo:SC ;
+    skos:member geo:SL ;
+    skos:member geo:SG ;
+    skos:member geo:SK ;
+    skos:member geo:SI ;
+    skos:member geo:SB ;
+    skos:member geo:SO ;
+    skos:member geo:ZA ;
+    skos:member geo:SS ;
+    skos:member geo:ES ;
+    skos:member geo:LK ;
+    skos:member geo:SD ;
+    skos:member geo:SR ;
+    skos:member geo:SE ;
+    skos:member geo:CH ;
+    skos:member geo:SY ;
+    skos:member geo:TW ;
+    skos:member geo:TJ ;
+    skos:member geo:TZ ;
+    skos:member geo:TH ;
+    skos:member geo:TL ;
+    skos:member geo:TG ;
+    skos:member geo:TO ;
+    skos:member geo:TT ;
+    skos:member geo:TN ;
+    skos:member geo:TM ;
+    skos:member geo:TV ;
+    skos:member geo:TR ;
+    skos:member geo:UG ;
+    skos:member geo:UA ;
+    skos:member geo:AE ;
+    skos:member geo:GB ;
+    skos:member geo:US ;
+    skos:member geo:UY ;
+    skos:member geo:UZ ;
+    skos:member geo:VU ;
+    skos:member geo:VE ;
+    skos:member geo:VN ;
+    skos:member geo:EH ;
+    skos:member geo:YE ;
+    skos:member geo:ZM ;
+    skos:member geo:ZW ;
+    .
+
+pefdpp:SupranationalRegions
+    a skos:Collection ;
+    skos:prefLabel "Supranational regions"@en ;
+    skos:definition "Ecoinvent supranational region concepts in the PEFGeographies scheme."@en ;
+    skos:member geo:GLO ;
+    skos:member geo:RoW ;
+    skos:member geo:RER ;
+    skos:member geo:WEU ;
+    skos:member geo:EEU ;
+    skos:member geo:EUR ;
+    skos:member geo:NAM ;
+    skos:member geo:SAM ;
+    skos:member geo:RAF ;
+    skos:member geo:RNA ;
+    skos:member geo:RSA ;
+    skos:member geo:RAS ;
+    skos:member geo:RME ;
+    skos:member geo:OCE ;
+    skos:member geo:BRICS ;
+    skos:member geo:OECD ;
+    .
+
+pefdpp:ElectricityGrids
+    a skos:Collection ;
+    skos:prefLabel "Electricity grids"@en ;
+    skos:definition "Electricity grid concepts in the PEFGeographies scheme."@en ;
+    skos:member geo:ENTSO_E ;
+    skos:member geo:NORDEL ;
+    skos:member geo:UCTE ;
+    skos:member geo:RFC ;
+    skos:member geo:SERC ;
+    skos:member geo:WECC ;
+    skos:member geo:MRO ;
+    skos:member geo:HICC ;
+    skos:member geo:ASCC ;
+    skos:member geo:CN_SGCC ;
+    skos:member geo:CN_CSG ;
+    skos:member geo:IN_IN ;
+    skos:member geo:JP_JP ;
+    skos:member geo:AU_NEM ;
+    skos:member geo:BR_SIN ;
+    skos:member geo:ZA_ZA ;
+    .
