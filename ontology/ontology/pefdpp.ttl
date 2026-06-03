@@ -1,12 +1,15 @@
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix act:   <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix flow:  <https://w3id.org/mintjesba/pefdpp/flow#> .
-@prefix : <https://w3id.org/mintjesba/pefdpp/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:<http://purl.org/dc/terms/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix act:    <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix flow:   <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix lcia:   <https://w3id.org/mintjesba/pefdpp/lcia#> .
+@prefix ps:     <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
+@prefix :       <https://w3id.org/mintjesba/pefdpp/> .
 
-<https://w3id.org/mintjesba/pefdpp/> 
+<https://w3id.org/mintjesba/pefdpp/>
     a owl:Ontology ;
     owl:versionIRI <https://w3id.org/mintjesba/pefdpp/0.1.0> ;
     owl:versionInfo "0.1.0" ;
@@ -15,18 +18,26 @@
     dcterms:creator <https://orcid.org/YOUR-ORCID> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-11"^^xsd:date ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/dataset> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/activity> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/flow> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+
+    # --- Inputs side ---
     owl:imports <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/flow> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/activity> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/dataset> ;
+
+    # --- Outputs side ---
+    owl:imports <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
     .
 
 ##############################################################
 # Cross-module axioms
-# Range axioms that cannot be declared in individual modules
-# due to circular dependencies are resolved here.
+# Range and domain axioms that cannot be declared in individual
+# modules due to circular dependencies are resolved here.
 ##############################################################
+
+# --- flow → activity (circular: activity imports flow) ---
 
 flow:recyclingActivity
     rdfs:range act:Activity .
@@ -36,3 +47,11 @@ flow:energyRecoveryActivity
 
 flow:disposalActivity
     rdfs:range act:Activity .
+
+# --- lcia → product-system (circular: pefstudy imports both) ---
+
+lcia:forLifeCycleStage
+    rdfs:range ps:LifeCycleStage .
+
+lcia:forActivityLink
+    rdfs:range ps:ActivityLink .

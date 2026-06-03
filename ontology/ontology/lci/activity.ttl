@@ -174,8 +174,8 @@ act:inputOf
     a owl:ObjectProperty ;
     rdfs:label "input of"@en ;
     skos:definition "A flow that is an input to this activity."@en ;
-    rdfs:domain act:Activity ;
-    rdfs:range flow:Flow ;
+    rdfs:domain flow:Flow ;
+    rdfs:range act:Activity ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
     .
 
@@ -183,8 +183,8 @@ act:outputOf
     a owl:ObjectProperty ;
     rdfs:label "output of"@en ;
     skos:definition "A flow that is an output of this activity."@en ;
-    rdfs:domain act:Activity ;
-    rdfs:range flow:Flow ;
+    rdfs:domain flow:Flow ;
+    rdfs:range act:Activity ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
     .
 

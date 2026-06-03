@@ -1,0 +1,188 @@
+##############################################################
+# PEFDPP Ontology — Product System Module
+# https://w3id.org/mintjesba/pefdpp/product-system
+# Covers: ProductSystem, ActivityLink, LifeCycleStage
+##############################################################
+
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:     <http://xmlns.com/foaf/0.1/> .
+@prefix act:      <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix ps:       <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
+
+##############################################################
+# Ontology declaration
+##############################################################
+
+<https://w3id.org/mintjesba/pefdpp/product-system>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/product-system/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "PEFDPP Product System Module"@en ;
+    dcterms:description "Classes and properties for modelling the product system of a PEF study, including activity links, life cycle stages, and system diagrams."@en ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-05-22"^^xsd:date ;
+    dcterms:references <http://xmlns.com/foaf/0.1/> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
+##############################################################
+# ProductSystem
+##############################################################
+
+ps:ProductSystem
+    a owl:Class ;
+    rdfs:label "Product System"@en ;
+    skos:definition "The set of activities and flows modelled in a PEF study, linked together to represent the life cycle of a product."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+
+    # Required — at least one activity link
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ps:hasActivityLink ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    # Optional
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ps:hasSystemDiagram ;
+        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    .
+
+##############################################################
+# ActivityLink
+##############################################################
+
+ps:ActivityLink
+    a owl:Class ;
+    rdfs:label "Activity Link"@en ;
+    skos:definition "A link between a product system and an activity, specifying the activity's role in the system, its scaling factor, and the life cycle stage it belongs to."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+
+    # Required — exactly one
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ps:forActivity ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ps:hasLifeCycleStage ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    # Optional
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ps:hasScalingFactor ;
+        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    .
+
+##############################################################
+# LifeCycleStage — individuals
+##############################################################
+
+ps:LifeCycleStage
+    a owl:Class ;
+    rdfs:label "Life Cycle Stage"@en ;
+    skos:definition "A stage of the product life cycle as defined in the PEF methodology."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+ps:RawMaterialAcquisition
+    a ps:LifeCycleStage ;
+    rdfs:label "Raw material acquisition"@en ;
+    skos:definition "The life cycle stage covering the extraction of resources from nature and their pre-processing, up to the point of entry into the production facility."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+ps:Manufacturing
+    a ps:LifeCycleStage ;
+    rdfs:label "Manufacturing"@en ;
+    skos:definition "The life cycle stage covering the transformation of raw and intermediate materials into the final product within the production facility."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+ps:Distribution
+    a ps:LifeCycleStage ;
+    rdfs:label "Distribution"@en ;
+    skos:definition "The life cycle stage covering transport and storage of the product from the production facility to the end user."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+ps:Use
+    a ps:LifeCycleStage ;
+    rdfs:label "Use"@en ;
+    skos:definition "The life cycle stage covering the use of the product by the end user over its service life."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+ps:EndOfLife
+    a ps:LifeCycleStage ;
+    rdfs:label "End of life"@en ;
+    skos:definition "The life cycle stage covering the collection, sorting, recycling, energy recovery, and disposal of the product at end of its service life."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+##############################################################
+# Object properties — ProductSystem
+##############################################################
+
+ps:hasActivityLink
+    a owl:ObjectProperty ;
+    rdfs:label "has activity link"@en ;
+    skos:definition "An activity link connecting this product system to a modelled activity."@en ;
+    rdfs:domain ps:ProductSystem ;
+    rdfs:range ps:ActivityLink ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+ps:hasSystemDiagram
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has system diagram"@en ;
+    skos:definition "An image representing the system diagram of this product system."@en ;
+    rdfs:domain ps:ProductSystem ;
+    rdfs:range foaf:Image ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+##############################################################
+# Object properties — ActivityLink
+##############################################################
+
+ps:forActivity
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "for activity"@en ;
+    skos:definition "The activity that this activity link references within the product system."@en ;
+    rdfs:domain ps:ActivityLink ;
+    rdfs:range act:Activity ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+ps:hasLifeCycleStage
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has life cycle stage"@en ;
+    skos:definition "The life cycle stage to which this activity link belongs."@en ;
+    rdfs:domain ps:ActivityLink ;
+    rdfs:range ps:LifeCycleStage ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+##############################################################
+# Datatype properties — ActivityLink
+##############################################################
+
+ps:hasScalingFactor
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "has scaling factor"@en ;
+    skos:definition "The factor by which the activity's flows are scaled relative to the functional unit. Defaults to 1.0 if not specified."@en ;
+    rdfs:domain ps:ActivityLink ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .

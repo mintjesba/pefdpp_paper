@@ -1,0 +1,326 @@
+##############################################################
+# PEFDPP Ontology — LCIA Module
+# https://w3id.org/mintjesba/pefdpp/lcia
+# Covers: LCIAResult, ContributionResult, ImpactCategory,
+#         ImpactAssessmentMethod, ImpactIndicatorUnit,
+#         LCIAResultType
+##############################################################
+
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix om:       <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix flow:     <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix lcia:     <https://w3id.org/mintjesba/pefdpp/lcia#> .
+
+##############################################################
+# Ontology declaration
+##############################################################
+
+<https://w3id.org/mintjesba/pefdpp/lcia>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/lcia/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "PEFDPP LCIA Module"@en ;
+    dcterms:description "Classes and properties for Life Cycle Impact Assessment results in the PEFDPP ontology, including impact categories, assessment methods, indicator units, result types, and contribution analysis."@en ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-05-22"^^xsd:date ;
+    dcterms:references <http://www.ontology-of-units-of-measure.org/resource/om-2/> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+##############################################################
+# ImpactCategory
+##############################################################
+
+lcia:ImpactCategory
+    a owl:Class ;
+    rdfs:label "Impact Category"@en ;
+    skos:definition "An environmental impact category assessed in an LCIA, such as climate change, acidification, or water use. Corresponds to one of the 16 EF impact categories."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty rdfs:label ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:calculatedByMethod ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:hasIndicatorUnit ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    .
+
+##############################################################
+# ImpactAssessmentMethod
+##############################################################
+
+lcia:ImpactAssessmentMethod
+    a owl:Class ;
+    rdfs:label "Impact Assessment Method"@en ;
+    skos:definition "The characterisation method used to calculate results for an impact category, e.g. IPCC AR6 for climate change or ReCiPe for particulate matter."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty rdfs:label ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    # Optional version reference
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty owl:versionInfo ;
+        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    .
+
+##############################################################
+# ImpactIndicatorUnit
+##############################################################
+
+lcia:ImpactIndicatorUnit
+    a owl:Class ;
+    rdfs:subClassOf om:Unit ;
+    rdfs:label "Impact Indicator Unit"@en ;
+    skos:definition "The unit of measurement for an impact category indicator, e.g. kg CO2 eq. for climate change or mol H+ eq. for acidification."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+##############################################################
+# LCIAResultType — individuals
+##############################################################
+
+lcia:LCIAResultType
+    a owl:Class ;
+    rdfs:label "LCIA Result Type"@en ;
+    skos:definition "The type of LCIA result — whether it is a characterised, normalised, weighted, or single score result."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:Characterised
+    a lcia:LCIAResultType ;
+    rdfs:label "Characterised"@en ;
+    skos:definition "An LCIA result expressed in the characterisation unit of the impact category, obtained by multiplying inventory flows by characterisation factors."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:Normalised
+    a lcia:LCIAResultType ;
+    rdfs:label "Normalised"@en ;
+    skos:definition "A characterised LCIA result divided by a reference value (normalisation factor) to express it relative to a reference system."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:Weighted
+    a lcia:LCIAResultType ;
+    rdfs:label "Weighted"@en ;
+    skos:definition "A normalised LCIA result multiplied by a weighting factor reflecting the relative importance of the impact category."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:SingleScore
+    a lcia:LCIAResultType ;
+    rdfs:label "Single score"@en ;
+    skos:definition "The sum of all weighted LCIA results across all impact categories, expressing the overall environmental performance as a single dimensionless score."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+##############################################################
+# LCIAResult
+##############################################################
+
+lcia:LCIAResult
+    a owl:Class ;
+    rdfs:label "LCIA Result"@en ;
+    skos:definition "A Life Cycle Impact Assessment result for a specific impact category in a PEF study, expressed as a measure and associated with a result type."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+
+    # Required — exactly one
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:hasMeasure ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:forImpactCategory ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:hasLCIAResultType ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    .
+
+##############################################################
+# ContributionResult
+##############################################################
+
+lcia:ContributionResult
+    a owl:Class ;
+    rdfs:subClassOf lcia:LCIAResult ;
+    rdfs:label "Contribution Result"@en ;
+    skos:definition "A disaggregated LCIA result showing the contribution of a specific life cycle stage, activity, elementary flow, or CFF value to the total impact of an impact category."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+
+    # Required — exactly one result type and measure (inherited from LCIAResult)
+    # At least one disaggregation dimension required
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:contributionShare ;
+        owl:cardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    # Optional disaggregation dimensions
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:forLifeCycleStage ;
+        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:forActivityLink ;
+        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:forElementaryFlow ;
+        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:forSpecificCFFValue ;
+        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty lcia:isMostRelevant ;
+        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    .
+
+##############################################################
+# Object properties — ImpactCategory
+##############################################################
+
+lcia:calculatedByMethod
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "calculated by method"@en ;
+    skos:definition "The impact assessment method used to calculate results for this impact category."@en ;
+    rdfs:domain lcia:ImpactCategory ;
+    rdfs:range lcia:ImpactAssessmentMethod ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:hasIndicatorUnit
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has indicator unit"@en ;
+    skos:definition "The unit in which the characterised result for this impact category is expressed."@en ;
+    rdfs:domain lcia:ImpactCategory ;
+    rdfs:range lcia:ImpactIndicatorUnit ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+##############################################################
+# Object properties — LCIAResult
+##############################################################
+
+lcia:hasMeasure
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has measure"@en ;
+    skos:definition "The numeric value and unit of this LCIA result."@en ;
+    rdfs:domain lcia:LCIAResult ;
+    rdfs:range om:Measure ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:forImpactCategory
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "for impact category"@en ;
+    skos:definition "The impact category to which this LCIA result corresponds."@en ;
+    rdfs:domain lcia:LCIAResult ;
+    rdfs:range lcia:ImpactCategory ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:hasLCIAResultType
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has LCIA result type"@en ;
+    skos:definition "The type of this LCIA result — characterised, normalised, weighted, or single score."@en ;
+    rdfs:domain lcia:LCIAResult ;
+    rdfs:range lcia:LCIAResultType ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+##############################################################
+# Object properties — ContributionResult
+##############################################################
+
+lcia:forLifeCycleStage
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "for life cycle stage"@en ;
+    skos:definition "The life cycle stage to which this contribution result is attributed."@en ;
+    rdfs:domain lcia:ContributionResult ;
+    # Range declared in pefdpp.ttl to avoid circular import with product-system module
+    skos:scopeNote "Range: ps:LifeCycleStage — declared in pefdpp.ttl to avoid circular import."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:forActivityLink
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "for activity link"@en ;
+    skos:definition "The activity link to which this contribution result is attributed."@en ;
+    rdfs:domain lcia:ContributionResult ;
+    # Range declared in pefdpp.ttl to avoid circular import with product-system module
+    skos:scopeNote "Range: ps:ActivityLink — declared in pefdpp.ttl to avoid circular import."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:forElementaryFlow
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "for elementary flow"@en ;
+    skos:definition "The elementary flow to which this contribution result is attributed."@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:range flow:ElementaryFlow ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:forSpecificCFFValue
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "for specific CFF value"@en ;
+    skos:definition "The specific CFF parameter value to which this contribution result is attributed, used in contribution analysis of circular footprint formula terms."@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:range flow:CFFValue ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+##############################################################
+# Datatype properties — ContributionResult
+##############################################################
+
+lcia:isMostRelevant
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "is most relevant"@en ;
+    skos:definition "Indicates whether this contribution is among the most relevant contributions to the total impact of its impact category, as defined by the PEF relevance threshold."@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:range xsd:boolean ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
+
+lcia:contributionShare
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "contribution share"@en ;
+    skos:definition "The fractional share (0.0–1.0) of this contribution result relative to the total LCIA result for its impact category."@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    .
