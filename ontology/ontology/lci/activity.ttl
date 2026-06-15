@@ -15,6 +15,7 @@
 @prefix dq:       <https://w3id.org/mintjesba/pefdpp/dataquality#> .
 @prefix flow:     <https://w3id.org/mintjesba/pefdpp/flow#> .
 @prefix act:      <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix :         <https://w3id.org/mintjesba/pefdpp/> .
 
 ##############################################################
 # Ontology declaration
@@ -44,23 +45,6 @@ act:Activity
     skos:definition "A unit process or activity within the life cycle inventory, characterised by its type, geography, temporal scope, and data quality."@en ;
     skos:scopeNote "Use dq:hasDataQuality to associate a DataQuality assessment with this activity."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
-    
-    # Required properties
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty act:hasActivityType ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty act:hasGeography ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-        rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty act:hasDeterminingFlow ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
     .
 
 act:ActivityType
@@ -84,16 +68,6 @@ act:TemporalScope
     rdfs:label "Temporal Scope"@en ;
     skos:definition "The time period covered by an activity, defined by a start and end date."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty act:startDate ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty act:endDate ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
     .
 
 act:AllocationMethod
@@ -131,6 +105,7 @@ act:hasActivityType
     skos:definition "The type of this activity."@en ;
     rdfs:domain act:Activity ;
     rdfs:range act:ActivityType ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
     .
 
@@ -140,6 +115,7 @@ act:hasGeography
     skos:definition "The geography associated with this activity."@en ;
     rdfs:domain act:Activity ;
     rdfs:range act:Geography ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
     .
 
@@ -194,12 +170,23 @@ act:hasDeterminingFlow
     skos:definition "The flow that determines the reference quantity of this activity."@en ;
     rdfs:domain act:Activity ;
     rdfs:range flow:Flow ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
     .
 
 ##############################################################
 # Datatype properties — Activity
 ##############################################################
+act:isCompanySpecific 
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "is company specific"@en ;
+    skos:definition "Indicates whether this activity uses company-specific data."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range xsd:boolean ;
+    :PEFRequired true ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
 
 act:isAllocated
     a owl:DatatypeProperty, owl:FunctionalProperty ;

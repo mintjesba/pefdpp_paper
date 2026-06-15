@@ -1,0 +1,85 @@
+##############################################################
+# PEFDPP Ontology — ILCD Name module
+# https://w3id.org/mintjesba/pefdpp/ilcdname
+##############################################################
+
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix :        <https://w3id.org/mintjesba/pefdpp/> .
+@prefix name:    <https://w3id.org/mintjesba/pefdpp/ilcdname#> .
+
+##############################################################
+# Ontology declaration
+##############################################################
+
+<https://w3id.org/mintjesba/pefdpp/ilcdname>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataquality/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "PEFDPP ILCD Name Module"@en ;
+    dcterms:description "Classes and properties for naming activities and flows according to ILCD naming conventions."@en ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    .
+
+##############################################################
+# Classes
+##############################################################
+
+name:ILCDName
+    a owl:Class ;
+    rdfs:label "ILCD Name"@en ;
+    skos:definition "The ILCD name for a process or flow, according to ILCD naming conventions."@en ;
+    .
+
+##############################################################
+# Datatype properties
+##############################################################
+
+name:hasBaseName
+    a owl:DatatypeProperty ;
+    rdfs:label "has base name"@en ;
+    rdfs:domain dq:ILCDName ;
+    rdfs:range xsd:string ;
+    :PEFRequired true ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+name:hasTreatmentsStandardsRoutes
+    a owl:DatatypeProperty ;
+    rdfs:label "has treatments, standards, routes"@en ;
+    rdfs:domain dq:ILCDName ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+name:hasMixTypeLocationType
+    a owl:DatatypeProperty ;
+    rdfs:label "has mix type, location type"@en ;
+    rdfs:domain dq:ILCDName ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+name:hasQuantitativeFlowProperties
+    a owl:DatatypeProperty ;
+    rdfs:label "has quantitative flow properties"@en ;
+    rdfs:domain dq:ILCDName ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
+
+
+##############################################################
+# Object property — links ILCDName to its subject
+##############################################################
+name:hasILCDName
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "has ILCD name"@en ;
+    rdfs:range name:ILCDName
+    .

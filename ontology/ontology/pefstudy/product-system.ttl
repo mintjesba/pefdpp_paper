@@ -13,6 +13,7 @@
 @prefix foaf:     <http://xmlns.com/foaf/0.1/> .
 @prefix act:      <https://w3id.org/mintjesba/pefdpp/activity#> .
 @prefix ps:       <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
+@prefix :         <https://w3id.org/mintjesba/pefdpp/> .
 
 ##############################################################
 # Ontology declaration
@@ -40,19 +41,6 @@ ps:ProductSystem
     rdfs:label "Product System"@en ;
     skos:definition "The set of activities and flows modelled in a PEF study, linked together to represent the life cycle of a product."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
-
-    # Required — at least one activity link
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty ps:hasActivityLink ;
-        owl:minCardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    # Optional
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty ps:hasSystemDiagram ;
-        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-    ] ;
     .
 
 ##############################################################
@@ -62,26 +50,8 @@ ps:ProductSystem
 ps:ActivityLink
     a owl:Class ;
     rdfs:label "Activity Link"@en ;
-    skos:definition "A link between a product system and an activity, specifying the activity's role in the system, its scaling factor, and the life cycle stage it belongs to."@en ;
+    skos:definition "A link between a product system and an activity, specifying the activity's role in the system and the life cycle stage it belongs to."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
-
-    # Required — exactly one
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty ps:forActivity ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty ps:hasLifeCycleStage ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    # Optional
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty ps:hasScalingFactor ;
-        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-    ] ;
     .
 
 ##############################################################
@@ -131,6 +101,19 @@ ps:EndOfLife
     .
 
 ##############################################################
+# CustomLifeCycleStage
+##############################################################
+
+ps:CustomLifeCycleStage
+    a owl:Class ;
+    rdfs:subClassOf ps:LifeCycleStage ;
+    rdfs:label "Custom Life Cycle Stage"@en ;
+    skos:definition "A user-defined life cycle stage usable wherever a LifeCycleStage is expected. Each custom stage must correspond to exactly one of the five default PEF stages and carry a justification for the custom naming."@en ;
+    skos:scopeNote "Custom stages must map to a default stage (no custom-to-custom chains)."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+##############################################################
 # Object properties — ProductSystem
 ##############################################################
 
@@ -140,6 +123,7 @@ ps:hasActivityLink
     skos:definition "An activity link connecting this product system to a modelled activity."@en ;
     rdfs:domain ps:ProductSystem ;
     rdfs:range ps:ActivityLink ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
@@ -149,6 +133,7 @@ ps:hasSystemDiagram
     skos:definition "An image representing the system diagram of this product system."@en ;
     rdfs:domain ps:ProductSystem ;
     rdfs:range foaf:Image ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
@@ -162,6 +147,7 @@ ps:forActivity
     skos:definition "The activity that this activity link references within the product system."@en ;
     rdfs:domain ps:ActivityLink ;
     rdfs:range act:Activity ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
@@ -171,18 +157,33 @@ ps:hasLifeCycleStage
     skos:definition "The life cycle stage to which this activity link belongs."@en ;
     rdfs:domain ps:ActivityLink ;
     rdfs:range ps:LifeCycleStage ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
 ##############################################################
-# Datatype properties — ActivityLink
+# Object properties — CustomLifeCycleStage
 ##############################################################
 
-ps:hasScalingFactor
+ps:correspondsToDefaultStage
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "corresponds to default stage"@en ;
+    skos:definition "The default PEF life cycle stage that this custom life cycle stage maps onto."@en ;
+    rdfs:domain ps:CustomLifeCycleStage ;
+    rdfs:range ps:LifeCycleStage ;
+    skos:scopeNote "Restrict the object to the five default stage individuals via a SHACL sh:in constraint to prevent custom-to-custom chains."@en ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    .
+
+##############################################################
+# Datatype properties — CustomLifeCycleStage
+##############################################################
+
+ps:namingJustification
     a owl:DatatypeProperty, owl:FunctionalProperty ;
-    rdfs:label "has scaling factor"@en ;
-    skos:definition "The factor by which the activity's flows are scaled relative to the functional unit. Defaults to 1.0 if not specified."@en ;
-    rdfs:domain ps:ActivityLink ;
-    rdfs:range xsd:decimal ;
+    rdfs:label "naming justification"@en ;
+    skos:definition "A justification for introducing this custom life cycle stage name rather than using the corresponding default PEF stage."@en ;
+    rdfs:domain ps:CustomLifeCycleStage ;
+    rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .

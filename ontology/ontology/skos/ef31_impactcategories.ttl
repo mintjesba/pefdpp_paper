@@ -1,0 +1,132 @@
+@prefix : <http://example.org/ef31_impactcategories#> .
+@prefix efu: <http://example.org/ef31_units#> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<http://example.org/ef31_impactcategories> a owl:Ontology;
+    dcterms:title "EF 3.1 Impact Category Indicators";
+    dcterms:creator "Berend Mintjes - Leiden University - CE-RISE" .
+
+#####################################################################
+# CLASSIFICATION SCHEME
+#####################################################################
+:ImpactCategoryScheme a skos:ConceptScheme ;
+    skos:prefLabel "EF Impact Categories"@en .
+
+#####################################################################
+# CLASSIFICATION
+#####################################################################
+# IMPACT CATEGORIES
+:Acidification a skos:Concept ;
+    skos:prefLabel "Acidification"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:ClimateChange a skos:Concept ;
+    skos:prefLabel "Climate Change"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:ClimateChangeBiogenic a skos:Concept ;
+    skos:prefLabel "Climate Change - Biogenic"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :ClimateChange .
+
+:ClimateChangeFossil a skos:Concept ;
+    skos:prefLabel "Climate Change - Fossil"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :ClimateChange .
+
+:ClimateChangeLandUse a skos:Concept ;
+    skos:prefLabel "Climate Change - Land Use and Land Use Change"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :ClimateChange .
+
+:EcoToxicityFreshwater a skos:Concept ;
+    skos:prefLabel "Ecotoxicity, freshwater"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:EcoToxicityFreshwaterInorganics a skos:Concept ;
+    skos:prefLabel "Ecotoxicity, freshwater - Inorganics"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :EcoToxicityFreshwater .
+
+:EcoToxicityFreshwaterOrganics a skos:Concept ;
+    skos:prefLabel "Ecotoxicity, freshwater - Organics"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :EcoToxicityFreshwater .
+
+:EutrophicationMarine a skos:Concept ;
+    skos:prefLabel "Eutrophication, marine"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:EutrophicationFreshwater a skos:Concept ;
+    skos:prefLabel "Eutrophication, freshwater"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:EutrophicationTerrestrial a skos:Concept ;
+    skos:prefLabel "Eutrophication, terrestrial"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:HumanToxicityCancer a skos:Concept ;
+    skos:prefLabel "Human Toxicity, cancer"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:HumanToxicityCancerInorganics a skos:Concept ;
+    skos:prefLabel "Human Toxicity, cancer - Inorganics"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :HumanToxicityCancer .
+
+:HumanToxicityCancerOrganics a skos:Concept ;
+    skos:prefLabel "Human Toxicity, cancer - Organics"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :HumanToxicityCancer .
+
+:HumanToxicityNonCancer a skos:Concept ;
+    skos:prefLabel "Human Toxicity, non-cancer"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:HumanToxicityNonCancerInorganics a skos:Concept ;
+    skos:prefLabel "Human Toxicity, non-cancer - Inorganics"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :HumanToxicityNonCancer .
+
+:HumanToxicityNonCancerOrganics a skos:Concept ;
+    skos:prefLabel "Human Toxicity, non-cancer - Organics"@en ;
+    skos:inScheme :ImpactCategoryScheme ;
+    skos:broader :HumanToxicityNonCancer .
+
+:IonisingRadiationHumanHealth a skos:Concept ;
+    skos:prefLabel "Ionising radiation, human health"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:LandUse a skos:Concept ;
+    skos:prefLabel "Land use" ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:OzoneDepletion a skos:Concept ;
+    skos:prefLabel "Ozone Depletion"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:ParticulateMatter a skos:Concept ;
+    skos:prefLabel "Particulate Matter"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:PhotochemicalOzoneFormationHumanHealth a skos:Concept ;
+    skos:prefLabel "Photochemical ozone formation - Human health"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:ResourceUseFossils a skos:Concept ;
+    skos:prefLabel "Resource use, fossils"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:ResourceUseMineralsAndMetals a skos:Concept ;
+    skos:prefLabel "Resource use, minerals and metals"@en ;
+    skos:inScheme :ImpactCategoryScheme .
+
+:WaterUse a skos:Concept ;
+    skos:prefLabel "Water use" ;
+    skos:inScheme :ImpactCategoryScheme .

@@ -50,24 +50,8 @@ flow:Flow
     a owl:Class ;
     rdfs:label "Flow"@en ;
     skos:definition "A material, energy, or elementary flow that is an input or output of an activity."@en ;
+    skos:scopeNote "Assign a DataQuality to environmental flows using dq:hasDataQuality."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
-
-    # Required — exactly one
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:hasFlowType ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:hasMeasure ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:hasDerivationType ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
     .
 
 ##############################################################
@@ -77,7 +61,7 @@ flow:Flow
 flow:FlowType
     a owl:Class ;
     rdfs:label "Flow Type"@en ;
-    skos:definition "The type of flow — product, waste, or elementary."@en ;
+    skos:definition "The type of flow, i.e. the substance being exchanged."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -85,8 +69,8 @@ flow:ProductFlow
     a owl:Class ;
     rdfs:subClassOf flow:FlowType ;
     rdfs:label "Product Flow"@en ;
-    skos:definition "A flow representing a product or co-product. May be mapped to CPA classifications via skos:exactMatch or skos:closeMatch."@en ;
-    skos:scopeNote "Use skos:exactMatch, skos:closeMatch, or skos:broadMatch to link to concepts in external classification schemes such as CPA."@en ;
+    skos:definition "A flow representing a product. May be mapped to CPA classifications via skos:exactMatch or skos:closeMatch."@en ;
+    skos:scopeNote "Assign an ILCDName using name:hasILCDName. Use skos:exactMatch, skos:closeMatch, or skos:broadMatch to link to concepts in external classification schemes such as CPA."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -95,7 +79,7 @@ flow:WasteFlow
     rdfs:subClassOf flow:FlowType ;
     rdfs:label "Waste Flow"@en ;
     skos:definition "A flow representing waste. May be mapped to EWC classifications via skos:exactMatch or skos:closeMatch."@en ;
-    skos:scopeNote "Use skos:exactMatch, skos:closeMatch, or skos:broadMatch to link to concepts in external classification schemes such as EWC."@en ;
+    skos:scopeNote "Assign an ILCDName using name:hasILCDName. Use skos:exactMatch, skos:closeMatch, or skos:broadMatch to link to concepts in external classification schemes such as EWC."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -157,33 +141,6 @@ flow:CFFParameters
     rdfs:label "CFF Parameters"@en ;
     skos:definition "The set of Circular Footprint Formula parameters associated with a product flow."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
-
-    # All CFF parameters required — exactly one each
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:recycledContentRate ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:recyclabilityRate ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:energyRecoveryRate ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:cffAllocationFactorA ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:cffAllocationFactorB ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
     .
 
 ##############################################################
@@ -195,24 +152,6 @@ flow:CFFValue
     rdfs:label "CFF Value"@en ;
     skos:definition "A single Circular Footprint Formula value, comprising a numeric value, a company-specific flag, and an optional justification."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
-
-    # Required — exactly one
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:hasValue ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:isCompanySpecific ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    # Optional — at most one
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:hasJustification ;
-        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-    ] ;
     .
 
 ##############################################################
@@ -224,44 +163,10 @@ flow:EndOfLifeScenario
     rdfs:label "End of Life Scenario"@en ;
     skos:definition "The end-of-life scenario for a waste flow, describing recycling, energy recovery, and disposal rates and associated activities."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
-
-    # Required — exactly one each
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:eolRecyclingRate ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:eolEnergyRecoveryRate ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:eolCffAllocationFactorB ;
-        owl:cardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    # Optional — at most one each
-    # Activities may not be known for all end-of-life scenarios
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:recyclingActivity ;
-        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:energyRecoveryActivity ;
-        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-    ] ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty flow:disposalActivity ;
-        owl:maxCardinality "1"^^xsd:nonNegativeInteger
-    ] ;
     .
 
 ##############################################################
-# Object properties — Flow
+# Object/datatype properties — Flow
 ##############################################################
 
 flow:hasFlowType
@@ -270,6 +175,7 @@ flow:hasFlowType
     skos:definition "The type of this flow."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range flow:FlowType ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -278,7 +184,7 @@ flow:contextualLabel
     rdfs:label "contextual label"@en ;
     skos:definition "The flow's specific use in this Activity."@en ;
     rdfs:domain flow:Flow ;
-    rdfs:range rdfs:Literal ;
+    rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -288,6 +194,7 @@ flow:hasMeasure
     skos:definition "The quantitative measure of this flow, including numerical value and unit."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range om:Measure ;
+    :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -300,24 +207,61 @@ flow:hasDerivationType
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
+flow:isCompanySpecific
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "is company specific"@en ;
+    skos:definition "Whether the flow is company-specific data."@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:range xsd:boolean ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:isSampled
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "is sampled"@en ;
+    skos:definition "Whether the flow is obtained through sampling."@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:range xsd:boolean ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:transportEmptyReturns
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "transport empty returns"@en ;
+    skos:definition "The amount of empty returns for a transport flow."@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:transportLoadingRate
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "transport loading rate"@en ;
+    skos:definition "The loading rate for a transport flow."@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+
+flow:transportDistance
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "transport distance"@en ;
+    skos:definition "The transport distance for a transport flow."@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:range om:Measure ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
 ##############################################################
 # Object properties — ProductFlow
 ##############################################################
 
-flow:virginEquivalent
+flow:hasVirginEquivalent
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "virgin equivalent"@en ;
     skos:definition "The virgin material equivalent of this product flow, used in CFF calculations."@en ;
     rdfs:domain flow:ProductFlow ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
-    .
-
-flow:hasCFFParameters
-    a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "has CFF parameters"@en ;
-    skos:definition "The Circular Footprint Formula parameters associated with this product flow."@en ;
-    rdfs:domain flow:ProductFlow ;
-    rdfs:range flow:CFFParameters ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 

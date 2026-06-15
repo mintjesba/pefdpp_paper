@@ -38,91 +38,74 @@ dq:DataQuality
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
-dq:DQRScore
+dq:DQRCriterion
     a owl:Class ;
-    rdfs:label "DQR Score"@en ;
+    rdfs:label "DQR Criterion"@en ;
     skos:definition "A single Data Quality Rating score for one quality dimension, comprising a numeric value and optional reasoning."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
 ##############################################################
-# Object properties — DataQuality → DQRScore
+# DQRCriterion Individuals
 ##############################################################
 
-dq:technologicalRepresentativeness
-    a owl:ObjectProperty ;
+dq:TechnologicalRepresentativeness
+    a dq:DQRCriterion ;
     rdfs:label "technological representativeness"@en ;
     skos:definition "DQR score for the degree to which the data reflect the actual technology used."@en ;
-    rdfs:domain dq:DataQuality ;
-    rdfs:range dq:DQRScore ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
-dq:timeRepresentativeness
-    a owl:ObjectProperty ;
+dq:TimeRepresentativeness
+    a dq:DQRCriterion ;
     rdfs:label "time representativeness"@en ;
     skos:definition "DQR score for the degree to which the data reflect the intended time period."@en ;
-    rdfs:domain dq:DataQuality ;
-    rdfs:range dq:DQRScore ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
-dq:geographicalRepresentativeness
-    a owl:ObjectProperty ;
+dq:GeographicalRepresentativeness
+    a dq:DQRCriterion ;
     rdfs:label "geographical representativeness"@en ;
     skos:definition "DQR score for the degree to which the data reflect the intended geography."@en ;
-    rdfs:domain dq:DataQuality ;
-    rdfs:range dq:DQRScore ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
-dq:precisionScore
-    a owl:ObjectProperty ;
+dq:PrecisionScore
+    a dq:DQRCriterion ;
     rdfs:label "precision score"@en ;
     skos:definition "DQR score for the degree of exactness and variability of the data."@en ;
-    rdfs:domain dq:DataQuality ;
-    rdfs:range dq:DQRScore ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
 ##############################################################
-# Datatype properties — DataQuality aggregates
+# Datatype properties
 ##############################################################
 
-dq:aggregateDQR
+dq:hasOverallDQR
     a owl:DatatypeProperty ;
-    rdfs:label "aggregate DQR"@en ;
-    skos:definition "The aggregate Data Quality Rating score, calculated from the individual DQR scores."@en ;
-    rdfs:domain dq:DataQuality ;
-    rdfs:range xsd:decimal ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
-    .
-
-dq:overallUncertainty
-    a owl:DatatypeProperty ;
-    rdfs:label "overall uncertainty"@en ;
-    skos:definition "A measure of the overall uncertainty associated with the data."@en ;
+    rdfs:label "has overall DQR"@en ;
+    skos:definition "The aggregate Data Quality Rating score, calculated from the individual DQR criterion scores."@en ;
     rdfs:domain dq:DataQuality ;
     rdfs:range xsd:decimal ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
 ##############################################################
-# Datatype properties — DQRScore
+# Datatype properties — DQRCriterion
 ##############################################################
 
-dq:DQRValue
+dq:hasValue
     a owl:DatatypeProperty ;
-    rdfs:label "DQR value"@en ;
+    rdfs:label "has value"@en ;
     skos:definition "The numeric DQR score, expressed as an integer on the EF 1–5 scale."@en ;
     rdfs:domain dq:DQRScore ;
     rdfs:range xsd:integer ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
-dq:DQRReasoning
+dq:hasJustification
     a owl:DatatypeProperty ;
-    rdfs:label "DQR reasoning"@en ;
+    rdfs:label "DQR justification"@en ;
     skos:definition "A textual justification for the assigned DQR score."@en ;
     rdfs:domain dq:DQRScore ;
     rdfs:range xsd:string ;

@@ -21,6 +21,7 @@
 
     # --- Inputs side ---
     owl:imports <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
     owl:imports <https://w3id.org/mintjesba/pefdpp/flow> ;
     owl:imports <https://w3id.org/mintjesba/pefdpp/activity> ;
     owl:imports <https://w3id.org/mintjesba/pefdpp/dataset> ;
@@ -29,6 +30,18 @@
     owl:imports <https://w3id.org/mintjesba/pefdpp/lcia> ;
     owl:imports <https://w3id.org/mintjesba/pefdpp/product-system> ;
     owl:imports <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    .
+
+##############################################################
+# PEF-required flag
+# Boolean attached to properties indicating whether these are
+# required for PEF compliance. 
+# Intended for future SHACL validation profile.
+##############################################################
+:PEFRequired
+    a owl:AnnotationProperty ;
+    rdfs:label "required for PEF compliance"@en ;
+    skos:definition "Flags whether this property is mandatory for full PEF compliance. Informative only, not enforced in OWL. Intended for a future SHACL conformance profile."@en ;
     .
 
 ##############################################################

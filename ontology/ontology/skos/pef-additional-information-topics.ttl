@@ -1,0 +1,79 @@
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/pefdpp#> .
+@prefix ait:     <https://w3id.org/mintjesba/pefdpp/pef-additional-information-topics#> .
+
+<https://w3id.org/mintjesba/pefdpp/skos/pef-additional-information-topics>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "PEF Additional Information Topics"@en ;
+    dcterms:description "SKOS concept scheme of Additional Information topics used in PEF studies."@en ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-05-12"^^xsd:date ;
+    .
+
+##############################################################
+# Concept scheme
+##############################################################
+ait:PEFAdditionalInformationTopics
+    a skos:ConceptScheme ;
+    dcterms:title "PEF Additional Information Topics" ;
+    skos:definition "Extensible list of topics for PEF Studies' Additional Information."@en ;
+    .
+
+##############################################################
+# Entries
+##############################################################
+ait:Biodiversity
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Biodiversity"@en .
+
+ait:CapitalGoods
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Capital Goods"@en .
+
+ait:Sampling
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Sampling"@en .
+
+ait:Reuse
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Reuse."@en .
+
+ait:UseStage
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Use stage."@en .
+
+ait:Recyclability
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Recyclability."@en .
+
+ait:LandUseChange
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Land Use Change."@en .
+
+ait:SectoralModellingRequirements
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Sectoral Modelling Requirements."@en .
+
+ait:Offsets
+    a skos:Concept ;
+    skos:inScheme ait:PEFAdditionalInformationTopics ;
+    skos:prefLabel "Sectoral Modelling Requirements."@en .
+
+
+
