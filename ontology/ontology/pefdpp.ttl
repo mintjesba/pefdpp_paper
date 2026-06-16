@@ -6,6 +6,7 @@
 @prefix act:    <https://w3id.org/mintjesba/pefdpp/activity#> .
 @prefix flow:   <https://w3id.org/mintjesba/pefdpp/flow#> .
 @prefix lcia:   <https://w3id.org/mintjesba/pefdpp/lcia#> .
+@prefix prs:     <https://w3id.org/mintjesba/pefdpp/product-system#> .
 @prefix ps:     <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
 @prefix :       <https://w3id.org/mintjesba/pefdpp/> .
 
@@ -64,7 +65,7 @@ flow:disposalActivity
 # --- lcia → product-system (circular: pefstudy imports both) ---
 
 lcia:forLifeCycleStage
-    rdfs:range ps:LifeCycleStage .
+    rdfs:range prs:LifeCycleStage .
 
 lcia:forActivityLink
-    rdfs:range ps:ActivityLink .
+    rdfs:range prs:ActivityLink .

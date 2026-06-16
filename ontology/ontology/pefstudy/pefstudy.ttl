@@ -17,6 +17,7 @@
 @prefix dq:       <https://w3id.org/mintjesba/pefdpp/dataquality#> .
 @prefix flow:     <https://w3id.org/mintjesba/pefdpp/flow#> .
 @prefix lcia:     <https://w3id.org/mintjesba/pefdpp/lcia#> .
+@prefix prs:       <https://w3id.org/mintjesba/pefdpp/product-system#> .
 @prefix ps:       <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
 @prefix :         <https://w3id.org/mintjesba/pefdpp/> .
 
@@ -180,7 +181,7 @@ ps:hasProductSystem
     rdfs:label "has product system"@en ;
     skos:definition "The product system modelled in this PEF study."@en ;
     rdfs:domain ps:PEFStudy ;
-    rdfs:range ps:ProductSystem ;
+    rdfs:range prs:ProductSystem ;
     :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
     .

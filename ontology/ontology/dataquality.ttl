@@ -98,7 +98,7 @@ dq:hasValue
     a owl:DatatypeProperty ;
     rdfs:label "has value"@en ;
     skos:definition "The numeric DQR score, expressed as an integer on the EF 1–5 scale."@en ;
-    rdfs:domain dq:DQRScore ;
+    rdfs:domain dq:DQRCriterion ;
     rdfs:range xsd:integer ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
@@ -107,7 +107,7 @@ dq:hasJustification
     a owl:DatatypeProperty ;
     rdfs:label "DQR justification"@en ;
     skos:definition "A textual justification for the assigned DQR score."@en ;
-    rdfs:domain dq:DQRScore ;
+    rdfs:domain dq:DQRCriterion ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .

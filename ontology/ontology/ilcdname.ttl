@@ -44,34 +44,34 @@ name:ILCDName
 name:hasBaseName
     a owl:DatatypeProperty ;
     rdfs:label "has base name"@en ;
-    rdfs:domain dq:ILCDName ;
+    rdfs:domain name:ILCDName ;
     rdfs:range xsd:string ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
     .
 
 name:hasTreatmentsStandardsRoutes
     a owl:DatatypeProperty ;
     rdfs:label "has treatments, standards, routes"@en ;
-    rdfs:domain dq:ILCDName ;
+    rdfs:domain name:ILCDName ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
     .
 
 name:hasMixTypeLocationType
     a owl:DatatypeProperty ;
     rdfs:label "has mix type, location type"@en ;
-    rdfs:domain dq:ILCDName ;
+    rdfs:domain name:ILCDName ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
     .
 
 name:hasQuantitativeFlowProperties
     a owl:DatatypeProperty ;
     rdfs:label "has quantitative flow properties"@en ;
-    rdfs:domain dq:ILCDName ;
+    rdfs:domain name:ILCDName ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
     .
 
 

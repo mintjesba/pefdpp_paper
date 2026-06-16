@@ -12,7 +12,8 @@
 @prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
 @prefix foaf:     <http://xmlns.com/foaf/0.1/> .
 @prefix act:      <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix ps:       <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
+@prefix pef:       <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
+@prefix prs:       <https://w3id.org/mintjesba/pefdpp/product-system#> .
 @prefix :         <https://w3id.org/mintjesba/pefdpp/> .
 
 ##############################################################
@@ -36,7 +37,7 @@
 # ProductSystem
 ##############################################################
 
-ps:ProductSystem
+prs:ProductSystem
     a owl:Class ;
     rdfs:label "Product System"@en ;
     skos:definition "The set of activities and flows modelled in a PEF study, linked together to represent the life cycle of a product."@en ;
@@ -47,7 +48,7 @@ ps:ProductSystem
 # ActivityLink
 ##############################################################
 
-ps:ActivityLink
+prs:ActivityLink
     a owl:Class ;
     rdfs:label "Activity Link"@en ;
     skos:definition "A link between a product system and an activity, specifying the activity's role in the system and the life cycle stage it belongs to."@en ;
@@ -58,43 +59,43 @@ ps:ActivityLink
 # LifeCycleStage — individuals
 ##############################################################
 
-ps:LifeCycleStage
+prs:LifeCycleStage
     a owl:Class ;
     rdfs:label "Life Cycle Stage"@en ;
     skos:definition "A stage of the product life cycle as defined in the PEF methodology."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
-ps:RawMaterialAcquisition
-    a ps:LifeCycleStage ;
+prs:RawMaterialAcquisition
+    a prs:LifeCycleStage ;
     rdfs:label "Raw material acquisition"@en ;
     skos:definition "The life cycle stage covering the extraction of resources from nature and their pre-processing, up to the point of entry into the production facility."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
-ps:Manufacturing
-    a ps:LifeCycleStage ;
+prs:Manufacturing
+    a prs:LifeCycleStage ;
     rdfs:label "Manufacturing"@en ;
     skos:definition "The life cycle stage covering the transformation of raw and intermediate materials into the final product within the production facility."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
-ps:Distribution
-    a ps:LifeCycleStage ;
+prs:Distribution
+    a prs:LifeCycleStage ;
     rdfs:label "Distribution"@en ;
     skos:definition "The life cycle stage covering transport and storage of the product from the production facility to the end user."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
-ps:Use
-    a ps:LifeCycleStage ;
+prs:Use
+    a prs:LifeCycleStage ;
     rdfs:label "Use"@en ;
     skos:definition "The life cycle stage covering the use of the product by the end user over its service life."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
-ps:EndOfLife
-    a ps:LifeCycleStage ;
+prs:EndOfLife
+    a prs:LifeCycleStage ;
     rdfs:label "End of life"@en ;
     skos:definition "The life cycle stage covering the collection, sorting, recycling, energy recovery, and disposal of the product at end of its service life."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
@@ -104,9 +105,9 @@ ps:EndOfLife
 # CustomLifeCycleStage
 ##############################################################
 
-ps:CustomLifeCycleStage
+prs:CustomLifeCycleStage
     a owl:Class ;
-    rdfs:subClassOf ps:LifeCycleStage ;
+    rdfs:subClassOf prs:LifeCycleStage ;
     rdfs:label "Custom Life Cycle Stage"@en ;
     skos:definition "A user-defined life cycle stage usable wherever a LifeCycleStage is expected. Each custom stage must correspond to exactly one of the five default PEF stages and carry a justification for the custom naming."@en ;
     skos:scopeNote "Custom stages must map to a default stage (no custom-to-custom chains)."@en ;
@@ -117,21 +118,21 @@ ps:CustomLifeCycleStage
 # Object properties — ProductSystem
 ##############################################################
 
-ps:hasActivityLink
+prs:hasActivityLink
     a owl:ObjectProperty ;
     rdfs:label "has activity link"@en ;
     skos:definition "An activity link connecting this product system to a modelled activity."@en ;
-    rdfs:domain ps:ProductSystem ;
-    rdfs:range ps:ActivityLink ;
+    rdfs:domain prs:ProductSystem ;
+    rdfs:range prs:ActivityLink ;
     :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
-ps:hasSystemDiagram
+prs:hasSystemDiagram
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "has system diagram"@en ;
     skos:definition "An image representing the system diagram of this product system."@en ;
-    rdfs:domain ps:ProductSystem ;
+    rdfs:domain prs:ProductSystem ;
     rdfs:range foaf:Image ;
     :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
@@ -141,22 +142,22 @@ ps:hasSystemDiagram
 # Object properties — ActivityLink
 ##############################################################
 
-ps:forActivity
+prs:forActivity
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "for activity"@en ;
     skos:definition "The activity that this activity link references within the product system."@en ;
-    rdfs:domain ps:ActivityLink ;
+    rdfs:domain prs:ActivityLink ;
     rdfs:range act:Activity ;
     :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
 
-ps:hasLifeCycleStage
+prs:hasLifeCycleStage
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "has life cycle stage"@en ;
     skos:definition "The life cycle stage to which this activity link belongs."@en ;
-    rdfs:domain ps:ActivityLink ;
-    rdfs:range ps:LifeCycleStage ;
+    rdfs:domain prs:ActivityLink ;
+    rdfs:range prs:LifeCycleStage ;
     :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
@@ -165,12 +166,12 @@ ps:hasLifeCycleStage
 # Object properties — CustomLifeCycleStage
 ##############################################################
 
-ps:correspondsToDefaultStage
+prs:correspondsToDefaultStage
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "corresponds to default stage"@en ;
     skos:definition "The default PEF life cycle stage that this custom life cycle stage maps onto."@en ;
-    rdfs:domain ps:CustomLifeCycleStage ;
-    rdfs:range ps:LifeCycleStage ;
+    rdfs:domain prs:CustomLifeCycleStage ;
+    rdfs:range prs:LifeCycleStage ;
     skos:scopeNote "Restrict the object to the five default stage individuals via a SHACL sh:in constraint to prevent custom-to-custom chains."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .
@@ -179,11 +180,11 @@ ps:correspondsToDefaultStage
 # Datatype properties — CustomLifeCycleStage
 ##############################################################
 
-ps:namingJustification
+prs:namingJustification
     a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:label "naming justification"@en ;
     skos:definition "A justification for introducing this custom life cycle stage name rather than using the corresponding default PEF stage."@en ;
-    rdfs:domain ps:CustomLifeCycleStage ;
+    rdfs:domain prs:CustomLifeCycleStage ;
     rdfs:range xsd:string ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/product-system> ;
     .

@@ -22,6 +22,7 @@
 @prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
 @prefix om:       <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 @prefix flow:     <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix :         <https://w3id.org/mintjesba/pefdpp/> .
 
 ##############################################################
 # Ontology declaration
