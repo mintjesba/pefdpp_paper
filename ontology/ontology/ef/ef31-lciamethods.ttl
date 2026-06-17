@@ -1,0 +1,240 @@
+@prefix efm: <https://w3id.org/mintjesba/pefdpp/ef31-lciamethods#> .
+
+@prefix efu: <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
+@prefix efic: <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories#> .
+@prefix efii: <https://w3id.org/mintjesba/pefdpp/ef31-impactindicators#> .
+
+@prefix :     <https://w3id.org/mintjesba/pefdpp/> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/mintjesba/pefdpp/ef31-lciamethods>
+    a owl:Ontology ;
+    dcterms:title "EF 3.1 Life Cycle Impact Assessment Ontology" ;
+    dcterms:creator "Berend Mintjes - Leiden University" ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories> ,
+                <https://w3id.org/mintjesba/pefdpp/ef31-impactindicators> ,
+                <https://w3id.org/mintjesba/pefdpp/ef31-units> ;
+
+        .
+
+#####################################################################
+# METHODS
+#####################################################################
+:LCIAMethod a owl:Class .
+
+:forImpactCategory a owl:ObjectProperty ;
+    rdfs:label "for impact category"@en ;
+    rdfs:domain :LCIAMethod ;
+    rdfs:range skos:Concept .
+
+:usesImpactIndicator a owl:ObjectProperty ;
+    rdfs:label "uses impact indicator"@en ;
+    rdfs:domain :LCIAMethod ;
+    rdfs:range efii:ImpactIndicator .
+
+:b5c611c6-def3-11e6-bf01-fe55135034f3 a :LCIAMethod ;
+    rdfs:label "Acidification" ;
+    dcterms:identifier "b5c611c6-def3-11e6-bf01-fe55135034f3" ;
+    :forImpactCategory efic:Acidification ;
+    :usesImpactIndicator efii:AccumulatedExceedanceH ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "01.04.000" .
+
+:6209b35f-9447-40b5-b68c-a1099e3674a0 a :LCIAMethod ;
+    rdfs:label "Climate change" ;
+    dcterms:identifier "6209b35f-9447-40b5-b68c-a1099e3674a0" ;
+    :forImpactCategory efic:ClimateChange ;
+    :usesImpactIndicator efii:GWP100 ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:706261af-a357-4cc0-a50a-f3033fcbd556 a :LCIAMethod ;
+    rdfs:label "Climate change-Biogenic" ;
+    dcterms:identifier "706261af-a357-4cc0-a50a-f3033fcbd556" ;
+    :forImpactCategory efic:ClimateChangeBiogenic ;
+    :usesImpactIndicator efii:GWP100 ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:7fce5b3a-66b8-4ce1-91e8-a925aee1f186 a :LCIAMethod ;
+    rdfs:label "Climate change-Fossil" ;
+    dcterms:identifier "7fce5b3a-66b8-4ce1-91e8-a925aee1f186" ;
+    :forImpactCategory efic:ClimateChangeFossil ;
+    :usesImpactIndicator efii:GWP100 ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:14af9ca7-aa1d-4832-b1d9-ab05a06dcb12 a :LCIAMethod ;
+    rdfs:label "Climate change-Land use and land use change" ;
+    dcterms:identifier "14af9ca7-aa1d-4832-b1d9-ab05a06dcb12" ;
+    :forImpactCategory efic:ClimateChangeLandUse ;
+    :usesImpactIndicator efii:GWP100 ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:05316e7a-b254-4bea-9cf0-6bf33eb5c630 a :LCIAMethod ;
+    rdfs:label "Ecotoxicity, freshwater" ;
+    dcterms:identifier "05316e7a-b254-4bea-9cf0-6bf33eb5c630" ;
+    :forImpactCategory efic:EcotoxicityFreshwater ;
+    :usesImpactIndicator efii:EcosystemToxicityPotential ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:dacd48b5-4da5-49aa-aff4-cd5f5495c037 a :LCIAMethod ;
+    rdfs:label "Ecotoxicity, freshwater_inorganics" ;
+    dcterms:identifier "dacd48b5-4da5-49aa-aff4-cd5f5495c037" ;
+    :forImpactCategory efic:EcotoxicityFreshwater_Inorganics ;
+    :usesImpactIndicator efii:EcosystemToxicityPotential ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:fd530f00-9325-424a-92ef-aaac67922fd9 a :LCIAMethod ;
+    rdfs:label "Ecotoxicity, freshwater_organics" ;
+    dcterms:identifier "fd530f00-9325-424a-92ef-aaac67922fd9" ;
+    :forImpactCategory efic:EcotoxicityFreshwater_Organics ;
+    :usesImpactIndicator efii:EcosystemToxicityPotential ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:b5c619fa-def3-11e6-bf01-fe55135034f3 a :LCIAMethod ;
+    rdfs:label "Eutrophication marine" ;
+    dcterms:identifier "b5c619fa-def3-11e6-bf01-fe55135034f3" ;
+    :forImpactCategory efic:EutrophicationMarine ;
+    :usesImpactIndicator efii:NutrientFractionMarine ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "02.00.010" .
+
+:b53ec18f-7377-4ad3-86eb-cc3f4f276b2b a :LCIAMethod ;
+    rdfs:label "Eutrophication, freshwater" ;
+    dcterms:identifier "b53ec18f-7377-4ad3-86eb-cc3f4f276b2b" ;
+    :forImpactCategory efic:EutrophicationFreshwater ;
+    :usesImpactIndicator efii:NutrientFractionFreshwater ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.010" .
+
+:b5c614d2-def3-11e6-bf01-fe55135034f3 a :LCIAMethod ;
+    rdfs:label "Eutrophication, terrestrial" ;
+    dcterms:identifier "b5c614d2-def3-11e6-bf01-fe55135034f3" ;
+    :forImpactCategory efic:EutrophicationTerrestrial ;
+    :usesImpactIndicator efii:AccumulatedExceedanceN ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "01.02.009" .
+
+:2299222a-bbd8-474f-9d4f-4dd1f18aea7c a :LCIAMethod ;
+    rdfs:label "Human toxicity, cancer" ;
+    dcterms:identifier "2299222a-bbd8-474f-9d4f-4dd1f18aea7c" ;
+    :forImpactCategory efic:HumanToxicityCancer ;
+    :usesImpactIndicator efii:HumanToxicityPotential ;
+    dcterms:issued "2018"^^xsd:gYear ;
+    dcterms:hasVersion "01.01.000" .
+
+:01500b74-7ffb-463e-9bd4-72f17c2263ff a :LCIAMethod ;
+    rdfs:label "Human toxicity, cancer_inorganics" ;
+    dcterms:identifier "01500b74-7ffb-463e-9bd4-72f17c2263ff" ;
+    :forImpactCategory efic:HumanToxicityCancer_Inorganics ;
+    :usesImpactIndicator efii:HumanToxicityPotential ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:503699e0-eca9-4089-8bf8-e0f49c93e578 a :LCIAMethod ;
+    rdfs:label "Human toxicity, cancer_organics" ;
+    dcterms:identifier "503699e0-eca9-4089-8bf8-e0f49c93e578" ;
+    :forImpactCategory efic:HumanToxicityCancer_Organics ;
+    :usesImpactIndicator efii:HumanToxicityPotential ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "01.01.000" .
+
+:7cfdcfcf-b222-4b26-888a-a55f9fbf7ac8 a :LCIAMethod ;
+    rdfs:label "Human toxicity, non-cancer" ;
+    dcterms:identifier "7cfdcfcf-b222-4b26-888a-a55f9fbf7ac8" ;
+    :forImpactCategory efic:HumanToxicityNonCancer ;
+    :usesImpactIndicator efii:HumanToxicityPotential ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:9d1d43a2-e1aa-4c16-acd4-3dd8a6a2fb85 a :LCIAMethod ;
+    rdfs:label "Human toxicity, non-cancer_inorganics" ;
+    dcterms:identifier "9d1d43a2-e1aa-4c16-acd4-3dd8a6a2fb85" ;
+    :forImpactCategory efic:HumanToxicityNonCancer_Inorganics ;
+    :usesImpactIndicator efii:HumanToxicityPotential ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:8c3141e9-1f15-43b5-bff2-182e49893a46 a :LCIAMethod ;
+    rdfs:label "Human toxicity, non-cancer_organics" ;
+    dcterms:identifier "8c3141e9-1f15-43b5-bff2-182e49893a46" ;
+    :forImpactCategory efic:HumanToxicityNonCancer_Organics ;
+    :usesImpactIndicator efii:HumanToxicityPotential ;
+    dcterms:issued "2022"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.000" .
+
+:b5c632be-def3-11e6-bf01-fe55135034f3 a :LCIAMethod ;
+    rdfs:label "Ionising radiation, human health" ;
+    dcterms:identifier "b5c632be-def3-11e6-bf01-fe55135034f3" ;
+    :forImpactCategory efic:IonisingRadiationHumanHealth ;
+    :usesImpactIndicator efii:HumanExposureU235 ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.011" .
+
+:b2ad6890-c78d-11e6-9d9d-cec0c932ce01 a :LCIAMethod ;
+    rdfs:label "Land use" ;
+    dcterms:identifier "b2ad6890-c78d-11e6-9d9d-cec0c932ce01" ;
+    :forImpactCategory efic:LandUse ;
+    :usesImpactIndicator efii:SoilQualityIndex ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.010" .
+
+:b5c629d6-def3-11e6-bf01-fe55135034f3 a :LCIAMethod ;
+    rdfs:label "Ozone depletion" ;
+    dcterms:identifier "b5c629d6-def3-11e6-bf01-fe55135034f3" ;
+    :forImpactCategory efic:OzoneDepletion ;
+    :usesImpactIndicator efii:OzoneDepletionPotential ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "02.00.012" .
+
+:b5c602c6-def3-11e6-bf01-fe55135034f3 a :LCIAMethod ;
+    rdfs:label "EF-particulate matter" ;
+    dcterms:identifier "b5c602c6-def3-11e6-bf01-fe55135034f3" ;
+    :forImpactCategory efic:ParticulateMatter ;
+    :usesImpactIndicator efii:HumanHealthImpactParticulateMatter ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "02.00.011" .
+
+:b5c610fe-def3-11e6-bf01-fe55135034f3 a :LCIAMethod ;
+    rdfs:label "Photochemical ozone formation - human health" ;
+    dcterms:identifier "b5c610fe-def3-11e6-bf01-fe55135034f3" ;
+    :forImpactCategory efic:PhotochemicalOzoneFormationHumanHealth ;
+    :usesImpactIndicator efii:TroposphericOzoneIncrease ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "02.01.000" .
+
+:b2ad6110-c78d-11e6-9d9d-cec0c932ce01 a :LCIAMethod ;
+    rdfs:label "Resource use, fossils" ;
+    dcterms:identifier "b2ad6110-c78d-11e6-9d9d-cec0c932ce01" ;
+    :forImpactCategory efic:ResourceUseFossils ;
+    :usesImpactIndicator efii:AbioticResourceDepletionADPFossil ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.010" .
+
+:b2ad6494-c78d-11e6-9d9d-cec0c932ce01 a :LCIAMethod ;
+    rdfs:label "Resource use, minerals and metals" ;
+    dcterms:identifier "b2ad6494-c78d-11e6-9d9d-cec0c932ce01" ;
+    :forImpactCategory efic:ResourceUseMineralsAndMetals ;
+    :usesImpactIndicator efii:AbioticResourceDepletionADPUltimateReserve ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "01.00.010" .
+
+:b2ad66ce-c78d-11e6-9d9d-cec0c932ce01 a :LCIAMethod ;
+    rdfs:label "Water use" ;
+    dcterms:identifier "b2ad66ce-c78d-11e6-9d9d-cec0c932ce01" ;
+    :forImpactCategory efic:WaterUse ;
+    :usesImpactIndicator efii:UserDeprivationPotential ;
+    dcterms:issued "2017"^^xsd:gYear ;
+    dcterms:hasVersion "03.00.014" .
+

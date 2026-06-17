@@ -1,0 +1,83 @@
+@prefix efii: <https://w3id.org/mintjesba/pefdpp/ef31-impactindicators#> .
+
+@prefix efu: <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
+@prefix efic: <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories#> .
+
+@prefix : <https://w3id.org/mintjesba/pefdpp/> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/mintjesba/pefdpp/ef31-impactindicators> a owl:Ontology;
+    dcterms:title "EF 3.1 Life Cycle Impact Category Indicators"@en  ;
+    dcterms:creator "Berend Mintjes - Leiden University"@en ;
+    owl:imports <https://w3id.org/mintjesba/pefdpp/ef31-units> .
+
+# Class definition
+efii:ImpactIndicator a owl:Class;
+    owl:subClassOf om:Quantity .
+
+# Individuals
+efii:AccumulatedExceedanceN a efii:ImpactIndicator ;
+    rdfs:label "Accumulated Exceedance (AE) (N)"@en ;
+    om:hasUnit efu:molNEq .
+
+efii:AccumulatedExceedanceH a efii:ImpactIndicator ;
+    rdfs:label "Accumulated Exceedance (AE) (H+)"@en ;
+    om:hasUnit efu:molHplusEq .
+
+efii:GWP100 a efii:ImpactIndicator ;
+    rdfs:label "Radiative forcing as Global Warming Potential (GWP100)"@en ;
+    om:hasUnit efu:kgCO2Eq .
+
+efii:EcosystemToxicityPotential a efii:ImpactIndicator ;
+    rdfs:label "Ecosystem Toxicity Potential"@en ;
+    om:hasUnit efu:CTUe .
+
+efii:HumanToxicityPotential a efii:ImpactIndicator ;
+    rdfs:label "Human Toxicity Potential"@en ;
+    om:hasUnit efu:CTUh .
+
+efii:NutrientFractionMarine a efii:ImpactIndicator ;
+    rdfs:label "Fraction of nutrients reaching marine end compartment (N)"@en ;
+    om:hasUnit efu:kgNEq .
+
+efii:NutrientFractionFreshwater a efii:ImpactIndicator ;
+    rdfs:label "Fraction of nutrients reaching freshwater end compartment (P)"@en ;
+    om:hasUnit efu:kgPEq .
+
+efii:HumanExposureU235 a efii:ImpactIndicator ;
+    rdfs:label "Human exposure efficiency relative to U235"@en ;
+    om:hasUnit efu:kBqU235Eq .
+
+efii:SoilQualityIndex a efii:ImpactIndicator ;
+    rdfs:label "Soil Quality Index"@en ;
+    om:hasUnit efu:DimensionlessPoint .
+
+efii:OzoneDepletionPotential a efii:ImpactIndicator ;
+    rdfs:label "Ozone Depletion Potential"@en ;
+    om:hasUnit efu:kgCFC11Eq .
+
+efii:HumanHealthImpactParticulateMatter a efii:ImpactIndicator ;
+    rdfs:label "Human health impact due to Particulate Matter"@en ;
+    om:hasUnit efu:DiseaseIncidence .
+
+efii:TroposphericOzoneIncrease a efii:ImpactIndicator ;
+    rdfs:label "Tropospheric Ozone Concentration Increase"@en ;
+    om:hasUnit efu:kgNMVOCEq .
+
+efii:AbioticResourceDepletionADPFossil a efii:ImpactIndicator ;
+    rdfs:label "Abiotic resource depletion fossil fuels (ADP-fossil)"@en ;
+    om:hasUnit efu:Megajoule .
+
+efii:AbioticResourceDepletionADPUltimateReserve a efii:ImpactIndicator ;
+    rdfs:label "Abiotic resource depletion (ADP ultimate reserve)"@en ;
+    om:hasUnit efu:kgSbEq .
+
+efii:UserDeprivationPotential a efii:ImpactIndicator ;
+    rdfs:label "User deprivation potential (deprivation-weighted water consumption)"@en ;
+    om:hasUnit efu:m3WorldEq .

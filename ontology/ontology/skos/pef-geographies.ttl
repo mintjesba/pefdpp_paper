@@ -29,7 +29,6 @@
     dcterms:source <https://eplca.jrc.ec.europa.eu/> ;
     dcterms:references <http://publications.europa.eu/resource/authority/country/> ;
     dcterms:references <https://geography.ecoinvent.org/> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/activity> ;
     .
 
 ##############################################################

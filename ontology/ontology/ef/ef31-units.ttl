@@ -1,0 +1,153 @@
+
+@prefix efu: <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
+@prefix :    <https://w3id.org/mintjesba/pefdpp/> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+
+<https://w3id.org/mintjesba/pefdpp/ef31-units> a owl:Ontology;
+    dcterms:title "EF 3.1 Units";
+    dcterms:creator "Berend Mintjes - Leiden University" .
+
+######################################################################
+# ELEMENTARY FLOW UNITS
+######################################################################
+efu:EUR a om:Unit ;
+    skos:prefLabel "EUR" ;
+    skos:exactMatch om:euro ;
+    dcterms:identifier "03cc996d-7177-4738-aa32-1572a5172ccc" .
+
+efu:SquareMetre a om:Unit ;
+    skos:prefLabel "m2" ;
+    skos:exactMatch om:squareMetre ;
+    dcterms:identifier "93a60a57-a3c8-18da-a746-0800200c9a66" .
+
+efu:Megajoule a om:Unit ;
+    skos:prefLabel "MJ" ;
+    skos:exactMatch om:megajoule ;
+    dcterms:identifier "93a60a57-a3c8-11da-a746-0800200c9a66" .
+
+efu:Kilogram a om:Unit ;
+    skos:prefLabel "kg" ;
+    skos:exactMatch om:kilogram ;
+    dcterms:identifier "93a60a57-a4c8-11da-a746-0800200c9a66" .
+
+efu:Mole a om:Unit ;
+    skos:prefLabel "mol" ;
+    skos:exactMatch om:mole ;
+    dcterms:identifier "f170abd3-f010-45f4-8e7c-9871a5c0421b" .
+
+efu:KiloBecquerel a om:Unit ;
+    skos:prefLabel "kBq" ;
+    skos:exactMatch om:kiloBecquerel ;
+    dcterms:identifier "93a60a57-a3c8-16da-a746-0800200c9a66" .
+
+efu:CubicMetre a om:Unit ;
+    skos:prefLabel "m3" ;
+    skos:exactMatch om:cubicMetre ;
+    dcterms:identifier "93a60a57-a3c8-12da-a746-0800200c9a66" .
+
+efu:SquareMetreYear a om:UnitMultiplication ;
+    skos:prefLabel "m2*a" ;
+    om:hasTerm1 om:squareMetre ;
+    om:hasTerm2 om:year ;
+    dcterms:identifier "93a60a57-a3c8-20da-a746-0800200c9a66" .
+
+efu:KilogramYear a om:UnitMultiplication ;
+    skos:prefLabel "kg*a" ;
+    om:hasTerm1 om:kilogram ;
+    om:hasTerm2 om:year ;
+    dcterms:identifier "59f191d6-5dd3-4553-af88-1a32accfe308" .
+
+efu:CubicMetreYear a om:UnitMultiplication ;
+    skos:prefLabel "m3*a" ;
+    om:hasTerm1 om:cubicMetre ;
+    om:hasTerm2 om:year ;
+    dcterms:identifier "93a60a57-a3c8-23da-a746-0800200c9a66" .
+
+efu:Item a om:Unit ;
+    skos:prefLabel "item(s)" ;
+    dcterms:identifier "5beb6eed-33a9-47b8-9ede-1dfe8f679159" .
+
+######################################################################
+# Impact Indicator Unit Class
+######################################################################
+efu:ImpactIndicatorUnit a owl:Class ;
+    owl:subClassOf om:Unit .
+
+######################################################################
+# Impact Indicator Unit Individuals
+######################################################################
+efu:molHplusEq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "mol H+ eq"@en ;
+    skos:altLabel "mol H+ equivalents"@en ;
+    skos:definition "Unit used for the EF3.1 Acidification midpoint indicator (Accumulated Exceedance AE)."@en .
+
+efu:kgCO2Eq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "kg CO2-eq"@en ;
+    skos:altLabel "kilogram CO2 equivalents"@en ;
+    skos:definition "Unit for EF3.1 climate change, total indicator (GWP100)."@en .
+
+efu:CTUe a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "CTUe"@en ;
+    skos:altLabel "Comparative Toxic Unit for ecosystems"@en ;
+    skos:definition "Unit for EF3.1 ecotoxicity freshwater, expressing PAF·m³·day per kg emitted."@en .
+
+efu:CTUh a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "CTUh"@en ;
+    skos:altLabel "Comparative Toxic Unit for humans"@en ;
+    skos:definition "Unit for EF3.1 human toxicity (cancer and non-cancer), cases per kg emitted."@en .
+
+efu:DiseaseIncidence a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "disease incidence"@en ;
+    skos:altLabel "disease incidence"@en ;
+    skos:definition "Dimensionless unit expressing the number of human disease cases attributed to particulate matter exposure."@en .
+
+efu:kgPEq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "kg P-eq"@en ;
+    skos:altLabel "kilogram P equivalents"@en ;
+    skos:definition "Unit for EF3.1 freshwater eutrophication indicator."@en .
+
+efu:kgNEq a efu:ImpactIndicatorUnit ;
+    skos:altLabel "kilogram N equivalents"@en ;
+    skos:prefLabel "kg N-eq"@en ;
+    skos:definition "Unit for EF3.1 marine eutrophication indicator."@en .
+
+efu:molNEq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "mol N-eq"@en ;
+    skos:altLabel "mol N equivalents"@en ;
+    skos:definition "Unit for EF3.1 terrestrial eutrophication (Accumulated Exceedance AE)."@en .
+
+efu:kBqU235Eq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "kBq U235-eq"@en ;
+    skos:altLabel "kilobecquerel U235 equivalents"@en ;
+    skos:definition "Unit for EF3.1 ionising radiation (human health), referencing U-235 equivalent dose."@en .
+
+efu:DimensionlessPoint a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "dimensionless (pt)"@en ;
+    skos:altLabel "dimensionless (soil quality index)"@en ;
+    skos:definition "Unit for EF3.1 land use impact indicator (soil quality index)."@en .
+
+efu:kgCFC11Eq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "kg CFC11-eq"@en ;
+    skos:altLabel "kilogram CFC-11 equivalents"@en ;
+    skos:definition "Unit for EF3.1 ozone depletion (ODP) indicator."@en .
+
+efu:kgNMVOCEq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "kg NMVOC-eq"@en ;
+    skos:altLabel "kilogram NMVOC equivalents"@en ;
+    skos:definition "Unit for EF3.1 photochemical ozone formation indicator."@en .
+
+efu:kgSbEq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "kg Sb-eq"@en ;
+    skos:altLabel "kilogram Sb equivalents"@en ;
+    skos:definition "Unit for EF3.1 resource use, minerals and metals (ADP ultimate reserve)."@en .
+
+efu:m3WorldEq a efu:ImpactIndicatorUnit ;
+    skos:prefLabel "m³ world-eq"@en ;
+    skos:altLabel "cubic meter world-equivalent"@en ;
+    skos:definition "Unit for EF3.1 water use (AWARE method, deprivation-weighted water consumption)."@en .
