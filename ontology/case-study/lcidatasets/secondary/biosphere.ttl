@@ -1,0 +1,88 @@
+@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix ef:      <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix : <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#> .
+
+######################################################################
+# BIOSPHERE — ElementaryFlow FlowTypes (Pattern 2: reuse-by-reference)
+# Local stubs aligned to EF3.1 via skos:exactMatch; full scheme NOT imported.
+# Each carries sourcedFrom the biosphere dataset.
+######################################################################
+
+<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere>
+    a owl:Ontology ;
+    owl:imports pefdpp: ;
+    dcterms:title "biosphere — ElementaryFlow FlowTypes (EF3.1 reference)"@en .
+
+:biosphere a dataset:LCIDataset ;
+    dcterms:title "EF 3.1 biosphere — ElementaryFlow stubs (reference dataset)"@en .
+
+ft:08a91e70-3ddc-11dd-91be-0050c2490048
+    a flow:ElementaryFlow ;
+    rdfs:label "particles (PM10)"@en ;
+    skos:prefLabel "particles (PM10)"@en ;
+    skos:inScheme <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#EF31_ElementaryFlows> ;
+    skos:exactMatch ef:08a91e70-3ddc-11dd-91be-0050c2490048 ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#biosphere> .
+
+ft:08a91e70-3ddc-11dd-923d-0050c2490048
+    a flow:ElementaryFlow ;
+    rdfs:label "carbon dioxide (fossil)"@en ;
+    skos:prefLabel "carbon dioxide (fossil)"@en ;
+    skos:inScheme <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#EF31_ElementaryFlows> ;
+    skos:exactMatch ef:08a91e70-3ddc-11dd-923d-0050c2490048 ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#biosphere> .
+
+ft:08a91e70-3ddc-11dd-9293-0050c2490048
+    a flow:ElementaryFlow ;
+    rdfs:label "particles (PM2.5)"@en ;
+    skos:prefLabel "particles (PM2.5)"@en ;
+    skos:inScheme <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#EF31_ElementaryFlows> ;
+    skos:exactMatch ef:08a91e70-3ddc-11dd-9293-0050c2490048 ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#biosphere> .
+
+ft:08a91e70-3ddc-11dd-9804-0050c2490048
+    a flow:ElementaryFlow ;
+    rdfs:label "hydrogen fluoride"@en ;
+    skos:prefLabel "hydrogen fluoride"@en ;
+    skos:inScheme <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#EF31_ElementaryFlows> ;
+    skos:exactMatch ef:08a91e70-3ddc-11dd-9804-0050c2490048 ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#biosphere> .
+
+ft:e2fb04b0-6555-11dd-ad8b-0800200c9a66
+    a flow:ElementaryFlow ;
+    rdfs:label "oxygen"@en ;
+    skos:prefLabel "oxygen"@en ;
+    skos:inScheme <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#EF31_ElementaryFlows> ;
+    skos:exactMatch ef:e2fb04b0-6555-11dd-ad8b-0800200c9a66 ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#biosphere> .
+
+ft:f79d0f8f-2b0e-49cb-bed0-b1ea0fbd8625
+    a flow:ElementaryFlow ;
+    rdfs:label "Nitrogen oxides"@en ;
+    skos:prefLabel "Nitrogen oxides"@en ;
+    skos:inScheme <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#EF31_ElementaryFlows> ;
+    skos:exactMatch ef:f79d0f8f-2b0e-49cb-bed0-b1ea0fbd8625 ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#biosphere> .
+
+ft:fe0acd60-3ddc-11dd-a207-0050c2490048
+    a flow:ElementaryFlow ;
+    rdfs:label "sulfur oxides"@en ;
+    skos:prefLabel "sulfur oxides"@en ;
+    skos:inScheme <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#EF31_ElementaryFlows> ;
+    skos:exactMatch ef:fe0acd60-3ddc-11dd-a207-0050c2490048 ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#biosphere> .
+
+ft:fe0acd60-3ddc-11dd-a784-0050c2490048
+    a flow:ElementaryFlow ;
+    rdfs:label "1-methyl-2-pyrrolidone"@en ;
+    skos:prefLabel "1-methyl-2-pyrrolidone"@en ;
+    skos:inScheme <https://w3id.org/mintjesba/pefdpp/skos/ef31-elementaryflows#EF31_ElementaryFlows> ;
+    skos:exactMatch ef:fe0acd60-3ddc-11dd-a784-0050c2490048 ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/biosphere#biosphere> .

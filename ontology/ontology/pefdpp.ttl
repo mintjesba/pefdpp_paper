@@ -5,6 +5,7 @@
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix act:    <https://w3id.org/mintjesba/pefdpp/activity#> .
 @prefix flow:   <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
 @prefix lcia:   <https://w3id.org/mintjesba/pefdpp/lcia#> .
 @prefix prs:     <https://w3id.org/mintjesba/pefdpp/product-system#> .
 @prefix ps:     <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
@@ -61,6 +62,8 @@ flow:energyRecoveryActivity
 
 flow:disposalActivity
     rdfs:range act:Activity .
+
+flow:sourcedFrom rdfs:range dataset:LCIDataset .
 
 # --- lcia → product-system (circular: pefstudy imports both) ---
 

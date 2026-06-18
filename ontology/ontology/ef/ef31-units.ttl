@@ -73,6 +73,11 @@ efu:Item a om:Unit ;
     skos:prefLabel "item(s)" ;
     dcterms:identifier "5beb6eed-33a9-47b8-9ede-1dfe8f679159" .
 
+efu:TonneKilometre a om:UnitMultiplication ;
+    skos:preflabel "tkm" ;
+    om:hasTerm1 om:tonne ;
+    om:hasTerm2 om:kilometre .
+
 ######################################################################
 # Impact Indicator Unit Class
 ######################################################################

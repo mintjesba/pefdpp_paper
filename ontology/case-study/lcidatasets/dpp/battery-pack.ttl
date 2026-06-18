@@ -1,0 +1,179 @@
+@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack#> .
+@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
+@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+######################################################################
+# CASE STUDY - PackDataset
+######################################################################
+
+<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack>
+    a owl:Ontology ;
+    owl:imports pefdpp: ;
+    dcterms:title "PackDataset — LCIDataset (case study)"@en ;
+    dcterms:creator "Berend Mintjes - Leiden University" .
+
+:PackDataset
+    a dataset:LCIDataset ;
+    dcterms:title "PackDataset"@en ;
+    dataset:hasDatasetType dataset:DPP ;
+    dataset:hasComplianceLevel dataset:EFCompliant ;
+    dq:hasDataQuality [ a dq:DataQuality ;
+        dq:hasOverallDQR "1"^^xsd:decimal ;
+        dq:hasDQRCriterion
+        [ a dq:DQRCriterion ; dq:forDimension dq:TechnologicalRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "company-specific processes" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:TimeRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "recent data" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:GeographicalRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "specific data" ; ]
+    ] ;
+    dataset:containsActivity
+        :BatteryAssemblyAct ,
+        :BatteryDistributionAct .
+
+######################################################################
+# ActivityTypes used in this dataset
+######################################################################
+act:BatteryAssembly a act:ActivityType ; rdfs:label "BatteryAssembly"@en .
+act:BatteryDistribution a act:ActivityType ; rdfs:label "BatteryDistribution"@en .
+
+:BatteryAssemblyAct
+    a act:Activity ;
+    act:hasActivityType act:BatteryAssembly ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:NO ;
+    act:hasDeterminingFlow :BatteryAssemblyAct_flow0_BatteryPackAtPlant .
+
+:BatteryAssemblyAct_flow0_BatteryPackAtPlant
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryLiIonNMC111AtPlant ;
+    flow:contextualLabel "Battery pack, at plant" ;
+    act:outputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow1_BatteryCell
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryCellNMC111LiIon ;
+    flow:contextualLabel "Battery cell" ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.7259092896857625"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow2_HousingAndCoolingSystem
+    a flow:Flow ;
+    flow:hasFlowType ft:HousingAndCoolingSystem ;
+    flow:contextualLabel "Housing and cooling system" ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.18495033422877494"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow3_BatteryModule
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryModuleLiIon ;
+    flow:contextualLabel "Battery module" ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.054902230274255004"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow4_BatteryPackTerminalsCopp
+    a flow:Flow ;
+    flow:hasFlowType ft:Copper ;
+    flow:contextualLabel "Battery pack terminals: Copper (75%)" ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0005453863934528643"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow5_CopperSheetRolling
+    a flow:Flow ;
+    flow:hasFlowType ft:SheetRollingCopper ;
+    flow:contextualLabel "Copper sheet rolling" ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0005453863934528643"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow6_BatteryPackTerminalsPlas
+    a flow:Flow ;
+    flow:hasFlowType ft:GlassFibreReinforcedPlasticPolyamideInjectionMoulded ;
+    flow:contextualLabel "Battery pack terminals: plastic insulation (25%)" ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0001817954644842881"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow7_ModuleCompressionPlatesA
+    a flow:Flow ;
+    flow:hasFlowType ft:ReinforcingSteel ;
+    flow:contextualLabel "Module compression plates and straps: Steel " ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.006181045792465796"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow8_SteelSheetRolling
+    a flow:Flow ;
+    flow:hasFlowType ft:SheetRollingSteel ;
+    flow:contextualLabel "Steel sheet rolling" ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.006181045792465796"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow9_ElectronicPartsBMS
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryManagementSystem ;
+    flow:contextualLabel "Electronic parts: BMS " ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.02423939526457175"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow10_ElectronicPartsModuleInt
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectronicComponentPassiveUnspecified ;
+    flow:contextualLabel "Electronic parts: Module interconnect " ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.004302492659461485"^^xsd:decimal ] .
+
+:BatteryAssemblyAct_flow11_ElectricityPackAssembly
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityLowVoltage ;
+    flow:contextualLabel "Electricity pack assembly" ;
+    act:inputOf :BatteryAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "0.000277778"^^xsd:decimal ] .
+
+:BatteryDistributionAct
+    a act:Activity ;
+    act:hasActivityType act:BatteryDistribution ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:DE ;
+    act:hasDeterminingFlow :BatteryDistributionAct_flow0_BatteryPackAtCustomer .
+
+:BatteryDistributionAct_flow0_BatteryPackAtCustomer
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryLiIonNMC111AtCustomer ;
+    flow:contextualLabel "Battery pack, at customer" ;
+    act:outputOf :BatteryDistributionAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:BatteryDistributionAct_flow1_BatteryPackAtPlant
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryLiIonNMC111AtPlant ;
+    flow:contextualLabel "Battery pack, at plant" ;
+    act:inputOf :BatteryDistributionAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:BatteryDistributionAct_flow2_TruckTransportFromFactor
+    a flow:Flow ;
+    flow:hasFlowType ft:TransportFreightLorry3575MetricTonDieselEURO4 ;
+    flow:contextualLabel "truck transport from factory to EV factory (1000 km standard distance)" ;
+    act:inputOf :BatteryDistributionAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:TonneKilometre ; om:hasNumericalValue "1"^^xsd:decimal ] ;
+    flow:transportDistance [ a om:Measure ; om:hasUnit om:kilometre ; om:hasNumericalValue "1000"^^xsd:decimal ] ;
+    flow:transportEmptyReturns "0"^^xsd:decimal ;
+    flow:transportLoadingRate "1"^^xsd:decimal 
+    .
+
+######################################################################
+# FlowTypes produced by this dataset (with sourcedFrom)
+######################################################################
+ft:BatteryLiIonNMC111AtCustomer a flow:ProductFlow ;
+    rdfs:label "battery, Li-ion, NMC111, at customer"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack#PackDataset> .
+ft:BatteryLiIonNMC111AtPlant a flow:ProductFlow ;
+    rdfs:label "battery, Li-ion, NMC111, at plant"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack#PackDataset> .

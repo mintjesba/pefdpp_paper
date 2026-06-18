@@ -1,0 +1,210 @@
+@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module#> .
+@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
+@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+######################################################################
+# CASE STUDY — ModuleDataset
+######################################################################
+
+<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module>
+    a owl:Ontology ;
+    owl:imports pefdpp: ;
+    dcterms:title "ModuleDataset — LCIDataset (case study)"@en ;
+    dcterms:creator "Berend Mintjes - Leiden University" .
+
+:ModuleDataset
+    a dataset:LCIDataset ;
+    dcterms:title "ModuleDataset"@en ;
+    dataset:hasDatasetType dataset:DPP ;
+    dataset:hasComplianceLevel dataset:EFCompliant ;
+    dq:hasDataQuality [ a dq:DataQuality ;
+        dq:hasOverallDQR "1"^^xsd:decimal ;
+        dq:hasDQRCriterion
+        [ a dq:DQRCriterion ; dq:forDimension dq:TechnologicalRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "company-specific processes" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:TimeRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "recent data" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:GeographicalRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "specific data" ; ]
+    ] ;
+    dataset:containsActivity
+        :ModuleAssemblyAct ,
+        :HousingCoolingManufacturingAct .
+
+######################################################################
+# ActivityTypes used in this dataset
+######################################################################
+act:HousingCoolingManufacturing a act:ActivityType ; rdfs:label "HousingCoolingManufacturing"@en .
+act:ModuleAssembly a act:ActivityType ; rdfs:label "ModuleAssembly"@en .
+
+:ModuleAssemblyAct
+    a act:Activity ;
+    act:hasActivityType act:ModuleAssembly ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:NO ;
+    act:hasDeterminingFlow :ModuleAssemblyAct_flow0_BatteryModule .
+
+:ModuleAssemblyAct_flow0_BatteryModule
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryModuleLiIon ;
+    flow:contextualLabel "battery module" ;
+    act:outputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow1_ModuleTerminalCopper80
+    a flow:Flow ;
+    flow:hasFlowType ft:Copper ;
+    flow:contextualLabel "Module terminal: Copper (80%)" ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.04746136865342164"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow2_ModuleTerminalCopperShee
+    a flow:Flow ;
+    flow:hasFlowType ft:SheetRollingCopper ;
+    flow:contextualLabel "Module terminal: Copper, sheet rolling" ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.04746136865342164"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow3_ModuleTerminalPlasticIns
+    a flow:Flow ;
+    flow:hasFlowType ft:GlassFibreReinforcedPlasticPolyamideInjectionMoulded ;
+    flow:contextualLabel "Module terminal: plastic insulation (20%)" ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.012141280353200884"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow4_ModuleEnclosureAluminium
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumWroughtAlloy ;
+    flow:contextualLabel "Module enclosure: Aluminium" ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.3598233995584989"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow5_ModuleEnclosureAluminium
+    a flow:Flow ;
+    flow:hasFlowType ft:ImpactExtrusionOfAluminium1Stroke ;
+    flow:contextualLabel "Module enclosure: aluminium, impact extrusion" ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.3598233995584989"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow6_SpacerForGasReleasePolye
+    a flow:Flow ;
+    flow:hasFlowType ft:PolyethyleneHighDensityGranulate ;
+    flow:contextualLabel "Spacer for gas release: polyethylene" ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.019867549668874173"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow7_SpacerForGasReleasePolye
+    a flow:Flow ;
+    flow:hasFlowType ft:ExtrusionPlasticFilm ;
+    flow:contextualLabel "Spacer for gas release: polyethylene, extrusion" ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.019867549668874173"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow8_HeatConductorAluminium
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumWroughtAlloy ;
+    flow:contextualLabel "Heat conductor: Aluminium " ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.43708609271523186"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow9_HeatConductorAluminiumSh
+    a flow:Flow ;
+    flow:hasFlowType ft:SheetRollingAluminium ;
+    flow:contextualLabel "Heat conductor: Aluminium, sheet rolling" ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.43708609271523186"^^xsd:decimal ] .
+
+:ModuleAssemblyAct_flow10_ElectronicsPart
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectronicComponentPassiveUnspecified ;
+    flow:contextualLabel "Electronics part " ;
+    act:inputOf :ModuleAssemblyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.12362030905077266"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct
+    a act:Activity ;
+    act:hasActivityType act:HousingCoolingManufacturing ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:NO ;
+    act:hasDeterminingFlow :HousingCoolingManufacturingAct_flow0_HousingAndCoolingSystem .
+
+:HousingCoolingManufacturingAct_flow0_HousingAndCoolingSystem
+    a flow:Flow ;
+    flow:hasFlowType ft:HousingAndCoolingSystem ;
+    flow:contextualLabel "Housing and cooling system" ;
+    act:outputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct_flow1_BatteryJacketAluminium
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumWroughtAlloy ;
+    flow:contextualLabel "Battery jacket: Aluminium" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.7316365478804254"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct_flow2_BatteryJacketImpactExtru
+    a flow:Flow ;
+    flow:hasFlowType ft:ImpactExtrusionOfAluminium1Stroke ;
+    flow:contextualLabel "Battery jacket: Impact Extrusion of Aluminium" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.7316365478804254"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct_flow3_BatteryJacketPlastic3
+    a flow:Flow ;
+    flow:hasFlowType ft:PolyethyleneHighDensityGranulate ;
+    flow:contextualLabel "Battery jacket: Plastic (3%)" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.022627934470528622"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct_flow4_BatteryJacketPlasticInje
+    a flow:Flow ;
+    flow:hasFlowType ft:InjectionMoulding ;
+    flow:contextualLabel "Battery jacket: Plastic Injection Moulding" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.022627934470528622"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct_flow5_CoolantEthyleneGlycol50
+    a flow:Flow ;
+    flow:hasFlowType ft:EthyleneGlycol ;
+    flow:contextualLabel "Coolant: ethylene glycol (50%)" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.11631481168721498"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct_flow6_CoolantWater50
+    a flow:Flow ;
+    flow:hasFlowType ft:TapWater ;
+    flow:contextualLabel "Coolant: water (50%)" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.11631481168721498"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct_flow7_ElectronicPartsBatteryPa
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumWroughtAlloy ;
+    flow:contextualLabel "Electronic parts: Battery pack heater" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.006552947137307886"^^xsd:decimal ] .
+
+:HousingCoolingManufacturingAct_flow8_BatteryPackHeaterAlumini
+    a flow:Flow ;
+    flow:hasFlowType ft:SheetRollingAluminium ;
+    flow:contextualLabel "Battery pack heater: Aluminium sheet rolling" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.006552947137307886"^^xsd:decimal ] .
+
+######################################################################
+# FlowTypes produced by this dataset (with sourcedFrom)
+######################################################################
+ft:BatteryModuleLiIon a flow:ProductFlow ;
+    rdfs:label "battery module, Li-ion"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module#ModuleDataset> .
+ft:HousingAndCoolingSystem a flow:ProductFlow ;
+    rdfs:label "housing and cooling system"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module#ModuleDataset> .

@@ -439,6 +439,16 @@ ps:notCoveredAspect
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
     .
 
+ps:RFtoFUConversion
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "reference flow to FU conversion"@en ;
+    skos:definition "The conversion factor to go from reference flow to Functional Unit."@en ;
+    rdfs:domain ps:FunctionalUnit ;
+    rdfs:range xsd:double ;
+    :PEFRequired true ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    .
+
 ##############################################################
 # Datatype properties — SystemBoundary
 ##############################################################

@@ -180,6 +180,13 @@ flow:hasFlowType
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
+flow:hasCFFParameters
+    a owl:ObjectProperty ;
+    rdfs:label "has CFF parameters"@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:range flow:CFFParameters ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> .
+
 flow:contextualLabel
     a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:label "contextual label"@en ;
@@ -255,17 +262,26 @@ flow:transportDistance
     .
 
 ##############################################################
-# Object properties — ProductFlow
+# Properties — FlowType
 ##############################################################
-
-flow:hasVirginEquivalent
+flow:sourcedFrom
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "virgin equivalent"@en ;
-    skos:definition "The virgin material equivalent of this product flow, used in CFF calculations."@en ;
-    rdfs:domain flow:ProductFlow ;
+    rdfs:label "sourced from"@en ;
+    skos:definition "The LCIDatabase declaring the FlowType"@en ;
+    rdfs:domain flow:FlowType ;
+    skos:scopeNote "Range dataset:LCIDataset - declared in pefdpp.ttl to avoid circular imports"@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
+flow:sameAsSecondaryFlowType
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "same as secondary FlowType"@en ;
+    skos:definition "The equivalent secondary flow type (e.g. econinvent UUID)."@en ;
+    rdfs:domain flow:FlowType ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+    
 ##############################################################
 # Object properties — WasteFlow
 ##############################################################
@@ -274,7 +290,7 @@ flow:hasEndOfLifeScenario
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "has end of life scenario"@en ;
     skos:definition "The end-of-life scenario associated with this waste flow."@en ;
-    rdfs:domain flow:WasteFlow ;
+    rdfs:domain flow:Flow ;
     rdfs:range flow:EndOfLifeScenario ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
@@ -332,12 +348,21 @@ flow:cffAllocationFactorB
 # Object properties — EndOfLifeScenario → CFFValue
 ##############################################################
 
-flow:eolRecyclingRate
+flow:recyclingRate
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "end-of-life recycling rate"@en ;
     skos:definition "The proportion of this waste flow that is recycled at end of life."@en ;
     rdfs:domain flow:EndOfLifeScenario ;
     rdfs:range flow:CFFValue ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:virginEquivalent
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "virgin equivalent"@en ;
+    skos:definition "The virgin equivalent of this waste flow."@en ;
+    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:range flow:FlowType ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -365,30 +390,33 @@ flow:eolCffAllocationFactorB
 # to avoid a circular import with the activity module.
 ##############################################################
 
-flow:recyclingActivity
+flow:recyclingFlowType
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "recycling activity"@en ;
     skos:definition "The activity representing the recycling process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:range flow:FlowType ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:energyRecoveryActivity
+flow:energyRecoveryFlowType
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "energy recovery activity"@en ;
     skos:definition "The activity representing the energy recovery process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:range flow:FlowType ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:disposalActivity
+flow:disposalFlowType
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "disposal activity"@en ;
     skos:definition "The activity representing the disposal process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:range flow:FlowType ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 

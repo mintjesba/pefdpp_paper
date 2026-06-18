@@ -45,41 +45,60 @@ dq:DQRCriterion
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
+dq:DQRDimension
+    a owl:Class ;
+    rdfs:label "DQR Dimension"@en ;
+    skos:definition "The dimension of the DQR Criterion" ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    owl:oneOf ( dq:TechnologicalRepresentativeness
+                dq:TimeRepresentativeness
+                dq:GeographicalRepresentativeness
+                dq:PrecisionScore )
+    .
+
 ##############################################################
-# DQRCriterion Individuals
+# DQRCriterion dimensions
 ##############################################################
 
 dq:TechnologicalRepresentativeness
-    a dq:DQRCriterion ;
+    a dq:DQRDimension ;
     rdfs:label "technological representativeness"@en ;
-    skos:definition "DQR score for the degree to which the data reflect the actual technology used."@en ;
+    skos:definition "The degree to which the data reflect the actual technology used."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
 dq:TimeRepresentativeness
-    a dq:DQRCriterion ;
+    a dq:DQRDimension ;
     rdfs:label "time representativeness"@en ;
-    skos:definition "DQR score for the degree to which the data reflect the intended time period."@en ;
+    skos:definition "The degree to which the data reflect the intended time period."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
 dq:GeographicalRepresentativeness
-    a dq:DQRCriterion ;
+    a dq:DQRDimension ;
     rdfs:label "geographical representativeness"@en ;
-    skos:definition "DQR score for the degree to which the data reflect the intended geography."@en ;
+    skos:definition "The degree to which the data reflect the intended geography."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
 dq:PrecisionScore
-    a dq:DQRCriterion ;
+    a dq:DQRDimension ;
     rdfs:label "precision score"@en ;
-    skos:definition "DQR score for the degree of exactness and variability of the data."@en ;
+    skos:definition "The degree of exactness and variability of the data."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
     .
 
 ##############################################################
-# Datatype properties
+# Properties - DataQuality
 ##############################################################
+dq:hasDQRCriterion
+    a owl:ObjectProperty ;
+    rdfs:label "has DQR Criterion"@en ;
+    skos:definition "Links the DataQuality to its partial domain scores DQRCriterion individuals."@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:range dq:DQRCriterion ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
 
 dq:hasOverallDQR
     a owl:DatatypeProperty ;
@@ -91,8 +110,16 @@ dq:hasOverallDQR
     .
 
 ##############################################################
-# Datatype properties — DQRCriterion
+# Properties — DQRCriterion
 ##############################################################
+dq:forDimension
+    a owl:ObjectProperty ;
+    rdfs:label "for dimension"@en ;
+    skos:definition "Which dimension the DQRCriterion specifies the score for."@en ;
+    rdfs:domain dq:DQRCriterion ;
+    rdfs:range dq:DQRDimension ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataquality> ;
+    .
 
 dq:hasValue
     a owl:DatatypeProperty ;

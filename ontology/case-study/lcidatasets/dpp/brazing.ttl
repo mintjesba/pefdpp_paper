@@ -1,0 +1,133 @@
+@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing#> .
+@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
+@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+######################################################################
+# CASE STUDY - BrazingDataset
+######################################################################
+
+<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing>
+    a owl:Ontology ;
+    owl:imports pefdpp: ;
+    dcterms:title "BrazingDataset — LCIDataset (case study)"@en ;
+    dcterms:creator "Berend Mintjes - Leiden University" .
+
+:BrazingDataset
+    a dataset:LCIDataset ;
+    dcterms:title "BrazingDataset"@en ;
+    dataset:hasDatasetType dataset:DPP ;
+    dataset:hasComplianceLevel dataset:EFCompliant ;
+    dq:hasDataQuality [ a dq:DataQuality ;
+        dq:hasOverallDQR "1.3333333333333333"^^xsd:decimal ;
+        dq:hasDQRCriterion
+        [ a dq:DQRCriterion ; dq:forDimension dq:TechnologicalRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "measured data on single process" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:TimeRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "measured data on single process" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:GeographicalRepresentativeness ; dq:hasValue 2 ; dq:hasJustification "measured data on single process" ; ]
+    ] ;
+    dataset:containsActivity
+        :BrazingServiceAct ,
+        :NocolokAct .
+
+######################################################################
+# ActivityTypes used in this dataset
+######################################################################
+act:BrazingService a act:ActivityType ; rdfs:label "BrazingService"@en .
+act:NocolokProduction a act:ActivityType ; rdfs:label "NocolokProduction"@en .
+
+:BrazingServiceAct
+    a act:Activity ;
+    act:hasActivityType act:BrazingService ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:ES ;
+    act:hasDeterminingFlow :BrazingServiceAct_flow0_BrazingServiceForBattery .
+
+:BrazingServiceAct_flow0_BrazingServiceForBattery
+    a flow:Flow ;
+    flow:hasFlowType ft:BrazingServiceForBatteryCase ;
+    flow:contextualLabel "brazing service for battery case" ;
+    act:outputOf :BrazingServiceAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Item ; om:hasNumericalValue "70"^^xsd:decimal ] .
+
+:BrazingServiceAct_flow1_NOCOLOK
+    a flow:Flow ;
+    flow:hasFlowType ft:NOCOLOK ;
+    flow:contextualLabel "NOCOLOK" ;
+    act:inputOf :BrazingServiceAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.005"^^xsd:decimal ] .
+
+:BrazingServiceAct_flow2_BrazingElectricityUse
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityMediumVoltage ;
+    flow:contextualLabel "brazing electricity use" ;
+    act:inputOf :BrazingServiceAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "2250"^^xsd:decimal ] .
+
+:BrazingServiceAct_flow3_TapWater
+    a flow:Flow ;
+    flow:hasFlowType ft:TapWater ;
+    flow:contextualLabel "tap water" ;
+    act:inputOf :BrazingServiceAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:CubicMetre ; om:hasNumericalValue "0.0005"^^xsd:decimal ] .
+
+:BrazingServiceAct_flow4_ShieldingGas
+    a flow:Flow ;
+    flow:hasFlowType ft:VentingOfNitrogenLiquid ;
+    flow:contextualLabel "shielding gas" ;
+    act:inputOf :BrazingServiceAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "292.5"^^xsd:decimal ] .
+
+:NocolokAct
+    a act:Activity ;
+    act:hasActivityType act:NocolokProduction ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:DE ;
+    act:hasDeterminingFlow :NocolokAct_flow0_NOCOLOK .
+
+:NocolokAct_flow0_NOCOLOK
+    a flow:Flow ;
+    flow:hasFlowType ft:NOCOLOK ;
+    flow:contextualLabel "NOCOLOK" ;
+    act:outputOf :NocolokAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:NocolokAct_flow1_HydrogenFluorideToAir
+    a flow:Flow ;
+    flow:hasFlowType ft:08a91e70-3ddc-11dd-9804-0050c2490048 ;
+    flow:contextualLabel "Hydrogen fluoride, to air" ;
+    act:outputOf :NocolokAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.001"^^xsd:decimal ] .
+
+:NocolokAct_flow2_HydrogenFluoride
+    a flow:Flow ;
+    flow:hasFlowType ft:HydrogenFluoride ;
+    flow:contextualLabel "Hydrogen fluoride" ;
+    act:inputOf :NocolokAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.537"^^xsd:decimal ] .
+
+:NocolokAct_flow3_AluminiumHydroxide
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumHydroxide ;
+    flow:contextualLabel "Aluminium hydroxide" ;
+    act:inputOf :NocolokAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.491"^^xsd:decimal ] .
+
+######################################################################
+# FlowTypes produced by this dataset (with sourcedFrom)
+######################################################################
+ft:NOCOLOK a flow:ProductFlow ;
+    rdfs:label "NOCOLOK"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing#BrazingDataset> .
+ft:BrazingServiceForBatteryCase a flow:ProductFlow ;
+    rdfs:label "brazing service for battery case"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing#BrazingDataset> .

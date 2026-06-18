@@ -1,0 +1,506 @@
+@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#> .
+@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
+@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+######################################################################
+# CASE STUDY (ABox) — CellDataset
+# Generated from AllFlows.xlsx. Activities, ActivityTypes, Flows,
+# FlowTypes (with sourcedFrom), CFF parameters and data quality.
+# Sub-items nested inline with [ ].
+######################################################################
+
+<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell>
+    a owl:Ontology ;
+    owl:imports pefdpp: ;
+    dcterms:title "CellDataset — LCIDataset (case study)"@en ;
+    dcterms:creator "Berend Mintjes - Leiden University" .
+
+:CellDataset
+    a dataset:LCIDataset ;
+    dcterms:title "CellDataset"@en ;
+    dataset:hasDatasetType dataset:DPP ;
+    dataset:hasComplianceLevel dataset:EFCompliant ;
+    dq:hasDataQuality [ a dq:DataQuality ;
+        dq:hasOverallDQR "1"^^xsd:decimal ;
+        dq:hasDQRCriterion
+        [ a dq:DQRCriterion ; dq:forDimension dq:TechnologicalRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "company-specific processes" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:TimeRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "recent data" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:GeographicalRepresentativeness ; dq:hasValue 1 ; dq:hasJustification "specific data" ; ]
+    ] ;
+    dataset:containsActivity
+        :CellManufacturingAct ,
+        :ElectrolyteManufacturingAct ,
+        :CathodeManufacturingAct ,
+        :CathodeActiveMaterialManufacturingAct ,
+        :AnodeManufacturingAct ,
+        :AnodeActiveMaterialManufacturingAct .
+
+######################################################################
+# ActivityTypes used in this dataset
+######################################################################
+act:AnodeActiveMaterialManufacturing a act:ActivityType ; rdfs:label "AnodeActiveMaterialManufacturing"@en .
+act:AnodeManufacturing a act:ActivityType ; rdfs:label "AnodeManufacturing"@en .
+act:CathodeActiveMaterialManufacturing a act:ActivityType ; rdfs:label "CathodeActiveMaterialManufacturing"@en .
+act:CathodeManufacturing a act:ActivityType ; rdfs:label "CathodeManufacturing"@en .
+act:CellManufacturing a act:ActivityType ; rdfs:label "CellManufacturing"@en .
+act:ElectrolyteManufacturing a act:ActivityType ; rdfs:label "ElectrolyteManufacturing"@en .
+
+:CellManufacturingAct
+    a act:Activity ;
+    act:hasActivityType act:CellManufacturing ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:NO ;
+    act:hasDeterminingFlow :CellManufacturingAct_flow0_BatteryCell .
+
+:CellManufacturingAct_flow0_BatteryCell
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryCellNMC111LiIon ;
+    flow:contextualLabel "Battery cell" ;
+    act:outputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow1_Electrolyte
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectrolyteForLithiumIonBattery ;
+    flow:contextualLabel "Electrolyte" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.146"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow2_Anode
+    a flow:Flow ;
+    flow:hasFlowType ft:AnodeGraphiteForLithiumIonBattery ;
+    flow:contextualLabel "Anode" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.3375907838717756"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow3_Cathode
+    a flow:Flow ;
+    flow:hasFlowType ft:CathodeNMC111ForLithiumIonBattery ;
+    flow:contextualLabel "Cathode" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.47633358377160023"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow4_Separator
+    a flow:Flow ;
+    flow:hasFlowType ft:BatterySeparator ;
+    flow:contextualLabel "Separator" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.017530678687703482"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow5_CellContainerPlasticPET
+    a flow:Flow ;
+    flow:hasFlowType ft:PolyethyleneTerephthalateGranulateAmorphous ;
+    flow:contextualLabel "cell container plastic PET" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.00282243926872026"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow6_CellContainerPlasticPETE
+    a flow:Flow ;
+    flow:hasFlowType ft:ExtrusionPlasticFilm ;
+    flow:contextualLabel "cell container plastic PET extrusion" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.00282243926872026"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow7_CellContainerPlasticPP
+    a flow:Flow ;
+    flow:hasFlowType ft:PolypropyleneGranulate ;
+    flow:contextualLabel "cell container plastic PP" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0012680524250772184"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow8_CellContainerPlasticPPEx
+    a flow:Flow ;
+    flow:hasFlowType ft:ExtrusionPlasticFilm ;
+    flow:contextualLabel "cell container plastic PP extrusion" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0012680524250772184"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow9_CellContainerAluminium
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumWroughtAlloy ;
+    flow:contextualLabel "cell container aluminium" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.018198514066282662"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow10_CellContainerAluminiumSh
+    a flow:Flow ;
+    flow:hasFlowType ft:SheetRollingAluminium ;
+    flow:contextualLabel "cell container aluminium sheet rolling" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.018198514066282662"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow11_ElectricityForCellAssemb
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityMediumVoltage ;
+    flow:contextualLabel "electricity for cell assembly" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "0.9029173890000001"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow12_HeatSteamFromNaturalGasF
+    a flow:Flow ;
+    flow:hasFlowType ft:HeatDistrictOrIndustrialNaturalGas ;
+    flow:contextualLabel "Heat/steam from natural gas for cell assembly" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "12.509500000000001"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow13_CellFormingAndChargingEl
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityMediumVoltage ;
+    flow:contextualLabel "Cell forming and charging, electricity" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "0.2845557832"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow14_CuCurrentCollector
+    a flow:Flow ;
+    flow:hasFlowType ft:CopperCollectorFoilForLiIonBattery ;
+    flow:contextualLabel "Cu current collector" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.12379998330411553"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow15_CellContainerAluminiumPo
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumWroughtAlloy ;
+    flow:contextualLabel "cell container: aluminium positive terminal" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0101010101010101"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow16_CellContainerAluminiumPo
+    a flow:Flow ;
+    flow:hasFlowType ft:SheetRollingAluminium ;
+    flow:contextualLabel "cell container: aluminium positive terminal, sheet rolling" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0101010101010101"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow17_AlCurrentCollector
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumCollectorFoilForLiIonBattery ;
+    flow:contextualLabel "Al current collector" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.03100008347942232"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow18_CellContainerCopperNegat
+    a flow:Flow ;
+    flow:hasFlowType ft:Copper ;
+    flow:contextualLabel "cell container: copper negative terminal" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.033475248351281406"^^xsd:decimal ] .
+
+:CellManufacturingAct_flow19_CellContainerCopperNegat
+    a flow:Flow ;
+    flow:hasFlowType ft:SheetRollingCopper ;
+    flow:contextualLabel "cell container: copper negative terminal, sheet rolling" ;
+    act:inputOf :CellManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.033475248351281406"^^xsd:decimal ] .
+
+:ElectrolyteManufacturingAct
+    a act:Activity ;
+    act:hasActivityType act:ElectrolyteManufacturing ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:NO ;
+    act:hasDeterminingFlow :ElectrolyteManufacturingAct_flow0_Electrolyte .
+
+:ElectrolyteManufacturingAct_flow0_Electrolyte
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectrolyteForLithiumIonBattery ;
+    flow:contextualLabel "Electrolyte" ;
+    act:outputOf :ElectrolyteManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:ElectrolyteManufacturingAct_flow1_LithiumHexafluorophospha
+    a flow:Flow ;
+    flow:hasFlowType ft:LithiumHexafluorophosphate ;
+    flow:contextualLabel "lithium hexafluorophosphate" ;
+    act:inputOf :ElectrolyteManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.126"^^xsd:decimal ] .
+
+:ElectrolyteManufacturingAct_flow2_EthyleneCarbonate
+    a flow:Flow ;
+    flow:hasFlowType ft:EthyleneCarbonate ;
+    flow:contextualLabel "ethylene carbonate" ;
+    act:inputOf :ElectrolyteManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.425"^^xsd:decimal ] .
+
+:ElectrolyteManufacturingAct_flow3_DimethylCarbonate
+    a flow:Flow ;
+    flow:hasFlowType ft:DimethylCarbonate ;
+    flow:contextualLabel "dimethyl carbonate" ;
+    act:inputOf :ElectrolyteManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.425"^^xsd:decimal ] .
+
+:ElectrolyteManufacturingAct_flow4_VinylCarbonateAdditive
+    a flow:Flow ;
+    flow:hasFlowType ft:VinylCarbonate ;
+    flow:contextualLabel "vinyl carbonate (additive)" ;
+    act:inputOf :ElectrolyteManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.024"^^xsd:decimal ] .
+
+:ElectrolyteManufacturingAct_flow5_ElectricityForElectrolyt
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityMediumVoltage ;
+    flow:contextualLabel "electricity for electrolyte production" ;
+    act:inputOf :ElectrolyteManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "0.416"^^xsd:decimal ] .
+
+:CathodeManufacturingAct
+    a act:Activity ;
+    act:hasActivityType act:CathodeManufacturing ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:NO ;
+    act:hasDeterminingFlow :CathodeManufacturingAct_flow0_Cathode .
+
+:CathodeManufacturingAct_flow0_Cathode
+    a flow:Flow ;
+    flow:hasFlowType ft:CathodeNMC111ForLithiumIonBattery ;
+    flow:contextualLabel "Cathode" ;
+    act:outputOf :CathodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:CathodeManufacturingAct_flow1_LiNMCO2ActiveMaterial
+    a flow:Flow ;
+    flow:hasFlowType ft:LiNMCO2ActiveMaterial ;
+    flow:contextualLabel "Li-NMC-O2 (active material)" ;
+    act:inputOf :CathodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.95"^^xsd:decimal ] .
+
+:CathodeManufacturingAct_flow2_CarbonBlack
+    a flow:Flow ;
+    flow:hasFlowType ft:CarbonBlack ;
+    flow:contextualLabel "carbon black" ;
+    act:inputOf :CathodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.025"^^xsd:decimal ] .
+
+:CathodeManufacturingAct_flow3_PVDF
+    a flow:Flow ;
+    flow:hasFlowType ft:PolyvinylfluorideKg ;
+    flow:contextualLabel "PVDF" ;
+    act:inputOf :CathodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.025"^^xsd:decimal ] .
+
+:CathodeManufacturingAct_flow4_NMethyl2PyrrolidoneNMP
+    a flow:Flow ;
+    flow:hasFlowType ft:NMethyl2Pyrrolidone ;
+    flow:contextualLabel "N-methyl-2-pyrrolidone (NMP)" ;
+    act:inputOf :CathodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.005600000000000001"^^xsd:decimal ] .
+
+:CathodeManufacturingAct_flow5_EnergyForCathodeDryingAn
+    a flow:Flow ;
+    flow:hasFlowType ft:HeatDistrictOrIndustrialNaturalGas ;
+    flow:contextualLabel "energy for cathode drying and NMP recovery, from steam, from natural gas" ;
+    act:inputOf :CathodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "25.747936213553864"^^xsd:decimal ] .
+
+:CathodeManufacturingAct_flow6_ElectricityForMixingCutt
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityMediumVoltage ;
+    flow:contextualLabel "electricity for mixing, cutting and calendaring" ;
+    act:inputOf :CathodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "0.44058783783783784"^^xsd:decimal ] .
+
+:CathodeManufacturingAct_flow7_NMethyl2PyrrolidoneEvapo
+    a flow:Flow ;
+    flow:hasFlowType ft:fe0acd60-3ddc-11dd-a784-0050c2490048 ;
+    flow:contextualLabel "N-methyl-2-pyrrolidone (evaporated/recovered)" ;
+    act:outputOf :CathodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.005600000000000001"^^xsd:decimal ] .
+
+:CathodeActiveMaterialManufacturingAct
+    a act:Activity ;
+    act:hasActivityType act:CathodeActiveMaterialManufacturing ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:CN ;
+    act:hasDeterminingFlow :CathodeActiveMaterialManufacturingAct_flow0_LiNMCO2ActiveMaterial .
+
+:CathodeActiveMaterialManufacturingAct_flow0_LiNMCO2ActiveMaterial
+    a flow:Flow ;
+    flow:hasFlowType ft:LiNMCO2ActiveMaterial ;
+    flow:contextualLabel "Li-NMC-O2 (active material)" ;
+    act:outputOf :CathodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:AnodeManufacturingAct
+    a act:Activity ;
+    act:hasActivityType act:AnodeManufacturing ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:NO ;
+    act:hasDeterminingFlow :AnodeManufacturingAct_flow0_Anode .
+
+:AnodeManufacturingAct_flow0_Anode
+    a flow:Flow ;
+    flow:hasFlowType ft:AnodeGraphiteForLithiumIonBattery ;
+    flow:contextualLabel "Anode" ;
+    act:outputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:AnodeManufacturingAct_flow1_SyntheticGraphite
+    a flow:Flow ;
+    flow:hasFlowType ft:SyntheticGraphiteBatteryGrade ;
+    flow:contextualLabel "synthetic graphite" ;
+    act:inputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.94"^^xsd:decimal ] .
+
+:AnodeManufacturingAct_flow2_CarboxymethylCelluloseCM
+    a flow:Flow ;
+    flow:hasFlowType ft:CarboxymethylCellulosePowder ;
+    flow:contextualLabel "carboxymethyl cellulose  (CMC)" ;
+    act:inputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.03"^^xsd:decimal ] .
+
+:AnodeManufacturingAct_flow3_WaterDeionised
+    a flow:Flow ;
+    flow:hasFlowType ft:WaterDeionised ;
+    flow:contextualLabel "water, deionised" ;
+    act:inputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:AnodeManufacturingAct_flow4_CarbonBlack
+    a flow:Flow ;
+    flow:hasFlowType ft:CarbonBlack ;
+    flow:contextualLabel "carbon black" ;
+    act:inputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.01"^^xsd:decimal ] .
+
+:AnodeManufacturingAct_flow5_StyreneButadieneSBR
+    a flow:Flow ;
+    flow:hasFlowType ft:Latex ;
+    flow:contextualLabel "styrene butadiene (SBR)" ;
+    act:inputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.02"^^xsd:decimal ] .
+
+:AnodeManufacturingAct_flow6_EnergyForElectrodeDrying
+    a flow:Flow ;
+    flow:hasFlowType ft:HeatDistrictOrIndustrialNaturalGas ;
+    flow:contextualLabel "energy for electrode drying, from steam, from natural gas" ;
+    act:inputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "7.724380864066159"^^xsd:decimal ] .
+
+:AnodeManufacturingAct_flow7_ElectricityForMixingCutt
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityMediumVoltage ;
+    flow:contextualLabel "electricity for mixing, cutting and calendaring" ;
+    act:inputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "0.44058783783783784"^^xsd:decimal ] .
+
+:AnodeManufacturingAct_flow8_Wastewater
+    a flow:Flow ;
+    flow:hasFlowType ft:WastewaterTreatment ;
+    flow:contextualLabel "wastewater" ;
+    act:outputOf :AnodeManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:CubicMetre ; om:hasNumericalValue "0.001"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct
+    a act:Activity ;
+    act:hasActivityType act:AnodeActiveMaterialManufacturing ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:CN ;
+    act:hasDeterminingFlow :AnodeActiveMaterialManufacturingAct_flow0_SyntheticGraphite .
+
+:AnodeActiveMaterialManufacturingAct_flow0_SyntheticGraphite
+    a flow:Flow ;
+    flow:hasFlowType ft:SyntheticGraphiteBatteryGrade ;
+    flow:contextualLabel "synthetic graphite" ;
+    act:outputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow1_PetroleumCoke
+    a flow:Flow ;
+    flow:hasFlowType ft:PetroleumCoke ;
+    flow:contextualLabel "petroleum coke" ;
+    act:inputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.96"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow2_CoalTar
+    a flow:Flow ;
+    flow:hasFlowType ft:CoalTar ;
+    flow:contextualLabel "coal tar" ;
+    act:inputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.24"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow3_Oxygen
+    a flow:Flow ;
+    flow:hasFlowType ft:e2fb04b0-6555-11dd-ad8b-0800200c9a66 ;
+    flow:contextualLabel "oxygen" ;
+    act:inputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.3178589090909091"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow4_NaturalGas
+    a flow:Flow ;
+    flow:hasFlowType ft:HeatDistrictOrIndustrialNaturalGas ;
+    flow:contextualLabel "natural gas" ;
+    act:inputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "5.431428288"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow5_Electricity
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityMediumVoltage ;
+    flow:contextualLabel "electricity" ;
+    act:inputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "4.08248384376224"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow6_NOxToAir
+    a flow:Flow ;
+    flow:hasFlowType ft:f79d0f8f-2b0e-49cb-bed0-b1ea0fbd8625 ;
+    flow:contextualLabel "NOx, to air" ;
+    act:outputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0093"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow7_PM25ToAir
+    a flow:Flow ;
+    flow:hasFlowType ft:08a91e70-3ddc-11dd-9293-0050c2490048 ;
+    flow:contextualLabel "PM2.5, to air" ;
+    act:outputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.00205025"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow8_PM10ToAir
+    a flow:Flow ;
+    flow:hasFlowType ft:08a91e70-3ddc-11dd-91be-0050c2490048 ;
+    flow:contextualLabel "PM10, to air" ;
+    act:outputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0041005"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow9_SOxToAir
+    a flow:Flow ;
+    flow:hasFlowType ft:fe0acd60-3ddc-11dd-a207-0050c2490048 ;
+    flow:contextualLabel "SOx, to air" ;
+    act:outputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.063812"^^xsd:decimal ] .
+
+:AnodeActiveMaterialManufacturingAct_flow10_CO2ToAir
+    a flow:Flow ;
+    flow:hasFlowType ft:08a91e70-3ddc-11dd-923d-0050c2490048 ;
+    flow:contextualLabel "CO2, to air" ;
+    act:outputOf :AnodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.437056"^^xsd:decimal ] .
+
+######################################################################
+# FlowTypes produced by this dataset (with sourcedFrom)
+######################################################################
+ft:LiNMCO2ActiveMaterial a flow:ProductFlow ;
+    rdfs:label "Li-NMC-O2 (active material)"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+ft:AnodeGraphiteForLithiumIonBattery a flow:ProductFlow ;
+    rdfs:label "anode, graphite, for lithium-ion battery"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+ft:BatteryCellNMC111LiIon a flow:ProductFlow ;
+    rdfs:label "battery cell, NMC111, Li-ion"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+ft:CathodeNMC111ForLithiumIonBattery a flow:ProductFlow ;
+    rdfs:label "cathode, NMC111, for lithium-ion battery"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+ft:ElectrolyteForLithiumIonBattery a flow:ProductFlow ;
+    rdfs:label "electrolyte, for lithium ion battery"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+ft:SyntheticGraphiteBatteryGrade a flow:ProductFlow ;
+    rdfs:label "synthetic graphite, battery grade"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .

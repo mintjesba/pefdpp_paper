@@ -1,0 +1,442 @@
+######################################################################
+# CASE STUDY (ABox) — PEFStudy for Li-ion Battery Pack
+#
+# Required elements (marked :PEFRequired in the TBox):
+#   PEFStudy  → hasGoal, hasScope, hasProductSystem,
+#                hasAggregatedLCI, hasLCIAResult
+#   Goal      → commissioner, verifier, intendedApplication
+#   Scope     → hasFunctionalUnit, hasSystemBoundary,
+#                includesImpactCategory
+#   FunctionalUnit → whatProvided, howWellProvided,
+#                    howMuchProvided, howLongProvided, hasReferenceFlow
+#   SystemBoundary → hasBoundaryType, cutOffCriteria, hasJustification
+#   ProductSystem  → hasActivityLink, hasSystemDiagram
+#   ActivityLink   → forActivity, hasLifeCycleStage
+#   ImpactCategory → calculatedByMethod, hasIndicatorUnit
+#   LCIAResult     → forImpactCategory, hasMeasure
+#
+# Placeholders: fill in every "TODO" before treating as complete.
+# LCIA result values are initialised to 0.0 — replace with computed results.
+# hasAggregatedLCI points to a stub; replace with the generated aggregated LCI.
+######################################################################
+
+@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pef#> .
+
+# — dataset-level prefixes (for cross-referencing activities) —
+@prefix cell:    <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#> .
+@prefix module:  <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module#> .
+@prefix pack:    <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack#> .
+@prefix braze:   <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing#> .
+@prefix eol:     <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-eol#> .
+@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
+
+# — ontology namespaces —
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
+@prefix ps:      <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
+@prefix prs:     <https://w3id.org/mintjesba/pefdpp/product-system#> .
+@prefix lcia:    <https://w3id.org/mintjesba/pefdpp/lcia#> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
+@prefix efic:    <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories#> .
+
+# — external namespaces —
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+######################################################################
+# Ontology declaration
+######################################################################
+
+<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pef>
+    a owl:Ontology ;
+    owl:imports pefdpp: ;
+    dcterms:title "Battery Pack PEF Study"@en ;
+    dcterms:creator "Berend Mintjes - Leiden University" .
+
+######################################################################
+# PEFStudy
+######################################################################
+
+:BatteryPackPEFStudy
+    a ps:PEFStudy ;
+    dcterms:title "Battery Pack PEF Study — Li-ion NMC111"@en ;
+    ps:hasGoal            :Goal ;
+    ps:hasScope           :Scope ;
+    ps:hasProductSystem   :ProductSystem ;
+    ps:hasAggregatedLCI   :AggregatedLCI ;
+    ps:hasLCIAResult
+        :LCIA_Acidification ,
+        :LCIA_ClimateChange ,
+        :LCIA_EcotoxicityFreshwater ,
+        :LCIA_EutrophicationMarine ,
+        :LCIA_EutrophicationFreshwater ,
+        :LCIA_EutrophicationTerrestrial ,
+        :LCIA_HumanToxicityCancer ,
+        :LCIA_HumanToxicityNonCancer ,
+        :LCIA_IonisingRadiation ,
+        :LCIA_LandUse ,
+        :LCIA_OzoneDepletion ,
+        :LCIA_ParticulateMatter ,
+        :LCIA_PhotochemicalOzoneFormation ,
+        :LCIA_ResourceUseFossils ,
+        :LCIA_ResourceUseMineralsAndMetals ,
+        :LCIA_WaterUse ;
+    ps:hasContributionResult
+        :CR_ClimateChange_Manufacturing ;
+    dq:hasDataQuality [ a dq:DataQuality ;
+        dq:hasOverallDQR "3.333333"^^xsd:decimal ;
+        dq:hasDQRCriterion
+            [ a dq:DQRCriterion ; dq:forDimension dq:TechnologicalRepresentativeness ;
+              dq:hasValue 4 ; dq:hasJustification "background uses technological proxies" ] ,
+            [ a dq:DQRCriterion ; dq:forDimension dq:TimeRepresentativeness ;
+              dq:hasValue 3 ; dq:hasJustification "2023 reference year for EoL" ] ,
+            [ a dq:DQRCriterion ; dq:forDimension dq:GeographicalRepresentativeness ;
+              dq:hasValue 3 ; dq:hasJustification "ecoinvent (global) used" ]
+    ] ;
+    dcterms:conformsTo :CFB-EV
+    .
+
+:CFB-EV a dcterms:Standard ;
+    dcterms:title "Rules for the Calculation of the Carbon Footprint of Electric Vehicle Batteries (CFB-EV)" ;
+    dcterms:creator [
+        a foaf:Organization ;
+        foaf:name "Joint Research Centre (JRC), European Commission" ;
+        foaf:homepage <https://eplca.jrc.ec.europa.eu/>
+    ] ;
+    dcterms:issued "2023-06"^^xsd:gYearMonth ;
+    dcterms:type <http://purl.org/dc/dcmitype/Text> ;
+    dcterms:description "Draft JRC technical report providing methodological guidelines for calculating and verifying the carbon footprint of electric vehicle batteries under Article 7 of Regulation (EU) 2023/1542 (EU Batteries Regulation), based on the PEF method and the PEFCR for batteries." ;
+    dcterms:source <https://eplca.jrc.ec.europa.eu/permalink/battery/GRB-CBF_CarbonFootprintRules-EV_June_2023.pdf> .
+
+# Stub — replace with the generated aggregated LCI once available
+:AggregatedLCI a dataset:LCIDataset ;
+    dcterms:title "Aggregated LCI — Battery Pack (abridged)"@en ;
+    dataset:containsActivity :AggregatedLCIAct .
+
+:AggregatedLCIAct a act:Activity . # here the full LCI of the product system can be stored
+
+######################################################################
+# Goal
+######################################################################
+
+:Goal
+    a ps:Goal ;
+    ps:intendedApplication "PEF following CFB-EV of NMC111 Li-ion vehicle battery, proof-of-concept for PEFDPP"^^xsd:string ;
+    ps:decisionContext     "PEF following CFB-EV, uses CFF, cut-off for background (ecoinvent3.12)"^^xsd:string ;
+    ps:commissioner        <https://ror.org/027bh9e22> ;
+    ps:verifier            <https://ror.org/02x681a42> .
+
+<https://ror.org/027bh9e22> a foaf:Organization ;
+    foaf:name "Leiden University" .
+
+<https://ror.org/02x681a42> a foaf:Organization ;
+    foaf:name "Empa" .
+
+######################################################################
+# Scope
+######################################################################
+
+:Scope
+    a ps:Scope ;
+    ps:hasFunctionalUnit   :FUBattery ;
+    ps:hasSystemBoundary   :SystemBoundary ;
+    ps:hasAssumption       "end-of-life stage modelled using CFB-EV default values"^^xsd:string ;
+    ps:hasLimitation       "ecoinvent3.12 (not EF compliant) used as background dataset"^^xsd:string ;
+    ps:biodiversityRelevance "biodiversity out-of-scope per CFB-EV rules"^^xsd:string ;
+    ps:includesImpactCategory
+        efic:Acidification ,
+        efic:ClimateChange ,
+        efic:EcoToxicityFreshwater ,
+        efic:EutrophicationMarine ,
+        efic:EutrophicationFreshwater ,
+        efic:EutrophicationTerrestrial ,
+        efic:HumanToxicityCancer ,
+        efic:HumanToxicityNonCancer ,
+        efic:IonisingRadiationHumanHealth ,
+        efic:LandUse ,
+        efic:OzoneDepletion ,
+        efic:ParticulateMatter ,
+        efic:PhotochemicalOzoneFormationHumanHealth ,
+        efic:ResourceUseFossils ,
+        efic:ResourceUseMineralsAndMetals ,
+        efic:WaterUse .
+
+######################################################################
+# Functional Unit
+######################################################################
+
+:FUBattery
+    a ps:FunctionalUnit ;
+    ps:whatProvided      "propulsion energy for electric vehicle"^^xsd:string ;
+    ps:howWellProvided   "of total energy over battery's service life"^^xsd:string ;
+    ps:howMuchProvided   [ a om:Measure ; om:hasUnit om:kilowattHour ;
+                           om:hasNumericalValue "1"^^xsd:decimal ] ;
+    ps:howLongProvided   [ a om:Measure ; om:hasUnit om:year ;
+                           om:hasNumericalValue "8.0"^^xsd:decimal ] ;  # estimated lifetime of battery
+    ps:RFtoFUConversion "0.00687583333333"^^xsd:decimal ;
+    ps:hasReferenceFlow  pack:BatteryDistributionAct_flow0_BatteryPackAtCustomer ;
+    dcterms:conformsTo :CFB-EV ;
+    .
+
+######################################################################
+# System Boundary
+######################################################################
+
+:SystemBoundary
+    a ps:SystemBoundary ;
+    ps:hasBoundaryType       ps:CradleToGrave ;
+    ps:cutOffCriteria        "mass cut-off of <1% allowed"^^xsd:string ;
+    ps:hasJustification      "system boundary based on CFB-EV rules, NB use phase out-of-scope"^^xsd:string ;
+    ps:excludesActivity      "Excludes capital goods, final installation, packaging material production, cooling system parts not contained in or attached to housing, auxiliary inputs to manufacturing plant, storage during distribution, waste collection, dismantling, and EoL transport."^^xsd:string ;
+    ps:exclusionJustification "CFB-EV provided"^^xsd:string .
+
+######################################################################
+# Product System
+######################################################################
+
+:ProductSystem
+    a prs:ProductSystem ;
+    # prs:hasSystemDiagram [ a foaf:Image ] out-of-scope ;
+    prs:hasActivityLink
+        :AL_AnodeActiveMaterialManufacturing ,
+        :AL_AnodeManufacturing ,
+        :AL_CathodeActiveMaterialManufacturing ,
+        :AL_CathodeManufacturing ,
+        :AL_ElectrolyteManufacturing ,
+        :AL_CellManufacturing ,
+        :AL_NocolokProduction ,
+        :AL_BrazingService ,
+        :AL_HousingCoolingManufacturing ,
+        :AL_ModuleAssembly ,
+        :AL_BatteryAssembly ,
+        :AL_BatteryDistribution ,
+        :AL_BatteryDisassembly ,
+        :AL_BatteryCellTreatment ,
+        :AL_MetalTreatment .
+
+######################################################################
+# Activity Links
+# Life cycle stage assignment follows CFB-EV methodology:
+#   Manufacturing          — all other specified
+#   Distribution           — transport to customer
+#   EndOfLife              — disassembly and treatment
+######################################################################
+
+:AL_AnodeActiveMaterialManufacturing
+    a prs:ActivityLink ;
+    prs:forActivity      cell:AnodeActiveMaterialManufacturingAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_CathodeActiveMaterialManufacturing
+    a prs:ActivityLink ;
+    prs:forActivity      cell:CathodeActiveMaterialManufacturingAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_AnodeManufacturing
+    a prs:ActivityLink ;
+    prs:forActivity      cell:AnodeManufacturingAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_CathodeManufacturing
+    a prs:ActivityLink ;
+    prs:forActivity      cell:CathodeManufacturingAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_ElectrolyteManufacturing
+    a prs:ActivityLink ;
+    prs:forActivity      cell:ElectrolyteManufacturingAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_CellManufacturing
+    a prs:ActivityLink ;
+    prs:forActivity      cell:CellManufacturingAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_NocolokProduction
+    a prs:ActivityLink ;
+    prs:forActivity      braze:NocolokAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_BrazingService
+    a prs:ActivityLink ;
+    prs:forActivity      braze:BrazingServiceAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_HousingCoolingManufacturing
+    a prs:ActivityLink ;
+    prs:forActivity      module:HousingCoolingManufacturingAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_ModuleAssembly
+    a prs:ActivityLink ;
+    prs:forActivity      module:ModuleAssemblyAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_BatteryAssembly
+    a prs:ActivityLink ;
+    prs:forActivity      pack:BatteryAssemblyAct ;
+    prs:hasLifeCycleStage prs:Manufacturing .
+
+:AL_BatteryDistribution
+    a prs:ActivityLink ;
+    prs:forActivity      pack:BatteryDistributionAct ;
+    prs:hasLifeCycleStage prs:Distribution .
+
+:AL_BatteryDisassembly
+    a prs:ActivityLink ;
+    prs:forActivity      eol:BatteryDisassemblyAct ;
+    prs:hasLifeCycleStage prs:EndOfLife .
+
+:AL_BatteryCellTreatment
+    a prs:ActivityLink ;
+    prs:forActivity      eol:BatteryCellTreatmentAct ;
+    prs:hasLifeCycleStage prs:EndOfLife .
+
+:AL_MetalTreatment
+    a prs:ActivityLink ;
+    prs:forActivity      eol:MetalTreatmentAct ;
+    prs:hasLifeCycleStage prs:EndOfLife .
+
+######################################################################
+# LCIA Results — single score
+######################################################################
+:LCIA_SingleScore
+    a lcia:LCIAResult ;
+    lcia:hasLCIAResultType lcia:SingleScore ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DimensionlessPoint ;
+                      om:hasNumericalValue "2.84488E-05"^^xsd:double ] .
+
+######################################################################
+# LCIA Results — characterised
+######################################################################
+:LCIA_HumanToxicityCancer
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:HumanToxicityCancer ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:CTUh ;
+                      om:hasNumericalValue "1.07218E-10"^^xsd:double ] .
+
+:LCIA_ClimateChange
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:ClimateChange ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgCO2Eq ;
+                      om:hasNumericalValue "0.131830852"^^xsd:double ] .
+
+:LCIA_EutrophicationFreshwater
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:EutrophicationFreshwater ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgPEq ;
+                      om:hasNumericalValue "6.25067E-05"^^xsd:double ] .
+
+:LCIA_LandUse
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:LandUse ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DimensionlessPoint ;
+                      om:hasNumericalValue "0.67250979"^^xsd:double ] .
+
+:LCIA_ResourceUseMineralsAndMetals
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:ResourceUseMineralsAndMetals ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgSbEq ;
+                      om:hasNumericalValue "1.21078E-05"^^xsd:double ] .
+
+:LCIA_OzoneDepletion
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:OzoneDepletion ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgCFC11Eq ;
+                      om:hasNumericalValue "1.20638E-08"^^xsd:double ] .
+
+:LCIA_Acidification
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:Acidification ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:molHplusEq ;
+                      om:hasNumericalValue "0.001219243"^^xsd:double ] .
+
+:LCIA_IonisingRadiation
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:IonisingRadiationHumanHealth ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kBqU235Eq ;
+                      om:hasNumericalValue "0.013641513"^^xsd:double ] .
+
+:LCIA_HumanToxicityNonCancer
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:HumanToxicityNonCancer ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:CTUh ;
+                      om:hasNumericalValue "5.16142E-09"^^xsd:double ] .
+
+:LCIA_EutrophicationTerrestrial
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:EutrophicationTerrestrial ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:molNEq ;
+                      om:hasNumericalValue "0.001882074"^^xsd:double ] .
+
+
+:LCIA_ParticulateMatter
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:ParticulateMatter ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DiseaseIncidence ;
+                      om:hasNumericalValue "1.06108E-08"^^xsd:double ] .
+
+:LCIA_EutrophicationMarine
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:EutrophicationMarine ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgNEq ;
+                      om:hasNumericalValue "0.00017043"^^xsd:double ] .
+
+
+:LCIA_EcotoxicityFreshwater
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:EcoToxicityFreshwater ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:CTUe ;
+                      om:hasNumericalValue "1.417971741"^^xsd:double ] .
+
+:LCIA_ResourceUseFossils
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:ResourceUseFossils ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ;
+                      om:hasNumericalValue "1.686593055"^^xsd:double ] .
+
+
+:LCIA_WaterUse
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:WaterUse ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:m3WorldEq ;
+                      om:hasNumericalValue "0.176976106"^^xsd:double ] .
+
+:LCIA_PhotochemicalOzoneFormation
+    a lcia:LCIAResult ;
+    lcia:forImpactCategory efic:PhotochemicalOzoneFormationHumanHealth ;
+    lcia:hasLCIAResultType lcia:Characterised ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgNMVOCEq ;
+                      om:hasNumericalValue "0.000548478"^^xsd:double ] .
+
+######################################################################
+# ContributionResults - Examples
+######################################################################
+:CR_ClimateChange_Manufacturing
+    a lcia:ContributionResult ;
+    lcia:hasLCIAResultType lcia:SingleScore ;
+    lcia:forLifeCycleStage prs:Manufacturing ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DimensionlessPoint ;
+                      om:hasNumericalValue "0.000548478"^^xsd:double ] ;
+    lcia:isMostRelevant true .
+

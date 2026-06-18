@@ -1,0 +1,132 @@
+@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix : <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#> .
+@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+######################################################################
+# SECONDARY DATASET — ecoinvent (FlowTypes ONLY, each with sourcedFrom)
+######################################################################
+
+<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent>
+    a owl:Ontology ;
+    owl:imports pefdpp: ;
+    dcterms:title "ecoinvent — FlowTypes (secondary data)"@en .
+
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix void:    <http://rdfs.org/ns/void#> .
+
+:ecoinvent
+    a dataset:LCIDataset ;
+    dcterms:title "ecoinvent 3.12 — Allocation, cut-off by classification"@en ;
+    dcterms:description "Life cycle inventory (LCI) background database providing unit process and system process data for more than 26,000 peer-reviewed datasets. Uses the cut-off system model, in which recyclable materials are free at the point of recycling and the producer bears no credit or burden for end-of-life. Default system model for PEF compliance studies and EN 15804+A2 EPDs."@en ;
+    dcterms:version "3.12" ;
+    dcterms:issued "2025-11"^^xsd:gYearMonth ;
+    dcterms:publisher [
+        a foaf:Organization ;
+        foaf:name "ecoinvent Association" ;
+        foaf:homepage <https://ecoinvent.org/>
+    ] ;
+    dcterms:creator [
+        a foaf:Organization ;
+        foaf:name "ecoinvent Association" ;
+        foaf:homepage <https://ecoinvent.org/>
+    ] ;
+    dcterms:license <https://ecoinvent.org/terms-of-use/> ;
+    dcterms:rights "Commercial licence required. Academic and commercial licences available from ecoinvent Association."@en ;
+    dcterms:format "application/xml" ;
+    dcterms:conformsTo <https://www.ecoinvent.org/files/201808_ecoSpold02_format_description_v1_pdf.pdf> ;
+    dcterms:isPartOf <https://ecoinvent.org/ecoinvent-v3-12/> ;
+    dcterms:isVersionOf <https://ecoinvent.org/database/> ;
+    dcterms:keyword "life cycle inventory"@en, "LCA"@en, "background database"@en,
+                    "cut-off"@en, "attributional"@en, "EF 3.1"@en, "PEF"@en ;
+    dcat:landingPage <https://ecoinvent.org/ecoinvent-v3-12/> ;
+    dcat:accessURL <https://ecoquery.ecoinvent.org/> ;
+    void:vocabulary <http://www.ecoinvent.org/EcoSpold02> ;
+
+    dataset:hasComplianceLevel dataset:NotEFCompliant ;
+    dq:hasDataQuality [ a dq:DataQuality ;
+        dq:hasOverallDQR "3.66667"^^xsd:decimal ;
+        dq:hasDQRCriterion
+        [ a dq:DQRCriterion ; dq:forDimension dq:TechnologicalRepresentativeness ; dq:hasValue 3 ; dq:hasJustification "partly included" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:TimeRepresentativeness ; dq:hasValue 5 ; dq:hasJustification "different validities for different flows" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:GeographicalRepresentativeness ; dq:hasValue 3 ; dq:hasJustification "global dataset" ; ]
+    ] .
+
+# Example fully typed FlowType including ecoinvent uuid
+ft:HeatDistrictOrIndustrialNaturalGas
+    a flow:ProductFlow ;
+    rdfs:label "Heat, district or industrial, natural gas"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "fefcdc840d9bdcb9fb7b5f84b4e1e022";
+    .
+
+
+ft:NMethyl2Pyrrolidone a flow:ProductFlow ; rdfs:label "N-methyl-2-pyrrolidone"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:AluminiumCollectorFoilForLiIonBattery a flow:ProductFlow ; rdfs:label "aluminium collector foil, for Li-ion battery"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:AluminiumHydroxide a flow:ProductFlow ; rdfs:label "aluminium hydroxide"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:AluminiumRecycling a flow:ProductFlow ; rdfs:label "recycling of aluminium waste"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:AluminiumWroughtAlloy a flow:ProductFlow ; rdfs:label "aluminium, wrought alloy"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:AmmoniumNitrate a flow:ProductFlow ; rdfs:label "ammonium nitrate"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:BatteryManagementSystem a flow:ProductFlow ; rdfs:label "battery management system"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:BatterySeparator a flow:ProductFlow ; rdfs:label "battery separator"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:CarbonBlack a flow:ProductFlow ; rdfs:label "carbon black"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:CarboxymethylCellulosePowder a flow:ProductFlow ; rdfs:label "carboxymethyl cellulose, powder"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:CoalTar a flow:ProductFlow ; rdfs:label "coal tar"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:CoolantWaterGlycolResidualTreatment a flow:WasteFlow ; rdfs:label "coolant / water-glycol residual treatment"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:Copper a flow:ProductFlow ; rdfs:label "copper"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:CopperLandFill a flow:ProductFlow ; rdfs:label "landfill of copper waste"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:CopperCollectorFoilForLiIonBattery a flow:ProductFlow ; rdfs:label "copper collector foil, for Li-ion battery"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:DimethylCarbonate a flow:ProductFlow ; rdfs:label "dimethyl carbonate"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:ElectricityLowVoltage a flow:ProductFlow ; rdfs:label "electricity, low voltage"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:ElectricityMediumVoltage a flow:ProductFlow ; rdfs:label "electricity, medium voltage"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:ElectronicComponentPassiveUnspecified a flow:ProductFlow ; rdfs:label "electronic component, passive, unspecified"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:EthyleneCarbonate a flow:ProductFlow ; rdfs:label "ethylene carbonate"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:EthyleneGlycol a flow:ProductFlow ; rdfs:label "ethylene glycol"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:ExtrusionPlasticFilm a flow:ProductFlow ; rdfs:label "extrusion, plastic film"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:GlassFibreReinforcedPlasticPolyamideInjectionMoulded a flow:ProductFlow ; rdfs:label "glass fibre reinforced plastic, polyamide, injection moulded"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:HydrochloricAcid a flow:ProductFlow ; rdfs:label "hydrochloric acid"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:HydrogenFluoride a flow:ProductFlow ; rdfs:label "hydrogen fluoride"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:HydrogenPeroxide a flow:ProductFlow ; rdfs:label "hydrogen peroxide"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:ImpactExtrusionOfAluminium1Stroke a flow:ProductFlow ; rdfs:label "impact extrusion of aluminium, 1 stroke"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:InjectionMoulding a flow:ProductFlow ; rdfs:label "injection moulding"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:LandfillInertWaste a flow:WasteFlow ; rdfs:label "treatment of inert waste, sanitary landfill"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:LandifllOfInertSlag a flow:ProductFlow ; rdfs:label "landifll of inert slag"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:Latex a flow:ProductFlow ; rdfs:label "latex"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:LimeProductionTechnologyMix a flow:ProductFlow ; rdfs:label "lime production, technology mix"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:LithiumHexafluorophosphate a flow:ProductFlow ; rdfs:label "lithium hexafluorophosphate"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:PetroleumCoke a flow:ProductFlow ; rdfs:label "petroleum coke"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:PolyethyleneTerephthalateGranulateAmorphous a flow:ProductFlow ; rdfs:label "polyethylene terephthalate, granulate, amorphous"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:PolyethyleneHighDensityGranulate a flow:ProductFlow ; rdfs:label "polyethylene, high density, granulate"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:PolymerRecycling a flow:WasteFlow ; rdfs:label "polymer recycling"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:PolypropyleneGranulate a flow:ProductFlow ; rdfs:label "polypropylene, granulate"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:PolyvinylfluorideKg a flow:ProductFlow ; rdfs:label "polyvinylfluoride [kg]"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:QuicklimeProductionTechnologyMix a flow:ProductFlow ; rdfs:label "quicklime production, technology mix"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:ReinforcingSteel a flow:ProductFlow ; rdfs:label "reinforcing steel"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:SheetRollingAluminium a flow:ProductFlow ; rdfs:label "sheet rolling, aluminium"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:SheetRollingCopper a flow:ProductFlow ; rdfs:label "sheet rolling, copper"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:SheetRollingSteel a flow:ProductFlow ; rdfs:label "sheet rolling, steel"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:SilicaSandProductionMix a flow:ProductFlow ; rdfs:label "silica sand, production mix"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:Steel a flow:ProductFlow ; rdfs:label "steel"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:SteelRecycling a flow:WasteFlow ; rdfs:label "steel recycling"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:Soda a flow:ProductFlow ; rdfs:label "soda"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:SodiumHydroxide a flow:ProductFlow ; rdfs:label "sodium hydroxide"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:SteamFromNaturalGas a flow:ProductFlow ; rdfs:label "steam from natural gas"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:SulphuricAcidAq a flow:ProductFlow ; rdfs:label "sulphuric acid aq."@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:TapWater a flow:ProductFlow ; rdfs:label "tap water"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:ThermalEnergyFromLightFuelOil a flow:ProductFlow ; rdfs:label "thermal energy from light fuel oil"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:ThermalEnergyFromNaturalGas a flow:ProductFlow ; rdfs:label "thermal energy from natural gas"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:TransportFreightLorry3575MetricTonDieselEURO4 a flow:ProductFlow ; rdfs:label "transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 4"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:TreatmentOfElectronicsScrapMetalsRecoveryInCopperSmelter a flow:WasteFlow ; rdfs:label "treatment of electronics scrap, metals recovery in copper smelter"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:VentingOfNitrogenLiquid a flow:ProductFlow ; rdfs:label "venting of nitrogen, liquid"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:VinylCarbonate a flow:ProductFlow ; rdfs:label "vinyl carbonate"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:WastewaterTreatment a flow:WasteFlow ; rdfs:label "wastewater treatment"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
+ft:WaterDeionised a flow:ProductFlow ; rdfs:label "water, deionised"@en ; flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#ecoinvent> .
