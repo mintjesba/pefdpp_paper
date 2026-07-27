@@ -44,12 +44,12 @@
 # ActivityTypes used in this dataset
 ######################################################################
 act:BatteryCellTreatment a act:ActivityType ; rdfs:label "BatteryCellTreatment"@en .
-act:BattteryDisassembly a act:ActivityType ; rdfs:label "BattteryDisassembly"@en .
+act:BatteryDisassembly a act:ActivityType ; rdfs:label "BatteryDisassembly"@en .
 act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
 
 :BatteryDisassemblyAct
     a act:Activity ;
-    act:hasActivityType act:BattteryDisassembly ;
+    act:hasActivityType act:BatteryDisassembly ;
     act:isCompanySpecific false ;
     act:hasGeography geo:RER ;
     act:hasDeterminingFlow :BatteryDisassemblyAct_flow0_EoLBatteryDisassemblyRef .

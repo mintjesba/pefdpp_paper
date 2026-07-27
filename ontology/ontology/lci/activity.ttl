@@ -197,6 +197,15 @@ act:isAllocated
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
     .
 
+act:sameAsSecondaryActivity
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "same as secondary activity"@en ;
+    skos:definition "The equivalent secondary activity (e.g. ecoinvent activity code/UUID)."@en ;
+    rdfs:domain act:Activity ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/activity> ;
+    .
+
 ##############################################################
 # Datatype properties — TemporalScope
 ##############################################################

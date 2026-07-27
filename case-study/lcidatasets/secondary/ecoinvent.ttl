@@ -1,0 +1,472 @@
+@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix act: <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix geo: <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix : <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#> .
+@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+######################################################################
+# SECONDARY DATASET — ecoinvent (FlowTypes ONLY, each with sourcedFrom)
+######################################################################
+
+<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent>
+    a owl:Ontology ;
+    owl:imports pefdpp: ;
+    dcterms:title "ecoinvent — FlowTypes (secondary data)"@en .
+
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix void:    <http://rdfs.org/ns/void#> .
+
+:ecoinvent
+    a dataset:LCIDataset ;
+    dcterms:title "ecoinvent 3.12 — Allocation, cut-off by classification"@en ;
+    dcterms:description "Life cycle inventory (LCI) background database providing unit process and system process data for more than 26,000 peer-reviewed datasets. Uses the cut-off system model, in which recyclable materials are free at the point of recycling and the producer bears no credit or burden for end-of-life. Default system model for PEF compliance studies and EN 15804+A2 EPDs."@en ;
+    dcterms:version "3.12" ;
+    dcterms:issued "2025-11"^^xsd:gYearMonth ;
+    dcterms:publisher [
+        a foaf:Organization ;
+        foaf:name "ecoinvent Association" ;
+        foaf:homepage <https://ecoinvent.org/>
+    ] ;
+    dcterms:creator [
+        a foaf:Organization ;
+        foaf:name "ecoinvent Association" ;
+        foaf:homepage <https://ecoinvent.org/>
+    ] ;
+    dcterms:license <https://ecoinvent.org/terms-of-use/> ;
+    dcterms:rights "Commercial licence required. Academic and commercial licences available from ecoinvent Association."@en ;
+    dcterms:format "application/xml" ;
+    dcterms:conformsTo <https://www.ecoinvent.org/files/201808_ecoSpold02_format_description_v1_pdf.pdf> ;
+    dcterms:isPartOf <https://ecoinvent.org/ecoinvent-v3-12/> ;
+    dcterms:isVersionOf <https://ecoinvent.org/database/> ;
+    dcterms:keyword "life cycle inventory"@en, "LCA"@en, "background database"@en,
+                    "cut-off"@en, "attributional"@en, "EF 3.1"@en, "PEF"@en ;
+    dcat:landingPage <https://ecoinvent.org/ecoinvent-v3-12/> ;
+    dcat:accessURL <https://ecoquery.ecoinvent.org/> ;
+    void:vocabulary <http://www.ecoinvent.org/EcoSpold02> ;
+
+    dataset:hasComplianceLevel dataset:NotEFCompliant ;
+    dq:hasDataQuality [ a dq:DataQuality ;
+        dq:hasOverallDQR "3.66667"^^xsd:decimal ;
+        dq:hasDQRCriterion
+        [ a dq:DQRCriterion ; dq:forDimension dq:TechnologicalRepresentativeness ; dq:hasValue 3 ; dq:hasJustification "partly included" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:TimeRepresentativeness ; dq:hasValue 5 ; dq:hasJustification "different validities for different flows" ; ] ,
+        [ a dq:DQRCriterion ; dq:forDimension dq:GeographicalRepresentativeness ; dq:hasValue 3 ; dq:hasJustification "global dataset" ; ]
+    ] .
+
+# ACTIVITIES for EoL (CFF parameters)
+:SteelRecycling
+    a act:Activity ;
+    rdfs:label "treatment of waste reinforcement steel, recycling - RoW"@en ;
+    act:sameAsSecondaryActivity "0f15881d-774f-5c1a-b0b9-470f15bbee73" ;
+    act:hasGeography geo:RoW ;
+    .
+
+:CopperRecycling
+    a act:Activity ;
+    rdfs:label "treatment of copper scrap by electrolytic refining - RER"@en ;
+    act:sameAsSecondaryActivity "55168136-227c-56c2-919a-8a90228ac676" ;
+    act:hasGeography geo:RER ;
+    .
+
+:InertMaterialLandfill
+    a act:Activity ;
+    rdfs:label "treatment of inert waste, inert material landfill - RoW"@en ;
+    act:sameAsSecondaryActivity "9297a630-845b-57af-8681-f3c460b07e8a" ;
+    act:hasGeography geo:RoW ;
+    .
+
+:AluminiumRecycling
+    a act:Activity ;
+    rdfs:label "treatment of aluminium scrap, post-consumer, prepared for recycling, at remelter - RER"@en ;
+    act:sameAsSecondaryActivity "de33d707-89bc-5081-9eb8-82e226a7d1c8" ;
+    act:hasGeography geo:RER ;
+    .
+
+:AluminiumLandfill
+    a act:Activity ;
+    rdfs:label "treatment of waste aluminium, sanitary landfill - RoW"@en ;
+    act:sameAsSecondaryActivity "a548cefb-734c-51bc-b50e-fccc1555565a" ;
+    act:hasGeography geo:RoW ;
+    .
+
+:PlasticRecycling
+    a act:Activity ;
+    rdfs:label "treatment of waste plastic, WEEE, recycling - RER"@en ;
+    act:sameAsSecondaryActivity "b03671bd-76bd-515a-9673-8dc43c7b5b94" ;
+    act:hasGeography geo:RER ;
+    .
+
+# FLOWTYPES with ecoinvent FLOW uuid (NOT Activities)
+ft:HeatDistrictOrIndustrialNaturalGas
+    a flow:ProductFlow ;
+    rdfs:label "Heat, district or industrial, natural gas"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "1125e767-7b5d-442e-81d6-9b0d3e1919ac";
+    .
+
+ft:NMethyl2Pyrrolidone
+    a flow:ProductFlow ;
+    rdfs:label "N-methyl-2-pyrrolidone"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "5625ac3e-8ca9-43d4-84a7-a643738095e6";
+    .
+
+ft:AluminiumCollectorFoilForLiIonBattery
+    a flow:ProductFlow ;
+    rdfs:label "aluminium collector foil, for Li-ion battery"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "d03314df-2b13-4c27-b966-b0e6739ec2bf";
+    .
+
+ft:AluminiumHydroxide
+    a flow:ProductFlow ;
+    rdfs:label "aluminium hydroxide"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "1fc89761-93f9-48c5-9204-08a8961b93c8";
+    .
+
+ft:AluminiumWroughtAlloy
+    a flow:ProductFlow ;
+    rdfs:label "aluminium, wrought alloy"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "fef44ccb-917e-4c8d-bb35-a1898827b659";
+    .
+
+ft:AmmoniumNitrate
+    a flow:ProductFlow ;
+    rdfs:label "ammonium nitrate"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "a498d9fb-9402-4374-b2e2-3f85f5d98f43";
+    .
+
+ft:BatteryManagementSystem
+    a flow:ProductFlow ;
+    rdfs:label "battery management system, for Li-ion battery"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "cbae456e-4e3a-4537-8789-e259cecf25dc";
+    .
+
+ft:BatterySeparator
+    a flow:ProductFlow ;
+    rdfs:label "battery separator"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "3de8d0de-2003-45a2-849d-faceb195e561";
+    .
+
+ft:CarbonBlack
+    a flow:ProductFlow ;
+    rdfs:label "carbon black"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "081e318e-b5f5-4f93-8c48-ab0bf5c43f2a";
+    .
+
+ft:CarboxymethylCellulosePowder
+    a flow:ProductFlow ;
+    rdfs:label "carboxymethyl cellulose, powder"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "0ffa7cec-4410-423f-82b4-0071f3334660";
+    .
+
+ft:CoalTar
+    a flow:ProductFlow ;
+    rdfs:label "coal tar"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "d70d5efd-b120-4c9d-8192-d799fe431bfa";
+    .
+
+ft:Copper
+    a flow:ProductFlow ;
+    rdfs:label "copper, cathode"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "fbb039f7-f9cc-46d2-b631-313ddb125c1a" ;
+    .
+
+ft:CopperCollectorFoilForLiIonBattery
+    a flow:ProductFlow ;
+    rdfs:label "copper collector foil, for Li-ion battery"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "d47b1a19-22dc-4950-bf7d-e499205bb957";
+    .
+
+ft:DimethylCarbonate
+    a flow:ProductFlow ;
+    rdfs:label "dimethyl carbonate"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "53fd4bee-dffb-5151-9178-23ec0dfd622d";
+    .
+
+ft:ElectricityLowVoltage
+    a flow:ProductFlow ;
+    rdfs:label "electricity, low voltage"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "d69294d7-8d64-4915-a896-9996a014c410";
+    .
+
+ft:ElectricityMediumVoltage
+    a flow:ProductFlow ;
+    rdfs:label "electricity, medium voltage"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "759b89bd-3aa6-42ad-b767-5bb9ef5d331d";
+    .
+
+ft:ElectronicComponentPassiveUnspecified
+    a flow:ProductFlow ;
+    rdfs:label "electronic component, passive, unspecified"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "4e252b55-fb08-4447-8391-d09e8bbb0238";
+    .
+
+ft:EthyleneCarbonate
+    a flow:ProductFlow ;
+    rdfs:label "ethylene carbonate"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "2974c2fd-d35b-4d8b-9919-6e3996ba2674";
+    .
+
+ft:EthyleneGlycol
+    a flow:ProductFlow ;
+    rdfs:label "ethylene glycol"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "4052f31f-cd94-4b86-b075-210914586a0f";
+    .
+
+ft:ExtrusionPlasticFilm
+    a flow:ProductFlow ;
+    rdfs:label "extrusion, plastic film"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "579049d0-3db8-4496-a234-2f61ed28a72b";
+    .
+
+ft:GlassFibreReinforcedPlasticPolyamideInjectionMoulded
+    a flow:ProductFlow ;
+    rdfs:label "glass fibre reinforced plastic, polyamide, injection moulded"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "0798a5d1-6713-4c82-8ec9-c40ac2548279";
+    .
+
+ft:HydrochloricAcid
+    a flow:ProductFlow ;
+    rdfs:label "hydrochloric acid, without water, in 30% solution state"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "3ab60559-40d3-42e4-9cac-476a519098fa";
+    .
+
+ft:HydrogenFluoride
+    a flow:ProductFlow ;
+    rdfs:label "hydrogen fluoride"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "39f50029-2aae-470f-87dc-5e24405df568";
+    .
+
+ft:HydrogenPeroxide
+    a flow:ProductFlow ;
+    rdfs:label "hydrogen peroxide, without water, in 50% solution state"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "26c92545-7995-491d-bcca-ee6d590ef194"
+    .
+
+ft:ImpactExtrusionOfAluminium1Stroke
+    a flow:ProductFlow ;
+    rdfs:label "impact extrusion of aluminium, 1 stroke"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "19e2686b-ad4b-4fd8-87ca-8622a7896528";
+    .
+
+ft:InjectionMoulding
+    a flow:ProductFlow ;
+    rdfs:label "injection moulding"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "68d6dfcf-2089-4586-9bbf-ad75591105cf";
+    .
+
+ft:Latex
+    a flow:ProductFlow ;
+    rdfs:label "latex"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "b0cd6c3d-d1b6-42f4-8e58-ca6d4d6c3e18";
+    .
+
+ft:LimeProductionTechnologyMix
+    a flow:ProductFlow ;
+    rdfs:label "limestone, crushed, washed"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "64cea105-f89a-4f95-ae44-84ff904a28fc" ;
+    .
+
+ft:LithiumHexafluorophosphate
+    a flow:ProductFlow ;
+    rdfs:label "lithium hexafluorophosphate"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "3410b185-400e-4ffe-8843-c7bdc88124b9";
+    .
+
+ft:PetroleumCoke
+    a flow:ProductFlow ;
+    rdfs:label "petroleum coke"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "eb6b5a9a-c482-4c75-9ade-bbf8d89234fe";
+    .
+
+ft:PolyethyleneTerephthalateGranulateAmorphous
+    a flow:ProductFlow ;
+    rdfs:label "polyethylene terephthalate, granulate, amorphous"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "d585421f-a3a1-45bc-bd94-188f65865b9c";
+    .
+
+ft:PolyethyleneHighDensityGranulate
+    a flow:ProductFlow ;
+    rdfs:label "polyethylene, high density, granulate"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "b685192a-e033-421e-9074-8fe7cb176046";
+    .
+
+ft:PolypropyleneGranulate
+    a flow:ProductFlow ;
+    rdfs:label "polypropylene, granulate"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "66ca2f38-5e51-4546-83c0-d7cef0c55c7c";
+    .
+
+ft:PolyvinylfluorideKg
+    a flow:ProductFlow ;
+    rdfs:label "polyvinylfluoride [kg]"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "3b2a8b24-0f2e-4e35-a10c-98e1be81c80b";
+    .
+
+ft:QuicklimeProductionTechnologyMix
+    a flow:ProductFlow ;
+    rdfs:label "quicklime, in pieces, loose"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "e79575a7-0b20-46d5-94b2-99d1916105db" ;
+    .
+
+ft:ReinforcingSteel
+    a flow:ProductFlow ;
+    rdfs:label "reinforcing steel"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "9ba48284-0f03-4fec-800d-de77833b12f6";
+    .
+
+ft:SheetRollingAluminium
+    a flow:ProductFlow ;
+    rdfs:label "sheet rolling, aluminium"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "a5309c08-cc71-402e-b870-163a09ee0742";
+    .
+
+ft:SheetRollingCopper
+    a flow:ProductFlow ;
+    rdfs:label "sheet rolling, copper"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "dfbdd39b-2541-4069-9b87-ab61ef6fbc0c";
+    .
+
+ft:SheetRollingSteel
+    a flow:ProductFlow ;
+    rdfs:label "sheet rolling, steel"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "e2f62697-57d4-42fe-95bf-c85fd32a9cf0";
+    .
+
+ft:SilicaSandProductionMix
+    a flow:ProductFlow ;
+    rdfs:label "silica sand, production mix"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "c4842286-21e6-4142-bc35-f2c36f1d68a2";
+    .
+
+ft:Steel
+    a flow:ProductFlow ;
+    rdfs:label "steel, unalloyed"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "a2fd8c95-f2db-436a-9f24-f33b17f7975b";
+    .
+
+ft:Soda
+    a flow:ProductFlow ;
+    rdfs:label "soda ash, light"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "9e6f12d8-b727-4aef-94e3-c8278e3661d7" ;
+    .
+
+ft:SodiumHydroxide
+    a flow:ProductFlow ;
+    rdfs:label "sodium hydroxide, without water, in 50% solution state"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "61396bcb-bf35-411a-a6a6-8543ccef83e8" ;
+    .
+
+ft:SulfuricAcid
+    a flow:ProductFlow ;
+    rdfs:label "sulfuric acid"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "9d63da75-8289-4b96-a900-67ec3bd40a16" ;
+    .
+
+ft:TapWater
+    a flow:ProductFlow ;
+    rdfs:label "tap water"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "c5adb1fb-872e-4446-a3bb-c4b61aa4bd45";
+    .
+
+ft:HeatDistrictOrIndustrialOther
+    a flow:ProductFlow ;
+    rdfs:label "thermal energy from light fuel oil"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "71e2f1db-a2c5-44d0-8337-dfff15be974d" ;
+    .
+
+ft:TransportFreightLorry3575MetricTonDieselEURO4
+    a flow:ProductFlow ;
+    rdfs:label "transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 4"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "03bf1369-1eec-49d0-bc4b-8b29efa826b9";
+    .
+
+ft:ElectronicsScrap
+    a flow:WasteFlow ;
+    rdfs:label "electronics scrap"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "13534fe4-363f-4306-9f67-9d3ca1140e58" ;
+    .
+
+ft:VentingOfNitrogenLiquid
+    a flow:ProductFlow ;
+    rdfs:label "venting of nitrogen, liquid"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "1adfc43f-187a-4153-996c-aced5301536a";
+    .
+
+ft:VinylCarbonate
+    a flow:ProductFlow ;
+    rdfs:label "vinyl carbonate"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "bbd262fd-3c4a-474a-afbb-f77c84c67c10";
+    .
+
+ft:WastewaterAverage
+    a flow:WasteFlow ;
+    rdfs:label "wastewater, average"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "e8a51ec1-60cb-4ead-a948-ad1142c61918"
+    .
+
+ft:WaterDeionised
+    a flow:ProductFlow ;
+    rdfs:label "water, deionised"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "360e2eb0-f81c-4e4b-ba6b-c7a690f31275";
+    .

@@ -53,6 +53,8 @@
 ##############################################################
 
 # --- flow → activity (circular: activity imports flow) ---
+# flow:recyclingFlowType / energyRecoveryFlowType / disposalFlowType are declared
+# without an rdfs:range in flow.ttl for exactly this reason (see their skos:scopeNote).
 
 flow:recyclingActivity
     rdfs:range act:Activity .
