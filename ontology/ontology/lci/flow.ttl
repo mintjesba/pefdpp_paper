@@ -2,7 +2,7 @@
 # PEFDPP Ontology — Flow Module
 # https://w3id.org/mintjesba/pefdpp/flow
 # Covers: Flow, ProductFlow, WasteFlow, ElementaryFlow,
-#         CFFParameters, CFFValue, EndOfLifeScenario,
+#         CFFScenario, CFFValue, EndOfLifeScenario,
 #         DerivationType
 #
 # NOTE ON CIRCULAR DEPENDENCY:
@@ -134,13 +134,12 @@ flow:Assumed
     .
 
 ##############################################################
-# CFFParameters
+# CFFScenario
 ##############################################################
-
-flow:CFFParameters
+flow:CFFScenario
     a owl:Class ;
-    rdfs:label "CFF Parameters"@en ;
-    skos:definition "The set of Circular Footprint Formula parameters associated with a product flow."@en ;
+    rdfs:label "CFF Scenario"@en ;
+    skos:definition "Circular Footprint Scenario (i.e. CFF parameters and Activities used) for a given flow."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -152,17 +151,6 @@ flow:CFFValue
     a owl:Class ;
     rdfs:label "CFF Value"@en ;
     skos:definition "A single Circular Footprint Formula value, comprising a numeric value, a company-specific flag, and an optional justification."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
-    .
-
-##############################################################
-# EndOfLifeScenario
-##############################################################
-
-flow:EndOfLifeScenario
-    a owl:Class ;
-    rdfs:label "End of Life Scenario"@en ;
-    skos:definition "The end-of-life scenario for a waste flow, describing recycling, energy recovery, and disposal rates and associated activities."@en ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -180,11 +168,11 @@ flow:hasFlowType
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:hasCFFParameters
+flow:hasCFFScenario
     a owl:ObjectProperty ;
-    rdfs:label "has CFF parameters"@en ;
+    rdfs:label "has CFF scenario"@en ;
     rdfs:domain flow:Flow ;
-    rdfs:range flow:CFFParameters ;
+    rdfs:range flow:CFFScenario ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> .
 
 flow:contextualLabel
@@ -283,119 +271,136 @@ flow:sameAsSecondaryFlowType
     .
     
 ##############################################################
-# Object properties — WasteFlow
+# Object properties — CFFScenario → CFFValue
 ##############################################################
-
-flow:hasEndOfLifeScenario
+flow:allocationFactorA
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "has end of life scenario"@en ;
-    skos:definition "The end-of-life scenario associated with this waste flow."@en ;
-    rdfs:domain flow:Flow ;
-    rdfs:range flow:EndOfLifeScenario ;
+    rdfs:label "allocation factor A"@en ;
+    skos:definition "Allocation factor of burdens and credits between supplier and user of recycled materials."@en ;
+    rdfs:domain flow:CFFScenario ;
+    rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-##############################################################
-# Object properties — CFFParameters → CFFValue
-##############################################################
-
-flow:recycledContentRate
+flow:allocationFactorB
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "recycled content rate"@en ;
+    rdfs:label "allocation factor B"@en ;
+    skos:definition "Allocation factor of energy recovery processes."@en ;
+    rdfs:domain flow:CFFScenario ;
+    rdfs:range flow:CFFValue ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:recycledContentRateR1
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "recycled content rate (R1)"@en ;
     skos:definition "The proportion of recycled content in this product flow."@en ;
-    rdfs:domain flow:CFFParameters ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:recyclabilityRate
+flow:recyclingRateR2
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "recyclability rate"@en ;
-    skos:definition "The proportion of this product flow that is recyclable at end of life."@en ;
-    rdfs:domain flow:CFFParameters ;
+    rdfs:label "recycling rate (R2)"@en ;
+    skos:definition "Proportion of material being recycled."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:energyRecoveryRate
+flow:energyRecoveryRateR3
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "energy recovery rate"@en ;
-    skos:definition "The proportion of this product flow that undergoes energy recovery at end of life."@en ;
-    rdfs:domain flow:CFFParameters ;
+    rdfs:label "energy recovery rate (R3)"@en ;
+    skos:definition "Proportion of material being sent to energy recovery."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:cffAllocationFactorA
+flow:qualityRatioIn
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "CFF allocation factor A"@en ;
-    skos:definition "CFF allocation factor A, representing the burden allocated to the first use of a material."@en ;
-    rdfs:domain flow:CFFParameters ;
+    rdfs:label "quality ratio in (Qs_in/Qp)"@en ;
+    skos:definition "Quality ratio of recycled content and virgin material."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:cffAllocationFactorB
+flow:qualityRatioOut
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "CFF allocation factor B"@en ;
-    skos:definition "CFF allocation factor B, representing the burden allocated to end-of-life treatment."@en ;
-    rdfs:domain flow:CFFParameters ;
+    rdfs:label "quality ratio out (Qs_out/Qp)"@en ;
+    skos:definition "Quality ratio of recycling output and virgin material."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-##############################################################
-# Object properties — EndOfLifeScenario → CFFValue
-##############################################################
-
-flow:recyclingRate
+flow:ERLowerHeatingValue
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "end-of-life recycling rate"@en ;
-    skos:definition "The proportion of this waste flow that is recycled at end of life."@en ;
-    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:label "lower heating value (LHV)"@en ;
+    skos:definition "Lower heating value of the material in the product that is used for energy recovery."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:virginEquivalent
+flow:heatEREfficiency
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "virgin equivalent"@en ;
-    skos:definition "The virgin equivalent of this waste flow."@en ;
-    rdfs:domain flow:EndOfLifeScenario ;
-    rdfs:range flow:FlowType ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
-    .
-
-flow:eolEnergyRecoveryRate
-    a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "end-of-life energy recovery rate"@en ;
-    skos:definition "The proportion of this waste flow that undergoes energy recovery at end of life."@en ;
-    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:label "efficiency of energy recovery (heat)"@en ;
+    skos:definition "The efficiency of the energy recovery process for heat."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
-flow:eolCffAllocationFactorB
+flow:electricityEREfficiency
     a owl:ObjectProperty, owl:FunctionalProperty ;
-    rdfs:label "end-of-life CFF allocation factor B"@en ;
-    skos:definition "CFF allocation factor B applied at end of life for this waste flow."@en ;
-    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:label "efficiency of energy recovery (electricity)"@en ;
+    skos:definition "The efficiency of the energy recovery process for electricity."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
 ##############################################################
-# Object properties — EndOfLifeScenario → Activity
+# Object properties — CFFScenario → Activity
 # Range intentionally left open — declared in pefdpp.ttl
 # to avoid a circular import with the activity module.
 ##############################################################
+flow:virginMaterialActivity
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "virgin material activity"@en ;
+    skos:definition "The activity representing the production process for the virgin material content."@en ;
+    skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
+    rdfs:domain flow:CFFScenario ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:recycledMaterialActivity
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "recycled material activity"@en ;
+    skos:definition "The activity representing the production process for the recycled content."@en ;
+    skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
+    rdfs:domain flow:CFFScenario ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
 
 flow:recyclingActivity
     a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "recycling activity"@en ;
     skos:definition "The activity representing the recycling process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
-    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:domain flow:CFFScenario ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:substitutedVirginActivity
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "substituted virgin material activity"@en ;
+    skos:definition "The activity representing the production process for virgin material substituted by output of recycling."@en ;
+    skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -404,7 +409,25 @@ flow:energyRecoveryActivity
     rdfs:label "energy recovery activity"@en ;
     skos:definition "The activity representing the energy recovery process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
-    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:domain flow:CFFScenario ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:substitutedHeatActivity
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "substituted heat activity"@en ;
+    skos:definition "The activity representing the production process for heat substituted by energy recovery."@en ;
+    skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
+    rdfs:domain flow:CFFScenario ;
+    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    .
+
+flow:substitutedElectricityActivity
+    a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "substituted electricity activity"@en ;
+    skos:definition "The activity representing the production process for electricity substituted by energy recovery."@en ;
+    skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 
@@ -413,7 +436,7 @@ flow:disposalActivity
     rdfs:label "disposal activity"@en ;
     skos:definition "The activity representing the disposal process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
-    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:domain flow:CFFScenario ;
     rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
     .
 

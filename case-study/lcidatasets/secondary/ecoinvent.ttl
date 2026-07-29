@@ -64,25 +64,11 @@
     ] .
 
 # ACTIVITIES for EoL (CFF parameters)
-:SteelRecycling
+:AluminiumProduction
     a act:Activity ;
-    rdfs:label "treatment of waste reinforcement steel, recycling - RoW"@en ;
-    act:sameAsSecondaryActivity "0f15881d-774f-5c1a-b0b9-470f15bbee73" ;
-    act:hasGeography geo:RoW ;
-    .
-
-:CopperRecycling
-    a act:Activity ;
-    rdfs:label "treatment of copper scrap by electrolytic refining - RER"@en ;
-    act:sameAsSecondaryActivity "55168136-227c-56c2-919a-8a90228ac676" ;
-    act:hasGeography geo:RER ;
-    .
-
-:InertMaterialLandfill
-    a act:Activity ;
-    rdfs:label "treatment of inert waste, inert material landfill - RoW"@en ;
-    act:sameAsSecondaryActivity "9297a630-845b-57af-8681-f3c460b07e8a" ;
-    act:hasGeography geo:RoW ;
+    rdfs:label "aluminium ingot, primary, to aluminium, wrought alloy market - GLO"@en ;
+    act:sameAsSecondaryActivity 'aff6a398-14db-5485-a5f7-748db9efe4ae' ;
+    act:hasGeography geo:GLO ;
     .
 
 :AluminiumRecycling
@@ -99,11 +85,39 @@
     act:hasGeography geo:RoW ;
     .
 
-:PlasticRecycling
+:CopperProduction 
     a act:Activity ;
-    rdfs:label "treatment of waste plastic, WEEE, recycling - RER"@en ;
-    act:sameAsSecondaryActivity "b03671bd-76bd-515a-9673-8dc43c7b5b94" ;
+    rdfs:label "copper, anode, to generic market for copper-rich activities - GLO"@en ;
+    act:sameAsSecondaryActivity "f27235fc-8115-51a5-91b7-37352f95a18a" ;
+    act:hasGeography geo:GLO ;
+    .
+
+:CopperRecycling
+    a act:Activity ;
+    rdfs:label "treatment of copper scrap by electrolytic refining - RER"@en ;
+    act:sameAsSecondaryActivity "55168136-227c-56c2-919a-8a90228ac676" ;
     act:hasGeography geo:RER ;
+    .
+
+:InertMaterialLandfill
+    a act:Activity ;
+    rdfs:label "treatment of inert waste, inert material landfill - RoW"@en ;
+    act:sameAsSecondaryActivity "9297a630-845b-57af-8681-f3c460b07e8a" ;
+    act:hasGeography geo:RoW ;
+    .
+
+:SteelProduction
+    a act:Activity ;
+    rdfs:label "steel production, converter, unalloyed - RER"@en ;
+    act:sameAsSecondaryActivity "d69e45ea-a840-5dbb-8eb0-4672d689af5e" ;
+    act:hasGeography geo:RER ;
+    .
+
+:SteelRecycling
+    a act:Activity ;
+    rdfs:label "treatment of waste reinforcement steel, recycling - RoW"@en ;
+    act:sameAsSecondaryActivity "0f15881d-774f-5c1a-b0b9-470f15bbee73" ;
+    act:hasGeography geo:RoW ;
     .
 
 # FLOWTYPES with ecoinvent FLOW uuid (NOT Activities)
@@ -296,7 +310,7 @@ ft:Latex
     flow:sameAsSecondaryFlowType "b0cd6c3d-d1b6-42f4-8e58-ca6d4d6c3e18";
     .
 
-ft:LimeProductionTechnologyMix
+ft:LimeStoneCrushedWashed
     a flow:ProductFlow ;
     rdfs:label "limestone, crushed, washed"@en ;
     flow:sourcedFrom :ecoinvent ;
@@ -345,7 +359,7 @@ ft:PolyvinylfluorideKg
     flow:sameAsSecondaryFlowType "3b2a8b24-0f2e-4e35-a10c-98e1be81c80b";
     .
 
-ft:QuicklimeProductionTechnologyMix
+ft:Quicklime
     a flow:ProductFlow ;
     rdfs:label "quicklime, in pieces, loose"@en ;
     flow:sourcedFrom :ecoinvent ;
@@ -357,6 +371,13 @@ ft:ReinforcingSteel
     rdfs:label "reinforcing steel"@en ;
     flow:sourcedFrom :ecoinvent ;
     flow:sameAsSecondaryFlowType "9ba48284-0f03-4fec-800d-de77833b12f6";
+    .
+
+ft:ResidualMaterialLandfill
+    a flow:WasteFlow ;
+    rdfs:label "residual material landfill"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType '3cc30fa4-8564-443b-9849-8c7b98c60ec8';
     .
 
 ft:SheetRollingAluminium
@@ -380,9 +401,9 @@ ft:SheetRollingSteel
     flow:sameAsSecondaryFlowType "e2f62697-57d4-42fe-95bf-c85fd32a9cf0";
     .
 
-ft:SilicaSandProductionMix
+ft:SilicaSand
     a flow:ProductFlow ;
-    rdfs:label "silica sand, production mix"@en ;
+    rdfs:label "silica sand"@en ;
     flow:sourcedFrom :ecoinvent ;
     flow:sameAsSecondaryFlowType "c4842286-21e6-4142-bc35-f2c36f1d68a2";
     .
@@ -415,6 +436,13 @@ ft:SulfuricAcid
     flow:sameAsSecondaryFlowType "9d63da75-8289-4b96-a900-67ec3bd40a16" ;
     .
 
+ft:Slag
+    a flow:WasteFlow ;
+    rdfs:label "slag"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "62dae9d2-01a8-4dec-93fa-7a6ed71fcffc"
+    .
+
 ft:TapWater
     a flow:ProductFlow ;
     rdfs:label "tap water"@en ;
@@ -424,7 +452,7 @@ ft:TapWater
 
 ft:HeatDistrictOrIndustrialOther
     a flow:ProductFlow ;
-    rdfs:label "thermal energy from light fuel oil"@en ;
+    rdfs:label "heat, district or industrial, other than natural gas"@en ;
     flow:sourcedFrom :ecoinvent ;
     flow:sameAsSecondaryFlowType "71e2f1db-a2c5-44d0-8337-dfff15be974d" ;
     .
@@ -457,11 +485,18 @@ ft:VinylCarbonate
     flow:sameAsSecondaryFlowType "bbd262fd-3c4a-474a-afbb-f77c84c67c10";
     .
 
-ft:WastewaterAverage
+ft:Wastewater
     a flow:WasteFlow ;
     rdfs:label "wastewater, average"@en ;
     flow:sourcedFrom :ecoinvent ;
     flow:sameAsSecondaryFlowType "e8a51ec1-60cb-4ead-a948-ad1142c61918"
+    .
+
+ft:WastePlasticMixture
+    a flow:WasteFlow ;
+    rdfs:label "waste plastic, mixture"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType "88afd721-07ec-4910-a004-fa3fecb6bf70" ;
     .
 
 ft:WaterDeionised

@@ -1,5 +1,6 @@
 @prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-eol#> .
 @prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix ecoinvent: <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#> .
 @prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
 @prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
 @prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
@@ -12,6 +13,7 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+
 
 ######################################################################
 # CASE STUDY - BatteryEoL
@@ -43,9 +45,9 @@
 ######################################################################
 # ActivityTypes used in this dataset
 ######################################################################
-act:BatteryCellTreatment a act:ActivityType ; rdfs:label "BatteryCellTreatment"@en .
-act:BatteryDisassembly a act:ActivityType ; rdfs:label "BatteryDisassembly"@en .
-act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
+act:BatteryCellTreatment a act:ActivityType ; rdfs:label "Battery Cell Treatment"@en .
+act:BatteryDisassembly a act:ActivityType ; rdfs:label "Battery Disassembly"@en .
+act:MetalTreatment a act:ActivityType ; rdfs:label "Metal Treatment"@en .
 
 :BatteryDisassemblyAct
     a act:Activity ;
@@ -57,14 +59,14 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
 :BatteryDisassemblyAct_flow0_EoLBatteryDisassemblyRef
     a flow:Flow ;
     flow:hasFlowType ft:EoLBatteryDisassembly ;
-    flow:contextualLabel "EoL battery disassembly reference flow" ;
+    flow:contextualLabel "EoL treatment of kg battery pack"@en ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
 
-:BatteryDisassemblyAct_flow1_PyrometallurgicalTreatme
+:BatteryDisassemblyAct_flow1_BatteryCellToTreatment
     a flow:Flow ;
-    flow:hasFlowType ft:PyrometallurgicalTreatmentOfBatteryCells ;
-    flow:contextualLabel "Pyrometallurgical treatment, battery cells" ;
+    flow:hasFlowType ft:BatteryCellToTreatment ;
+    flow:contextualLabel "pyrometallurgical treatment of battery cells"@en ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.72590929"^^xsd:decimal ] .
 
@@ -74,13 +76,18 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
     flow:contextualLabel "aluminium waste" ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.18028051"^^xsd:decimal ] ;
-    flow:hasEndOfLifeScenario [ a flow:EndOfLifeScenario ;
-        flow:recyclingRate [ a flow:CFFValue ; flow:hasValue "0.95"^^xsd:decimal ] ;
-        flow:energyRecoveryRate [ a flow:CFFValue ; flow:hasValue "0"^^xsd:decimal ] ;
-        flow:virginEquivalent ft:AluminiumWroughtAlloy ;
-        flow:recyclingFlowType ft:AluminiumRecycling ;
-        flow:disposalFlowType ft:LandfillInertWaste
-        ] .
+    flow:hasCFFScenario :AluminiumCFFScenario .
+
+:AluminiumCFFScenario 
+    a flow:CFFScenario ;
+    flow:allocationFactorA [ a flow:CFFValue; flow:hasValue "0.2"^^xsd:decimal ] ;
+    flow:recyclingRateR2 [ a flow:CFFValue ; flow:hasValue "0.90"^^xsd:decimal ] ;
+    flow:qualityRatioIn [ a flow:CFFValue ; flow:hasValue "1"^^xsd:decimal ] ;
+    flow:qualityRatioOut [ a flow:CFFValue ; flow:hasValue "1"^^xsd:decimal ] ;
+    flow:virginMaterialActivity ecoinvent:AluminiumProduction ;
+    flow:substitutedVirginActivity ecoinvent:AluminiumProduction ;
+    flow:recyclingActivity ecoinvent:AluminiumRecycling ;
+    flow:disposalActivity ecoinvent:AluminiumLandfill .
 
 :BatteryDisassemblyAct_flow3_CopperWaste
     a flow:Flow ;
@@ -88,13 +95,20 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
     flow:contextualLabel "copper waste" ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0031511300000000003"^^xsd:decimal ] ;
-    flow:hasEndOfLifeScenario [ a flow:EndOfLifeScenario ;
-        flow:recyclingRate [ a flow:CFFValue ; flow:hasValue "0.95"^^xsd:decimal ] ;
-        flow:energyRecoveryRate [ a flow:CFFValue ; flow:hasValue "0"^^xsd:decimal ] ;
-        flow:virginEquivalent ft:Copper ;
-        flow:recyclingFlowType ft:CopperRecycling ;
-        flow:disposalFlowType ft:LandfillInertWaste
-        ] .
+    flow:hasCFFScenario :CopperCFFScenario .
+
+:CopperCFFScenario
+    a flow:CFFScenario ;
+    flow:allocationFactorA [ a flow:CFFValue ; flow:hasValue "0.2"^^xsd:decimal ] ;
+    flow:recycledContentRateR1 [ a flow:CFFValue ; flow:hasValue "0.72"^^xsd:decimal ] ;
+    flow:recyclingRateR2 [ a flow:CFFValue ; flow:hasValue "0.95"^^xsd:decimal ] ;
+    flow:qualityRatioIn [ a flow:CFFValue ; flow:hasValue "1"^^xsd:decimal ] ;
+    flow:qualityRatioOut [ a flow:CFFValue ; flow:hasValue "1"^^xsd:decimal ] ;
+    flow:virginMaterialActivity ecoinvent:CopperProduction ;
+    flow:substitutedVirginActivity ecoinvent:CopperProduction ;
+    flow:recycledMaterialActivity ecoinvent:CopperRecycling ;
+    flow:recyclingActivity ecoinvent:CopperRecycling ;
+    flow:disposalActivity ecoinvent:InertMaterialLandfill .
 
 :BatteryDisassemblyAct_flow4_SteelWaste
     a flow:Flow ;
@@ -102,42 +116,45 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
     flow:contextualLabel "steel waste" ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.006181042105263158"^^xsd:decimal ] ;
-    flow:hasEndOfLifeScenario [ a flow:EndOfLifeScenario ;
-        flow:recyclingRate [ a flow:CFFValue ; flow:hasValue "0.95"^^xsd:decimal ] ;
-        flow:energyRecoveryRate [ a flow:CFFValue ; flow:hasValue "0"^^xsd:decimal ] ;
-        flow:virginEquivalent ft:Steel ;
-        flow:recyclingFlowType ft:SteelRecycling ;
-        flow:disposalFlowType ft:LandfillInertWaste
-        ] .
+    flow:hasCFFScenario :SteelCFFScenario .
+
+:SteelCFFScenario
+    a flow:CFFScenario ;
+    flow:allocationFactorA [ a flow:CFFValue ; flow:hasValue "0.2"^^xsd:decimal ] ;
+    flow:recycledContentRateR1 [ a flow:CFFValue ; flow:hasValue "0.18"^^xsd:decimal ] ;
+    flow:recyclingRateR2 [ a flow:CFFValue ; flow:hasValue "0.90"^^xsd:decimal ] ;
+    flow:qualityRatioIn [ a flow:CFFValue ; flow:hasValue "1"^^xsd:decimal ] ;
+    flow:qualityRatioOut [ a flow:CFFValue ; flow:hasValue "1"^^xsd:decimal ] ;
+    flow:virginMaterialActivity ecoinvent:SteelProduction ;
+    flow:substitutedVirginActivity ecoinvent:SteelProduction ;
+    flow:recycledMaterialActivity ecoinvent:SteelRecycling ;
+    flow:recyclingActivity ecoinvent:SteelRecycling ;
+    flow:disposalActivity ecoinvent:InertMaterialLandfill .
 
 :BatteryDisassemblyAct_flow5_PolymerWaste
     a flow:Flow ;
-    flow:hasFlowType ft:PolymerWaste ;
+    flow:hasFlowType ft:WastePlasticMixture ;
     flow:contextualLabel "polymer waste" ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.0061242"^^xsd:decimal ] ;
-    flow:hasEndOfLifeScenario [ a flow:EndOfLifeScenario ;
-        flow:recyclingRate [ a flow:CFFValue ; flow:hasValue "0.5"^^xsd:decimal ] ;
-        flow:energyRecoveryRate [ a flow:CFFValue ; flow:hasValue "0"^^xsd:decimal ] ;
-        flow:virginEquivalent ft:PolypropyleneGranulate ;
-        flow:recyclingFlowType ft:PolymerRecycling ;
-        flow:disposalFlowType ft:LandfillInertWaste
-        ] .
+    .
 
 :BatteryDisassemblyAct_flow6_ElectronicsSentToElectro
     a flow:Flow ;
-    flow:hasFlowType ft:TreatmentOfElectronicsScrapMetalsRecoveryInCopperSmelter ;
+    flow:hasFlowType ft:ElectronicsScrap ;
     flow:contextualLabel "Electronics sent to electronics treatment" ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.03532892"^^xsd:decimal ] .
 
-:BatteryDisassemblyAct_flow7_OtherResidualsCoolantAnd
+:BatteryDisassemblyAct_flow7_OtherResiduals
     a flow:Flow ;
-    flow:hasFlowType ft:CoolantWaterGlycolResidualTreatment ;
-    flow:contextualLabel "Other residuals: coolant and water-glycol fraction" ;
+    flow:hasFlowType ft:ResidualMaterialLandfill ;
+    flow:contextualLabel "Other residuals" ;
     act:outputOf :BatteryDisassemblyAct ;
-    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.04302493"^^xsd:decimal ] .
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.04302493"^^xsd:decimal ] ;
+    .
 
+# BATTERY CELL TREATMENT
 :BatteryCellTreatmentAct
     a act:Activity ;
     act:hasActivityType act:BatteryCellTreatment ;
@@ -147,7 +164,7 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
 
 :BatteryCellTreatmentAct_flow0_PyrometallurgicalTreatme
     a flow:Flow ;
-    flow:hasFlowType ft:PyrometallurgicalTreatmentOfBatteryCells ;
+    flow:hasFlowType ft:BatteryCellToTreatment ;
     flow:contextualLabel "Pyrometallurgical treatment of battery cells" ;
     act:outputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
@@ -161,63 +178,56 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
 
 :BatteryCellTreatmentAct_flow2_ProcessHeat
     a flow:Flow ;
-    flow:hasFlowType ft:ThermalEnergyFromNaturalGas ;
-    flow:contextualLabel "process heat" ;
+    flow:hasFlowType ft:HeatDistrictOrIndustrialNaturalGas ;
+    flow:contextualLabel "process heat (natural gas)" ;
     act:inputOf :BatteryCellTreatmentAct ;
-    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "0.238"^^xsd:decimal ] .
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "2.506"^^xsd:decimal ] .
 
 :BatteryCellTreatmentAct_flow3_ProcessHeat
     a flow:Flow ;
-    flow:hasFlowType ft:SteamFromNaturalGas ;
-    flow:contextualLabel "process heat" ;
-    act:inputOf :BatteryCellTreatmentAct ;
-    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "2.268"^^xsd:decimal ] .
-
-:BatteryCellTreatmentAct_flow4_ProcessHeat
-    a flow:Flow ;
-    flow:hasFlowType ft:ThermalEnergyFromLightFuelOil ;
-    flow:contextualLabel "process heat" ;
+    flow:hasFlowType ft:HeatDistrictOrIndustrialOther;
+    flow:contextualLabel "process heat (other than natural gas)" ;
     act:inputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "0.238"^^xsd:decimal ] .
 
-:BatteryCellTreatmentAct_flow5_LimestoneWashed
+:BatteryCellTreatmentAct_flow4_LimestoneWashed
     a flow:Flow ;
-    flow:hasFlowType ft:LimeProductionTechnologyMix ;
+    flow:hasFlowType ft:LimeStoneCrushedWashed ;
     flow:contextualLabel "limestone, washed" ;
     act:inputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.142"^^xsd:decimal ] .
 
-:BatteryCellTreatmentAct_flow6_SilicaSand
+:BatteryCellTreatmentAct_flow5_SilicaSand
     a flow:Flow ;
-    flow:hasFlowType ft:SilicaSandProductionMix ;
+    flow:hasFlowType ft:SilicaSand ;
     flow:contextualLabel "silica sand" ;
     act:inputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.122"^^xsd:decimal ] .
 
-:BatteryCellTreatmentAct_flow7_QuicklimeCAO
+:BatteryCellTreatmentAct_flow6_QuicklimeCAO
     a flow:Flow ;
-    flow:hasFlowType ft:QuicklimeProductionTechnologyMix ;
+    flow:hasFlowType ft:Quicklime ;
     flow:contextualLabel "quicklime (CAO)" ;
     act:inputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.08"^^xsd:decimal ] .
 
-:BatteryCellTreatmentAct_flow8_CarbonBlack
+:BatteryCellTreatmentAct_flow7_CarbonBlack
     a flow:Flow ;
     flow:hasFlowType ft:CarbonBlack ;
     flow:contextualLabel "carbon black" ;
     act:inputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.001"^^xsd:decimal ] .
 
-:BatteryCellTreatmentAct_flow9_MetalsToHydrometallurgic
+:BatteryCellTreatmentAct_flow8_MetalsToHydrometallurgic
     a flow:Flow ;
-    flow:hasFlowType ft:HydrometallurgicalTreatmentOfMetals ;
-    flow:contextualLabel "metals to hydrometallurgical treatment" ;
+    flow:hasFlowType ft:MetalAlloyToTreatment ;
+    flow:contextualLabel "metal alloy, to hydrometallurgical treatment" ;
     act:outputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.577"^^xsd:decimal ] .
 
-:BatteryCellTreatmentAct_flow10_Slag
+:BatteryCellTreatmentAct_flow9_Slag
     a flow:Flow ;
-    flow:hasFlowType ft:LandifllOfInertSlag ;
+    flow:hasFlowType ft:Slag;
     flow:contextualLabel "slag" ;
     act:outputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.711"^^xsd:decimal ] .
@@ -243,6 +253,13 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
     act:outputOf :MetalTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.577"^^xsd:decimal ] .
 
+:MetalTreatmentAct_flow1_MetalAlloy
+    a flow:Flow ;
+    flow:hasFlowType ft:MetalAlloyToTreatment ;
+    flow:contextualLabel "metal alloy, to hydrometallurgical treatment" ;
+    act:inputOf :MetalTreatmentAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram; om:hasNumericalValue "0.577"^^xsd:decimal ] .
+
 :MetalTreatmentAct_flow1_ElectricityForHydrometal
     a flow:Flow ;
     flow:hasFlowType ft:ElectricityMediumVoltage ;
@@ -252,14 +269,14 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
 
 :MetalTreatmentAct_flow2_ProcessHeat
     a flow:Flow ;
-    flow:hasFlowType ft:ThermalEnergyFromNaturalGas ;
+    flow:hasFlowType ft:HeatDistrictOrIndustrialNaturalGas ;
     flow:contextualLabel "process heat" ;
     act:inputOf :MetalTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "1.84218"^^xsd:decimal ] .
 
 :MetalTreatmentAct_flow3_ProcessHeat
     a flow:Flow ;
-    flow:hasFlowType ft:ThermalEnergyFromLightFuelOil ;
+    flow:hasFlowType ft:HeatDistrictOrIndustrialOther ;
     flow:contextualLabel "process heat" ;
     act:inputOf :MetalTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ; om:hasNumericalValue "0.04058"^^xsd:decimal ] .
@@ -301,7 +318,7 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
 
 :MetalTreatmentAct_flow9_SulphuricAcidAq96
     a flow:Flow ;
-    flow:hasFlowType ft:SulphuricAcidAq ;
+    flow:hasFlowType ft:SulfuricAcid ;
     flow:contextualLabel "Sulphuric acid aq. (96%)" ;
     act:inputOf :MetalTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.87646"^^xsd:decimal ] .
@@ -315,7 +332,7 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
 
 :MetalTreatmentAct_flow11_Wastewater
     a flow:Flow ;
-    flow:hasFlowType ft:WastewaterTreatment ;
+    flow:hasFlowType ft:Wastewater ;
     flow:contextualLabel "wastewater" ;
     act:outputOf :MetalTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.00278"^^xsd:decimal ] .
@@ -323,17 +340,20 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "MetalTreatment"@en .
 ######################################################################
 # FlowTypes produced by this dataset (with sourcedFrom)
 ######################################################################
-ft:EoLBatteryDisassembly a flow:ProductFlow ;
+ft:EoLBatteryDisassembly a flow:WasteFlow ;
     rdfs:label "EoL battery disassembly"@en ;
     flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-eol#BatteryEoL> .
-ft:PyrometallurgicalTreatmentOfBatteryCells a flow:WasteFlow ;
-    rdfs:label "Pyrometallurgical treatment of battery cells"@en ;
+ft:BatteryCellToTreatment a flow:WasteFlow ;
+    rdfs:label "battery cells, to pyrometallurgical treatment"@en ;
     flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-eol#BatteryEoL> .
 ft:AluminiumWaste a flow:WasteFlow ;
     rdfs:label "aluminium waste"@en ;
     flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-eol#BatteryEoL> .
 ft:CopperWaste a flow:WasteFlow ;
     rdfs:label "copper waste"@en ;
+    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-eol#BatteryEoL> .
+ft:MetalAlloyToTreatment a flow:WasteFlow ;
+    rdfs:label "metal alloy, to hydrometallurgical treatment"@en ;
     flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-eol#BatteryEoL> .
 ft:HydrometallurgicalTreatmentOfMetals a flow:WasteFlow ;
     rdfs:label "hydrometallurgical treatment of metals"@en ;

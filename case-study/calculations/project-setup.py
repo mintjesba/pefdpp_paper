@@ -3,10 +3,14 @@ import brightway2 as bw
 
 bw.projects.set_current("ecoinvent312")
 
-ei = bw.Database("ecoinvent3.12-cutoff")
+ei = bw.Database("ecoinvent-3.12-cutoff")
+
 
 # %%
-ei.search("")
+def get_flow_uuid(act):
+    exc = next(iter(act.production()), None)
+    return exc.get("flow")
+
 
 # %% Load PEFDPP ontology + ecoinvent case-study dataset
 from pathlib import Path
