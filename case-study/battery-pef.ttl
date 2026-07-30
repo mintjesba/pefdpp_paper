@@ -87,7 +87,10 @@
         :LCIA_ResourceUseMineralsAndMetals ,
         :LCIA_WaterUse ;
     ps:hasContributionResult
-        :CR_ClimateChange_Manufacturing ;
+        :CR_ClimateChange_RawMaterialAcquisition ,
+        :CR_ClimateChange_Manufacturing ,
+        :CR_ClimateChange_EndOfLife ,
+        :CR_ClimateChange_Distribution ;
     dq:hasDataQuality [ a dq:DataQuality ;
         dq:hasOverallDQR "3.333333"^^xsd:decimal ;
         dq:hasDQRCriterion
@@ -179,7 +182,7 @@
     ps:howLongProvided   [ a om:Measure ; om:hasUnit om:year ;
                            om:hasNumericalValue "8.0"^^xsd:decimal ] ;  # estimated lifetime of battery
     ps:RFtoFUConversion "0.00687583333333"^^xsd:decimal ;
-    ps:hasReferenceFlow  pack:BatteryDistributionAct_flow0_BatteryPackAtCustomer ;
+    ps:hasReferenceFlow  pack:BatteryUseProxyAct_flow0_BatteryUse ;
     dcterms:conformsTo :CFB-EV ;
     .
 
@@ -222,7 +225,10 @@
 ######################################################################
 # Activity Links
 # Life cycle stage assignment follows CFB-EV methodology:
-#   Manufacturing          — all other specified
+#   RawMaterialAcquisition — precursor/active-material synthesis, upstream
+#                            of the production facility (cathode/anode active
+#                            material, Nocolok flux)
+#   Manufacturing          — all other specified, within the production facility
 #   Distribution           — transport to customer
 #   EndOfLife              — disassembly and treatment
 ######################################################################
@@ -230,12 +236,12 @@
 :AL_AnodeActiveMaterialManufacturing
     a prs:ActivityLink ;
     prs:forActivity      cell:AnodeActiveMaterialManufacturingAct ;
-    prs:hasLifeCycleStage prs:Manufacturing .
+    prs:hasLifeCycleStage prs:RawMaterialAcquisition .
 
 :AL_CathodeActiveMaterialManufacturing
     a prs:ActivityLink ;
     prs:forActivity      cell:CathodeActiveMaterialManufacturingAct ;
-    prs:hasLifeCycleStage prs:Manufacturing .
+    prs:hasLifeCycleStage prs:RawMaterialAcquisition .
 
 :AL_AnodeManufacturing
     a prs:ActivityLink ;
@@ -260,7 +266,7 @@
 :AL_NocolokProduction
     a prs:ActivityLink ;
     prs:forActivity      braze:NocolokAct ;
-    prs:hasLifeCycleStage prs:Manufacturing .
+    prs:hasLifeCycleStage prs:RawMaterialAcquisition .
 
 :AL_BrazingService
     a prs:ActivityLink ;
@@ -309,7 +315,7 @@
     a lcia:LCIAResult ;
     lcia:hasLCIAResultType lcia:SingleScore ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DimensionlessPoint ;
-                      om:hasNumericalValue "2.84488E-05"^^xsd:double ] .
+                      om:hasNumericalValue "3.428948E-05"^^xsd:double ] .
 
 ######################################################################
 # LCIA Results — characterised
@@ -319,70 +325,70 @@
     lcia:forImpactCategory efic:HumanToxicityCancer ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:CTUh ;
-                      om:hasNumericalValue "1.07218E-10"^^xsd:double ] .
+                      om:hasNumericalValue "1.338E-10"^^xsd:double ] .
 
 :LCIA_ClimateChange
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:ClimateChange ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgCO2Eq ;
-                      om:hasNumericalValue "0.131830852"^^xsd:double ] .
+                      om:hasNumericalValue "0.1548"^^xsd:double ] .
 
 :LCIA_EutrophicationFreshwater
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:EutrophicationFreshwater ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgPEq ;
-                      om:hasNumericalValue "6.25067E-05"^^xsd:double ] .
+                      om:hasNumericalValue "6.757E-05"^^xsd:double ] .
 
 :LCIA_LandUse
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:LandUse ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DimensionlessPoint ;
-                      om:hasNumericalValue "0.67250979"^^xsd:double ] .
+                      om:hasNumericalValue "0.6305"^^xsd:double ] .
 
 :LCIA_ResourceUseMineralsAndMetals
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:ResourceUseMineralsAndMetals ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgSbEq ;
-                      om:hasNumericalValue "1.21078E-05"^^xsd:double ] .
+                      om:hasNumericalValue "1.391E-05"^^xsd:double ] .
 
 :LCIA_OzoneDepletion
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:OzoneDepletion ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgCFC11Eq ;
-                      om:hasNumericalValue "1.20638E-08"^^xsd:double ] .
+                      om:hasNumericalValue "3.548E-09"^^xsd:double ] .
 
 :LCIA_Acidification
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:Acidification ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:molHplusEq ;
-                      om:hasNumericalValue "0.001219243"^^xsd:double ] .
+                      om:hasNumericalValue "0.001447"^^xsd:double ] .
 
 :LCIA_IonisingRadiation
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:IonisingRadiationHumanHealth ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kBqU235Eq ;
-                      om:hasNumericalValue "0.013641513"^^xsd:double ] .
+                      om:hasNumericalValue "0.02969"^^xsd:double ] .
 
 :LCIA_HumanToxicityNonCancer
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:HumanToxicityNonCancer ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:CTUh ;
-                      om:hasNumericalValue "5.16142E-09"^^xsd:double ] .
+                      om:hasNumericalValue "4.923E-09"^^xsd:double ] .
 
 :LCIA_EutrophicationTerrestrial
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:EutrophicationTerrestrial ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:molNEq ;
-                      om:hasNumericalValue "0.001882074"^^xsd:double ] .
+                      om:hasNumericalValue "0.001943"^^xsd:double ] .
 
 
 :LCIA_ParticulateMatter
@@ -390,14 +396,14 @@
     lcia:forImpactCategory efic:ParticulateMatter ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DiseaseIncidence ;
-                      om:hasNumericalValue "1.06108E-08"^^xsd:double ] .
+                      om:hasNumericalValue "1.305E-08"^^xsd:double ] .
 
 :LCIA_EutrophicationMarine
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:EutrophicationMarine ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgNEq ;
-                      om:hasNumericalValue "0.00017043"^^xsd:double ] .
+                      om:hasNumericalValue "0.000193"^^xsd:double ] .
 
 
 :LCIA_EcotoxicityFreshwater
@@ -405,14 +411,14 @@
     lcia:forImpactCategory efic:EcoToxicityFreshwater ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:CTUe ;
-                      om:hasNumericalValue "1.417971741"^^xsd:double ] .
+                      om:hasNumericalValue "1.623"^^xsd:double ] .
 
 :LCIA_ResourceUseFossils
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:ResourceUseFossils ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:Megajoule ;
-                      om:hasNumericalValue "1.686593055"^^xsd:double ] .
+                      om:hasNumericalValue "2.284"^^xsd:double ] .
 
 
 :LCIA_WaterUse
@@ -420,23 +426,51 @@
     lcia:forImpactCategory efic:WaterUse ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:m3WorldEq ;
-                      om:hasNumericalValue "0.176976106"^^xsd:double ] .
+                      om:hasNumericalValue "0.3423"^^xsd:double ] .
 
 :LCIA_PhotochemicalOzoneFormation
     a lcia:LCIAResult ;
     lcia:forImpactCategory efic:PhotochemicalOzoneFormationHumanHealth ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgNMVOCEq ;
-                      om:hasNumericalValue "0.000548478"^^xsd:double ] .
+                      om:hasNumericalValue "0.0006079"^^xsd:double ] .
 
 ######################################################################
-# ContributionResults - Examples
+# ContributionResults — per life cycle stage, climate change (GWP100)
+# Marginal (cut-at-foreground-boundary) contribution per stage: each of the
+# 15 ActivityLink-tagged activities' own direct emissions plus everything
+# upstream not already claimed by another tagged activity nested inside it.
+# Residual across the 4 stages is ~0 (verified: 3.9e-08, 0.000% of total).
 ######################################################################
+:CR_ClimateChange_RawMaterialAcquisition
+    a lcia:ContributionResult ;
+    lcia:hasLCIAResultType lcia:SingleScore ;
+    lcia:forLifeCycleStage prs:RawMaterialAcquisition ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgCO2Eq ;
+                      om:hasNumericalValue "0.107882"^^xsd:double ] ;
+    lcia:isMostRelevant true .
+
 :CR_ClimateChange_Manufacturing
     a lcia:ContributionResult ;
     lcia:hasLCIAResultType lcia:SingleScore ;
     lcia:forLifeCycleStage prs:Manufacturing ;
-    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DimensionlessPoint ;
-                      om:hasNumericalValue "0.000548478"^^xsd:double ] ;
-    lcia:isMostRelevant true .
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgCO2Eq ;
+                      om:hasNumericalValue "0.0495404"^^xsd:double ] ;
+    lcia:isMostRelevant false .
+
+:CR_ClimateChange_EndOfLife
+    a lcia:ContributionResult ;
+    lcia:hasLCIAResultType lcia:SingleScore ;
+    lcia:forLifeCycleStage prs:EndOfLife ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgCO2Eq ;
+                      om:hasNumericalValue "-0.00643165"^^xsd:double ] ;
+    lcia:isMostRelevant false .
+
+:CR_ClimateChange_Distribution
+    a lcia:ContributionResult ;
+    lcia:hasLCIAResultType lcia:SingleScore ;
+    lcia:forLifeCycleStage prs:Distribution ;
+    lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:kgCO2Eq ;
+                      om:hasNumericalValue "0.00384565"^^xsd:double ] ;
+    lcia:isMostRelevant false .
 

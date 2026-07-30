@@ -296,6 +296,13 @@ ft:ImpactExtrusionOfAluminium1Stroke
     flow:sameAsSecondaryFlowType "19e2686b-ad4b-4fd8-87ca-8622a7896528";
     .
 
+ft:InertWaste
+    a flow:WasteFlow ;
+    rdfs:label "inert waste, for final disposal"@en ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType '240c1a3c-1aba-4528-afc3-3f27f56583be';
+    .
+
 ft:InjectionMoulding
     a flow:ProductFlow ;
     rdfs:label "injection moulding"@en ;
@@ -317,11 +324,25 @@ ft:LimeStoneCrushedWashed
     flow:sameAsSecondaryFlowType "64cea105-f89a-4f95-ae44-84ff904a28fc" ;
     .
 
+ft:LithiumCarbonate 
+    a flow:ProductFlow ;
+    rdfs:label "lithium carbonate"@en ;
+    flow:sourcedFrom :ecoinvent;
+    flow:sameAsSecondaryFlowType '2ffc27c3-c08c-4d6e-a91d-98cf4765e065' ;
+    .
+
 ft:LithiumHexafluorophosphate
     a flow:ProductFlow ;
     rdfs:label "lithium hexafluorophosphate"@en ;
     flow:sourcedFrom :ecoinvent ;
-    flow:sameAsSecondaryFlowType "3410b185-400e-4ffe-8843-c7bdc88124b9";
+    flow:sameAsSecondaryFlowType "3410b185-400e-4ffe-8843-c7bdc88124b9" ;
+    .
+
+ft:NMC111Hydroxide
+    a flow:ProductFlow ;
+    rdfs:label "NMC111 hydroxide" ;
+    flow:sourcedFrom :ecoinvent ;
+    flow:sameAsSecondaryFlowType '3ca954ab-d833-4ca4-85d5-e53afa21a1c8' ;
     .
 
 ft:PetroleumCoke
@@ -371,13 +392,6 @@ ft:ReinforcingSteel
     rdfs:label "reinforcing steel"@en ;
     flow:sourcedFrom :ecoinvent ;
     flow:sameAsSecondaryFlowType "9ba48284-0f03-4fec-800d-de77833b12f6";
-    .
-
-ft:ResidualMaterialLandfill
-    a flow:WasteFlow ;
-    rdfs:label "residual material landfill"@en ;
-    flow:sourcedFrom :ecoinvent ;
-    flow:sameAsSecondaryFlowType '3cc30fa4-8564-443b-9849-8c7b98c60ec8';
     .
 
 ft:SheetRollingAluminium

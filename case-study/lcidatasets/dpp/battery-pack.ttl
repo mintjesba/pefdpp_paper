@@ -37,13 +37,15 @@
     ] ;
     dataset:containsActivity
         :BatteryAssemblyAct ,
-        :BatteryDistributionAct .
+        :BatteryDistributionAct ,
+        :BatteryUseProxyAct .
 
 ######################################################################
 # ActivityTypes used in this dataset
 ######################################################################
 act:BatteryAssembly a act:ActivityType ; rdfs:label "BatteryAssembly"@en .
 act:BatteryDistribution a act:ActivityType ; rdfs:label "BatteryDistribution"@en .
+act:BatteryUseProxy a act:ActivityType ; rdfs:label "BatteryUseProxy"@en .
 
 :BatteryAssemblyAct
     a act:Activity ;
@@ -167,6 +169,36 @@ act:BatteryDistribution a act:ActivityType ; rdfs:label "BatteryDistribution"@en
     flow:transportEmptyReturns "0"^^xsd:decimal ;
     flow:transportLoadingRate "1"^^xsd:decimal 
     .
+
+:BatteryUseProxyAct 
+    a act:Activity ;
+    act:hasActivityType act:BatteryUseProxy ;
+    act:isCompanySpecific true ;
+    act:hasGeography geo:DE ;
+    act:hasDeterminingFlow :BatteryUseProxyAct_flow0_BatteryUse .
+
+:BatteryUseProxyAct_flow0_BatteryUse
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryUse ;
+    flow:contextualLabel "battery use (proxy)"@en ;
+    act:outputOf :BatteryUseProxyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1.0"^^xsd:decimal ] ;
+    .
+
+:BatteryUseProxyAct_flow1_BatteryPack
+    a flow:Flow ;
+    flow:hasFlowType ft:BatteryLiIonNMC111AtCustomer ;
+    flow:contextualLabel "Battery pack, at customer" ;
+    act:inputOf :BatteryUseProxyAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
+:BatteryUseProxyAct_flow2_BatteryEoL 
+    a flow:Flow ;
+    flow:hasFlowType ft:EoLBatteryDisassembly ;
+    flow:contextualLabel "battery pack EoL treatment" ;
+    act:inputOf :BatteryUseProxyAct ;    
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
+
 
 ######################################################################
 # FlowTypes produced by this dataset (with sourcedFrom)

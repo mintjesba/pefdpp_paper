@@ -199,6 +199,13 @@ act:ModuleAssembly a act:ActivityType ; rdfs:label "ModuleAssembly"@en .
     act:inputOf :HousingCoolingManufacturingAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.006552947137307886"^^xsd:decimal ] .
 
+:HousingCoolingManufacturingAct_flow9_Brazing
+    a flow:Flow ;
+    flow:hasFlowType ft:BrazingServiceForBatteryCase ;
+    flow:contextualLabel "Brazing service for housing" ;
+    act:inputOf :HousingCoolingManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Item ; om:hasNumericalValue "1.0"^^xsd:decimal ] .
+
 ######################################################################
 # FlowTypes produced by this dataset (with sourcedFrom)
 ######################################################################

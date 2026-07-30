@@ -148,7 +148,7 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "Metal Treatment"@en .
 
 :BatteryDisassemblyAct_flow7_OtherResiduals
     a flow:Flow ;
-    flow:hasFlowType ft:ResidualMaterialLandfill ;
+    flow:hasFlowType ft:InertWaste ;
     flow:contextualLabel "Other residuals" ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.04302493"^^xsd:decimal ] ;
@@ -218,9 +218,9 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "Metal Treatment"@en .
     act:inputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.001"^^xsd:decimal ] .
 
-:BatteryCellTreatmentAct_flow8_MetalsToHydrometallurgic
+:BatteryCellTreatmentAct_flow8_HydroMetallurgicalTreatmentOfMetals
     a flow:Flow ;
-    flow:hasFlowType ft:MetalAlloyToTreatment ;
+    flow:hasFlowType ft:HydrometallurgicalTreatmentOfMetals ;
     flow:contextualLabel "metal alloy, to hydrometallurgical treatment" ;
     act:outputOf :BatteryCellTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.577"^^xsd:decimal ] .
@@ -252,13 +252,6 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "Metal Treatment"@en .
     flow:contextualLabel "hydrometallurgical treatment of metals" ;
     act:outputOf :MetalTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.577"^^xsd:decimal ] .
-
-:MetalTreatmentAct_flow1_MetalAlloy
-    a flow:Flow ;
-    flow:hasFlowType ft:MetalAlloyToTreatment ;
-    flow:contextualLabel "metal alloy, to hydrometallurgical treatment" ;
-    act:inputOf :MetalTreatmentAct ;
-    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram; om:hasNumericalValue "0.577"^^xsd:decimal ] .
 
 :MetalTreatmentAct_flow1_ElectricityForHydrometal
     a flow:Flow ;
@@ -336,6 +329,41 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "Metal Treatment"@en .
     flow:contextualLabel "wastewater" ;
     act:outputOf :MetalTreatmentAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.00278"^^xsd:decimal ] .
+
+:MetalTreatmentAct_flow12_AluminiumWaste
+    a flow:Flow ;
+    flow:hasFlowType ft:AluminiumWaste ;
+    flow:contextualLabel "aluminium recovered from metal alloy" ;
+    act:outputOf :MetalTreatmentAct ;
+    # Cell-level aluminium (current collector, cell container) not captured by
+    # BatteryDisassemblyAct_flow2_AluminiumWaste (housing/module-level only,
+    # per Table 7 vs. Table 9 of the source recycling model). Amount derived
+    # from the true manufacturing-stage aluminium mass (0.223326638 kg per kg
+    # battery, computed via each activity's actual activation scale) minus
+    # what's already tracked at disassembly (0.18028051 kg), then converted
+    # onto MetalTreatmentAct's own scale. MetalTreatmentAct's activation is
+    # 0.72590929 per kg battery -- NOT its production-exchange amount
+    # (0.577) times BatteryCellTreatmentAct's activation (0.725909): since
+    # MetalTreatmentAct's own production amount is also 0.577, that factor
+    # cancels in brightway's solve, leaving its activation equal to
+    # BatteryCellTreatmentAct's (confirmed against the actual solved supply
+    # array). (0.223326638 - 0.18028051) / 0.72590929. Shares
+    # AluminiumCFFScenario with the housing-level aluminium -- same material
+    # family, same recycling/allocation parameters.
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.05929959698645503"^^xsd:decimal ] ;
+    flow:hasCFFScenario :AluminiumCFFScenario .
+
+:MetalTreatmentAct_flow13_CopperWaste
+    a flow:Flow ;
+    flow:hasFlowType ft:CopperWaste ;
+    flow:contextualLabel "copper recovered from metal alloy" ;
+    act:outputOf :MetalTreatmentAct ;
+    # Cell-level copper (current collector foil, cell container negative
+    # terminal) not captured by BatteryDisassemblyAct_flow3_CopperWaste
+    # (pack/module terminals only). Amount derived the same way as the
+    # aluminium flow above: (0.117318673 - 0.00315113) / 0.72590929.
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.15727521971860597"^^xsd:decimal ] ;
+    flow:hasCFFScenario :CopperCFFScenario .
 
 ######################################################################
 # FlowTypes produced by this dataset (with sourcedFrom)

@@ -60,7 +60,7 @@ act:ElectrolyteManufacturing a act:ActivityType ; rdfs:label "ElectrolyteManufac
     a act:Activity ;
     act:hasActivityType act:CellManufacturing ;
     act:isCompanySpecific true ;
-    act:hasGeography geo:NO ;
+    act:hasGeography geo:CN ;
     act:hasDeterminingFlow :CellManufacturingAct_flow0_BatteryCell .
 
 :CellManufacturingAct_flow0_BatteryCell
@@ -207,7 +207,7 @@ act:ElectrolyteManufacturing a act:ActivityType ; rdfs:label "ElectrolyteManufac
     a act:Activity ;
     act:hasActivityType act:ElectrolyteManufacturing ;
     act:isCompanySpecific true ;
-    act:hasGeography geo:NO ;
+    act:hasGeography geo:CN ;
     act:hasDeterminingFlow :ElectrolyteManufacturingAct_flow0_Electrolyte .
 
 :ElectrolyteManufacturingAct_flow0_Electrolyte
@@ -256,7 +256,7 @@ act:ElectrolyteManufacturing a act:ActivityType ; rdfs:label "ElectrolyteManufac
     a act:Activity ;
     act:hasActivityType act:CathodeManufacturing ;
     act:isCompanySpecific true ;
-    act:hasGeography geo:NO ;
+    act:hasGeography geo:CN ;
     act:hasDeterminingFlow :CathodeManufacturingAct_flow0_Cathode .
 
 :CathodeManufacturingAct_flow0_Cathode
@@ -329,11 +329,46 @@ act:ElectrolyteManufacturing a act:ActivityType ; rdfs:label "ElectrolyteManufac
     act:outputOf :CathodeActiveMaterialManufacturingAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
 
+:CathodeActiveMaterialManufacturingAct_flow1_NMC111Hydroxide
+    a flow:Flow ;
+    flow:hasFlowType ft:NMC111Hydroxide ;
+    flow:contextualLabel "nickel cobalt manganese 111 hydroxide" ;
+    act:inputOf :CathodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.949"^^xsd:decimal ] .
+
+:CathodeActiveMaterialManufacturingAct_flow2_LithiumCarbonate
+    a flow:Flow ;
+    flow:hasFlowType ft:LithiumCarbonate ;
+    flow:contextualLabel "lithium carbonate" ;
+    act:inputOf :CathodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.383"^^xsd:decimal ] .
+
+:CathodeActiveMaterialManufacturingAct_flow3_EnergyForCalcination
+    a flow:Flow ;
+    flow:hasFlowType ft:ElectricityMediumVoltage ;
+    flow:contextualLabel "energy for calcination process, from electricity" ;
+    act:inputOf :CathodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit om:kilowattHour ; om:hasNumericalValue "6.873695339"^^xsd:decimal ] .
+
+:CathodeActiveMaterialManufacturingAct_flow4_CO2ToAir
+    a flow:Flow ;
+    flow:hasFlowType ft:08a91e70-3ddc-11dd-923d-0050c2490048 ;
+    flow:contextualLabel "CO2, to air" ;
+    act:outputOf :CathodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.206956"^^xsd:decimal ] .
+
+:CathodeActiveMaterialManufacturingAct_flow5_WaterToAir
+    a flow:Flow ;
+    flow:hasFlowType ft:0342f5e5-b53e-4cec-9e67-fb197f24fff0 ;
+    flow:contextualLabel "water, to air" ;
+    act:outputOf :CathodeActiveMaterialManufacturingAct ;
+    flow:hasMeasure [ a om:Measure ; om:hasUnit efu:CubicMetre ; om:hasNumericalValue "0.000125044"^^xsd:decimal ] .
+
 :AnodeManufacturingAct
     a act:Activity ;
     act:hasActivityType act:AnodeManufacturing ;
     act:isCompanySpecific true ;
-    act:hasGeography geo:NO ;
+    act:hasGeography geo:CN ;
     act:hasDeterminingFlow :AnodeManufacturingAct_flow0_Anode .
 
 :AnodeManufacturingAct_flow0_Anode
@@ -482,6 +517,8 @@ act:ElectrolyteManufacturing a act:ActivityType ; rdfs:label "ElectrolyteManufac
     flow:contextualLabel "CO2, to air" ;
     act:outputOf :AnodeActiveMaterialManufacturingAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.437056"^^xsd:decimal ] .
+
+
 
 ######################################################################
 # FlowTypes produced by this dataset (with sourcedFrom)
