@@ -394,7 +394,7 @@ act:ElectrolyteManufacturing a act:ActivityType ; rdfs:label "ElectrolyteManufac
 
 :AnodeManufacturingAct_flow8_Wastewater
     a flow:Flow ;
-    flow:hasFlowType ft:WastewaterTreatment ;
+    flow:hasFlowType ft:Wastewater ;
     flow:contextualLabel "wastewater" ;
     act:outputOf :AnodeManufacturingAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:CubicMetre ; om:hasNumericalValue "0.001"^^xsd:decimal ] .
