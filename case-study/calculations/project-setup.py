@@ -232,12 +232,6 @@ for fi, act in list(resolved_fi.items())[:15]:
     print(f"{name:55s} -> {act['name']} ({act['location']})")
 
 # %% Resolve every act:sameAsSecondaryActivity to a real ecoinvent activity
-# act:sameAsSecondaryActivity stores ecoinvent's own canonical ActivityId
-# (act.get("activity")) rather than bw2io's internal act["code"] hash — the former
-# is stable across re-imports and the right thing to persist in the ontology, but
-# Database.get()/ei.get() only ever looks up by "code", so it can't be used
-# directly. Build a reverse index from ecoinvent ActivityId -> Activity instead.
-
 activity_resolution = {}
 for a in g.subjects(ACT.sameAsSecondaryActivity, None):
     activity_id = str(g.value(a, ACT.sameAsSecondaryActivity))
@@ -254,11 +248,7 @@ for a in unresolved_act:
     print(f"UNRESOLVED — activity code not found: {a} ({code})")
 
 # %% Resolve every ElementaryFlow's flow:sameAsSecondaryFlowType to a real
-# biosphere3 flow. This is a separate index from the ecoinvent technosphere
-# resolver above: elementary flows live in "biosphere3", not
-# "ecoinvent-3.12-cutoff", and biosphere3's own flow codes are ecoinvent-native
-# UUIDs — different from the JRC EF3.1 UUIDs used for skos:exactMatch, which
-# is why sameAsSecondaryFlowType (not skos:exactMatch) is what gets resolved.
+# biosphere3 flow.
 bio = bw.Database("biosphere3")
 biosphere_uuid_to_flow = {f["code"]: f for f in bio}
 
@@ -363,11 +353,6 @@ def needs_internal_resolution(flow_type):
 
 
 # %% Discover buildable act:Activity individuals per LCIDataset.
-# Skipped: activities carrying act:sameAsSecondaryActivity (ecoinvent pointers,
-# already resolved via `resolved_act` above — not built as new activities), and
-# activities with no act:hasDeterminingFlow (stubs, e.g. battery-pef.ttl's
-# AggregatedLCI placeholder). A dataset with nothing buildable (ecoinvent itself,
-# biosphere.ttl) is skipped entirely.
 lci_datasets = []
 for ds in g.subjects(RDF.type, DATASET.LCIDataset):
     buildable = [
@@ -617,7 +602,11 @@ for ds, db_name, activities in lci_datasets:
                 # of waste mass maps to one unit of the synthetic wrapper's
                 # own "1 kg, acquired" reference.
                 exchanges.append(
-                    {"input": wrapper_key, "amount": norm_amount, "type": "technosphere"}
+                    {
+                        "input": wrapper_key,
+                        "amount": norm_amount,
+                        "type": "technosphere",
+                    }
                 )
                 # The wrapper's own recipe (how much virgin/recycled-content
                 # material 1 kg of it costs) depends only on the CFFScenario's
@@ -672,7 +661,9 @@ for ds, db_name, activities in lci_datasets:
                     flow_type.split("#")[-1] if flow_type is not None else None
                 )
                 if material is not None:
-                    cff_tracked_exchange_refs.append((key, new_exchange, amount, material))
+                    cff_tracked_exchange_refs.append(
+                        (key, new_exchange, amount, material)
+                    )
                 continue
 
             if flow_type in flowtype_to_producer:
@@ -743,7 +734,9 @@ for act_uri, flow_uri, reason in unresolved_flows:
 all_activities = {key: meta for db in db_data.values() for key, meta in db.items()}
 
 FU_KEY = next(
-    key for uri, key in activity_uri_to_key.items() if uri.split("#")[-1] == "BatteryUseProxyAct"
+    key
+    for uri, key in activity_uri_to_key.items()
+    if uri.split("#")[-1] == "BatteryUseProxyAct"
 )
 
 demanded_by = {}
@@ -753,11 +746,16 @@ for consumer_key, meta in all_activities.items():
             continue
         producer_key = exc["input"]
         if producer_key in all_activities:
-            demanded_by.setdefault(producer_key, []).append((consumer_key, exc["amount"]))
+            demanded_by.setdefault(producer_key, []).append(
+                (consumer_key, exc["amount"])
+            )
+
 
 def production_amount(key):
     return next(
-        exc["amount"] for exc in all_activities[key]["exchanges"] if exc["type"] == "production"
+        exc["amount"]
+        for exc in all_activities[key]["exchanges"]
+        if exc["type"] == "production"
     )
 
 
@@ -779,7 +777,8 @@ def activity_scale(key):
     # coefficient pulling it and its own 0.577 production amount cancel
     # exactly, so its real supply equals its consumer's, not 0.577x smaller.
     total = sum(
-        activity_scale(consumer_key) * amount for consumer_key, amount in demanded_by.get(key, [])
+        activity_scale(consumer_key) * amount
+        for consumer_key, amount in demanded_by.get(key, [])
     )
     total /= production_amount(key)
     _activity_scale_cache[key] = total
@@ -810,8 +809,12 @@ true_mass_by_material = {}
 refs_by_material = {}
 for host_key, exc, raw_amount, material in cff_tracked_exchange_refs:
     true_mass = raw_amount * activity_scale(host_key)
-    true_mass_by_material[material] = true_mass_by_material.get(material, 0.0) + true_mass
-    refs_by_material.setdefault(material, []).append((host_key, exc, raw_amount, true_mass))
+    true_mass_by_material[material] = (
+        true_mass_by_material.get(material, 0.0) + true_mass
+    )
+    refs_by_material.setdefault(material, []).append(
+        (host_key, exc, raw_amount, true_mass)
+    )
 
 print("\nCFF-tracked manufacturing-stage material reconciliation:")
 for material, true_mass in true_mass_by_material.items():
@@ -985,7 +988,9 @@ key_to_stage = {
 # ActivityLink -- tag them here instead, purely as an implementation detail.
 for wrapper_key in wrapper_exchange_contributions:
     key_to_stage[wrapper_key] = SYNTHETIC_ACQUISITION_STAGE
-print(f"{len(key_to_stage)} of {len(activity_to_stage)} ActivityLink activities found in brightway")
+print(
+    f"{len(key_to_stage)} of {len(activity_to_stage)} ActivityLink activities found in brightway"
+)
 
 lca = bw.LCA(demand, CATEGORY_METHODS["ClimateChange"])
 lca.lci()
@@ -1003,23 +1008,8 @@ for stage, score in sorted(stage_totals.items(), key=lambda kv: -abs(kv[1])):
     print(f"  {stage:30s} {score:14.4g}  ({100 * score / lca.score:5.1f}%)")
 print(f"  {'TOTAL':30s} {lca.score:14.4g}")
 
+
 # %% Marginal (cut-at-foreground-boundary) contribution per life cycle stage.
-#
-# For each of the 15 ActivityLink-tagged activities, computes the cumulative
-# (fully recursive) impact of the amount brightway actually solved for it,
-# then subtracts the cumulative impact already attributed to any OTHER
-# tagged activity it directly consumes. What's left is that activity's own
-# direct emissions plus everything upstream that ISN'T inside another tagged
-# activity's subtree -- so every ecoinvent background contribution gets
-# folded into whichever foreground activity actually pulled it in, instead of
-# sitting in an undifferentiated "Background" bucket. By linearity of the
-# technosphere solve this is an exact decomposition: marginal scores sum to
-# the total with no double counting (checked below).
-#
-# redo_lci() reuses the technosphere matrix already factorized for `demand`
-# instead of rebuilding/re-factorizing it per activity (~30 solves here
-# across 15 activities + their internal links -- fast with reuse, slow
-# without).
 def stage_contributions(method, demand=demand):
     lca = bw.LCA(demand, method)
     lca.lci(factorize=True)
@@ -1041,13 +1031,6 @@ def stage_contributions(method, demand=demand):
             _production_amount_cache[key] = exc["amount"]
         return _production_amount_cache[key]
 
-    # Some ActivityLink-tagged activities may not be reachable from the
-    # demand yet (e.g. BrazingServiceAct/NocolokAct, currently orphaned --
-    # nothing in the product system consumes their output). Skip them rather
-    # than crashing on a missing supply-array entry; the residual check below
-    # will then reflect their un-attributed contribution (0, since nothing
-    # demands them) rather than silently pretending they don't matter once
-    # they're actually wired in.
     unreachable = [key for key in key_to_stage if key not in supply]
     if unreachable:
         print(f"Skipping {len(unreachable)} unreachable ActivityLink activities:")
@@ -1064,15 +1047,9 @@ def stage_contributions(method, demand=demand):
         for exc in act.technosphere():
             child_key = exc.input.key
             if child_key in key_to_stage and child_key not in unreachable:
-                # exc["amount"] * supply[key] is the raw exchange signal, not
-                # the child's actual attributable supply -- brightway's own
-                # solve also divides by the *child's* own production amount
-                # (its diagonal in the technosphere matrix). Skipping that
-                # division under-subtracts whenever the child's production
-                # amount isn't 1 (only MetalTreatmentAct, at 0.577, in this
-                # case study), silently double counting part of its
-                # contribution between its parent's bucket and its own.
-                child_amount = exc["amount"] * supply[key] / production_amount(child_key)
+                child_amount = (
+                    exc["amount"] * supply[key] / production_amount(child_key)
+                )
                 score -= cumulative_score(child_key, child_amount)
         marginal[key] = score
 
@@ -1089,7 +1066,9 @@ def stage_contributions(method, demand=demand):
 
 
 stage_totals, total_score = stage_contributions(CATEGORY_METHODS["ClimateChange"])
-print(f"\nMarginal contribution per life cycle stage ({CATEGORY_METHODS['ClimateChange'][-1]}):")
+print(
+    f"\nMarginal contribution per life cycle stage ({CATEGORY_METHODS['ClimateChange'][-1]}):"
+)
 for stage, score in sorted(stage_totals.items(), key=lambda kv: -abs(kv[1])):
     print(f"  {stage:30s} {score:14.4g}  ({100 * score / total_score:5.1f}%)")
 print(f"  {'TOTAL':30s} {total_score:14.4g}")
