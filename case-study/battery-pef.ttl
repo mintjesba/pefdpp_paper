@@ -130,6 +130,7 @@
 :Goal
     a ps:Goal ;
     ps:intendedApplication "PEF following CFB-EV of NMC111 Li-ion vehicle battery, proof-of-concept for PEFDPP"^^xsd:string ;
+    ps:reasonForStudy "";
     ps:decisionContext     "PEF following CFB-EV, uses CFF, cut-off for background (ecoinvent3.12)"^^xsd:string ;
     ps:commissioner        <https://ror.org/027bh9e22> ;
     ps:verifier            <https://ror.org/02x681a42> .
