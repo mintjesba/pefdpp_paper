@@ -411,7 +411,7 @@
     lcia:forImpactCategory efic:EcoToxicityFreshwater ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:CTUe ;
-                      om:hasNumericalValue "1.623"^^xsd:double ] .
+                      om:hasNumericalValue "1.603"^^xsd:double ] .
 
 :LCIA_ResourceUseFossils
     a lcia:LCIAResult ;
