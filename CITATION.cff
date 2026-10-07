@@ -32,12 +32,16 @@ preferred-citation:
       given-names: Francesco
     - family-names: Mondello
       given-names: Alice
+      orcid: https://orcid.org/0009-0009-7307-3060
     - family-names: van Nielen
       given-names: Sander
       orcid: "https://orcid.org/0000-0002-5441-0836"
     - family-names: Hischier
       given-names: Roland
+      orcid: https://orcid.org/0000-0002-1084-7665
     - family-names: Donati
       given-names: Franco
+      orcid: https://orcid.org/0000-0002-8287-2413
     - family-names: Mogollón
       given-names: José M.
+      orcid: https://orcid.org/0000-0002-7110-5470
