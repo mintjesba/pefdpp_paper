@@ -1,6 +1,6 @@
 ##############################################################
 # PEFDPP Ontology — Dataset Module
-# https://w3id.org/mintjesba/pefdpp/dataset
+# https://w3id.org/pefdpp/dataset
 # Covers: LCIDataset, DatasetType, EFComplianceLevel
 ##############################################################
 
@@ -11,18 +11,18 @@
 @prefix dcterms:  <http://purl.org/dc/terms/> .
 @prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcat:     <http://www.w3.org/ns/dcat#> .
-@prefix dq:       <https://w3id.org/mintjesba/pefdpp/dataquality#> .
-@prefix act:      <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix dataset:  <https://w3id.org/mintjesba/pefdpp/dataset#> .
-@prefix :         <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dq:       <https://w3id.org/pefdpp/dataquality#> .
+@prefix act:      <https://w3id.org/pefdpp/activity#> .
+@prefix dataset:  <https://w3id.org/pefdpp/dataset#> .
+@prefix :         <https://w3id.org/pefdpp/> .
 
 ##############################################################
 # Ontology declaration
 ##############################################################
 
-<https://w3id.org/mintjesba/pefdpp/dataset>
+<https://w3id.org/pefdpp/dataset>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataset/1.0.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/dataset/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP Dataset Module"@en ;
     dcterms:description "Classes and properties for LCI datasets in the PEFDPP ontology."@en ;
@@ -30,8 +30,8 @@
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-11"^^xsd:date ;
     dcterms:references <http://www.w3.org/ns/dcat#> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/dataquality> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/activity> ;
+    owl:imports <https://w3id.org/pefdpp/dataquality> ;
+    owl:imports <https://w3id.org/pefdpp/activity> ;
     .
 
 ##############################################################
@@ -44,21 +44,21 @@ dataset:LCIDataset
     rdfs:label "LCI Dataset"@en ;
     skos:definition "A dataset containing life cycle inventory data, conforming to either a DPP or secondary data format."@en ;
     skos:scopeNote "Use dq:hasDataQuality to associate a DataQuality assessment with this dataset."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 dataset:DatasetType
     a owl:Class ;
     rdfs:label "Dataset Type"@en ;
     skos:definition "The type of LCI dataset, indicating whether it is a Digital Product Passport dataset or a secondary dataset."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 dataset:EFComplianceLevel
     a owl:Class ;
     rdfs:label "EF Compliance Level"@en ;
     skos:definition "The level of compliance of an LCI dataset with the EF (Environmental Footprint) methodology."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 ##############################################################
@@ -69,14 +69,14 @@ dataset:DPP
     a dataset:DatasetType ;
     rdfs:label "DPP"@en ;
     skos:definition "A Digital Product Passport dataset."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 dataset:Secondary
     a dataset:DatasetType ;
     rdfs:label "Secondary"@en ;
     skos:definition "A secondary dataset, not originating from a DPP."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 ##############################################################
@@ -87,21 +87,21 @@ dataset:EFCompliant
     a dataset:EFComplianceLevel ;
     rdfs:label "EF Compliant"@en ;
     skos:definition "The dataset fully complies with the EF methodology."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 dataset:ILCDEntryLevelCompliant
     a dataset:EFComplianceLevel ;
     rdfs:label "ILCD Entry Level Compliant"@en ;
     skos:definition "The dataset complies with the ILCD entry level requirements."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 dataset:NotEFCompliant
     a dataset:EFComplianceLevel ;
     rdfs:label "Not EF Compliant"@en ;
     skos:definition "The dataset does not comply with the EF methodology."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 ##############################################################
@@ -115,7 +115,7 @@ dataset:hasDatasetType
     rdfs:domain dataset:LCIDataset ;
     rdfs:range dataset:DatasetType ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 dataset:hasComplianceLevel
@@ -125,7 +125,7 @@ dataset:hasComplianceLevel
     rdfs:domain dataset:LCIDataset ;
     rdfs:range dataset:EFComplianceLevel ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .
 
 dataset:containsActivity
@@ -135,5 +135,5 @@ dataset:containsActivity
     rdfs:domain dataset:LCIDataset ;
     rdfs:range act:Activity ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/dataset> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/dataset> ;
     .

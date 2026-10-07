@@ -1,12 +1,12 @@
-@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module#> .
-@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
-@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
-@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
-@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
-@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
-@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
-@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix :        <https://w3id.org/pefdpp/cases/battery-pack/battery-module#> .
+@prefix ft:      <https://w3id.org/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/pefdpp/> .
+@prefix dataset: <https://w3id.org/pefdpp/dataset#> .
+@prefix act:     <https://w3id.org/pefdpp/activity#> .
+@prefix flow:    <https://w3id.org/pefdpp/flow#> .
+@prefix dq:      <https://w3id.org/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/pefdpp/ef31-units#> .
+@prefix geo:     <https://w3id.org/pefdpp/skos/pef-geographies#> .
 @prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -17,7 +17,7 @@
 # CASE STUDY — ModuleDataset
 ######################################################################
 
-<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module>
+<https://w3id.org/pefdpp/cases/battery-pack/battery-module>
     a owl:Ontology ;
     owl:imports pefdpp: ;
     dcterms:title "ModuleDataset — LCIDataset (case study)"@en ;
@@ -211,7 +211,7 @@ act:ModuleAssembly a act:ActivityType ; rdfs:label "ModuleAssembly"@en .
 ######################################################################
 ft:BatteryModuleLiIon a flow:ProductFlow ;
     rdfs:label "battery module, Li-ion"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module#ModuleDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-module#ModuleDataset> .
 ft:HousingAndCoolingSystem a flow:ProductFlow ;
     rdfs:label "housing and cooling system"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module#ModuleDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-module#ModuleDataset> .

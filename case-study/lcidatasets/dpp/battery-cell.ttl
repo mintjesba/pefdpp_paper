@@ -1,12 +1,12 @@
-@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#> .
-@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
-@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
-@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
-@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
-@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
-@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
-@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix :        <https://w3id.org/pefdpp/cases/battery-pack/battery-cell#> .
+@prefix ft:      <https://w3id.org/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/pefdpp/> .
+@prefix dataset: <https://w3id.org/pefdpp/dataset#> .
+@prefix act:     <https://w3id.org/pefdpp/activity#> .
+@prefix flow:    <https://w3id.org/pefdpp/flow#> .
+@prefix dq:      <https://w3id.org/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/pefdpp/ef31-units#> .
+@prefix geo:     <https://w3id.org/pefdpp/skos/pef-geographies#> .
 @prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -20,7 +20,7 @@
 # Sub-items nested inline with [ ].
 ######################################################################
 
-<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell>
+<https://w3id.org/pefdpp/cases/battery-pack/battery-cell>
     a owl:Ontology ;
     owl:imports pefdpp: ;
     dcterms:title "CellDataset — LCIDataset (case study)"@en ;
@@ -525,19 +525,19 @@ act:ElectrolyteManufacturing a act:ActivityType ; rdfs:label "ElectrolyteManufac
 ######################################################################
 ft:LiNMCO2ActiveMaterial a flow:ProductFlow ;
     rdfs:label "Li-NMC-O2 (active material)"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
 ft:AnodeGraphiteForLithiumIonBattery a flow:ProductFlow ;
     rdfs:label "anode, graphite, for lithium-ion battery"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
 ft:BatteryCellNMC111LiIon a flow:ProductFlow ;
     rdfs:label "battery cell, NMC111, Li-ion"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
 ft:CathodeNMC111ForLithiumIonBattery a flow:ProductFlow ;
     rdfs:label "cathode, NMC111, for lithium-ion battery"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
 ft:ElectrolyteForLithiumIonBattery a flow:ProductFlow ;
     rdfs:label "electrolyte, for lithium ion battery"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
 ft:SyntheticGraphiteBatteryGrade a flow:ProductFlow ;
     rdfs:label "synthetic graphite, battery grade"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#CellDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-cell#CellDataset> .

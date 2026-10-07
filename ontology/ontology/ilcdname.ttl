@@ -1,6 +1,6 @@
 ##############################################################
 # PEFDPP Ontology — ILCD Name module
-# https://w3id.org/mintjesba/pefdpp/ilcdname
+# https://w3id.org/pefdpp/ilcdname
 ##############################################################
 
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
@@ -9,16 +9,16 @@
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
-@prefix :        <https://w3id.org/mintjesba/pefdpp/> .
-@prefix name:    <https://w3id.org/mintjesba/pefdpp/ilcdname#> .
+@prefix :        <https://w3id.org/pefdpp/> .
+@prefix name:    <https://w3id.org/pefdpp/ilcdname#> .
 
 ##############################################################
 # Ontology declaration
 ##############################################################
 
-<https://w3id.org/mintjesba/pefdpp/ilcdname>
+<https://w3id.org/pefdpp/ilcdname>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/ilcdname/1.0.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/ilcdname/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP ILCD Name Module"@en ;
     dcterms:description "Classes and properties for naming activities and flows according to ILCD naming conventions."@en ;
@@ -47,7 +47,7 @@ name:hasBaseName
     rdfs:domain name:ILCDName ;
     rdfs:range xsd:string ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/ilcdname> ;
     .
 
 name:hasTreatmentsStandardsRoutes
@@ -55,7 +55,7 @@ name:hasTreatmentsStandardsRoutes
     rdfs:label "has treatments, standards, routes"@en ;
     rdfs:domain name:ILCDName ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/ilcdname> ;
     .
 
 name:hasMixTypeLocationType
@@ -63,7 +63,7 @@ name:hasMixTypeLocationType
     rdfs:label "has mix type, location type"@en ;
     rdfs:domain name:ILCDName ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/ilcdname> ;
     .
 
 name:hasQuantitativeFlowProperties
@@ -71,7 +71,7 @@ name:hasQuantitativeFlowProperties
     rdfs:label "has quantitative flow properties"@en ;
     rdfs:domain name:ILCDName ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/ilcdname> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/ilcdname> ;
     .
 
 

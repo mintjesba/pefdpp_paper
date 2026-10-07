@@ -1,21 +1,21 @@
-@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
-@prefix act: <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix geo: <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
-@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
-@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
-@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix ft:      <https://w3id.org/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix act: <https://w3id.org/pefdpp/activity#> .
+@prefix geo: <https://w3id.org/pefdpp/skos/pef-geographies#> .
+@prefix pefdpp:  <https://w3id.org/pefdpp/> .
+@prefix dataset: <https://w3id.org/pefdpp/dataset#> .
+@prefix flow:    <https://w3id.org/pefdpp/flow#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix : <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent#> .
-@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
+@prefix : <https://w3id.org/pefdpp/cases/battery-pack/ecoinvent#> .
+@prefix dq:      <https://w3id.org/pefdpp/dataquality#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
 ######################################################################
 # SECONDARY DATASET — ecoinvent (FlowTypes ONLY, each with sourcedFrom)
 ######################################################################
 
-<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/ecoinvent>
+<https://w3id.org/pefdpp/cases/battery-pack/ecoinvent>
     a owl:Ontology ;
     owl:imports pefdpp: ;
     dcterms:title "ecoinvent — FlowTypes (secondary data)"@en .

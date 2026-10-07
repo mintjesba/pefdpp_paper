@@ -1,12 +1,12 @@
-@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing#> .
-@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
-@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
-@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
-@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
-@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
-@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
-@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix :        <https://w3id.org/pefdpp/cases/battery-pack/brazing#> .
+@prefix ft:      <https://w3id.org/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/pefdpp/> .
+@prefix dataset: <https://w3id.org/pefdpp/dataset#> .
+@prefix act:     <https://w3id.org/pefdpp/activity#> .
+@prefix flow:    <https://w3id.org/pefdpp/flow#> .
+@prefix dq:      <https://w3id.org/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/pefdpp/ef31-units#> .
+@prefix geo:     <https://w3id.org/pefdpp/skos/pef-geographies#> .
 @prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -17,7 +17,7 @@
 # CASE STUDY - BrazingDataset
 ######################################################################
 
-<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing>
+<https://w3id.org/pefdpp/cases/battery-pack/brazing>
     a owl:Ontology ;
     owl:imports pefdpp: ;
     dcterms:title "BrazingDataset — LCIDataset (case study)"@en ;
@@ -127,7 +127,7 @@ act:NocolokProduction a act:ActivityType ; rdfs:label "NocolokProduction"@en .
 ######################################################################
 ft:NOCOLOK a flow:ProductFlow ;
     rdfs:label "NOCOLOK"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing#BrazingDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/brazing#BrazingDataset> .
 ft:BrazingServiceForBatteryCase a flow:ProductFlow ;
     rdfs:label "brazing service for battery case"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing#BrazingDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/brazing#BrazingDataset> .

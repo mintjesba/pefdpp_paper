@@ -2,9 +2,9 @@
 
 This repository contains the **PEFDPP ontology**, an OWL 2 DL ontology for encoding Product Environmental Footprint (PEF)-compliant life cycle assessment data in Digital Product Passports (DPPs), together with the **Li-ion battery case study** used to demonstrate it. It accompanies the article:
 
-> Mintjes, B., Mondello, A., van Nielen, S., Barilli, F., Hischier, R., Donati, F., Mogollón, J.M. *Integrating Product Environmental Footprint and Digital Product Passports: A Data Model for Traceable, Reusable Environmental Performance Information.* Journal of Circular Economy (under review).
+> Mintjes, B., Barilli, F., Mondello, A., van Nielen, S., Hischier, R., Donati, F., Mogollón, J.M. *Integrating Product Environmental Footprint and Digital Product Passports: A Data Model for Traceable, Reusable Environmental Performance Information.* Journal of Circular Economy.
 
-Ontology version: **1.0.0**. Namespace: `https://w3id.org/mintjesba/pefdpp/`
+Ontology version: **1.0.0**. Namespace: `https://w3id.org/pefdpp/`
 
 ## Contents
 
@@ -78,12 +78,12 @@ See [LICENSE](LICENSE).
 
 ## How to cite
 
-Please cite both the article above and this archived version of the repository. The DOI is shown on the Zenodo record. Citation metadata is in [CITATION.cff](CITATION.cff).
+Please cite the article above when using this ontology.
 
 ## Funding
 
-This work was funded by the European Union's Horizon Europe programme under grant agreements No. 101058598 (CE-RISE) and No. 101178719 (Lasers4MaaS).
+This work was funded by the European Union's Horizon Europe programme under grant agreements No. 101092281 (CE-RISE) and No. 101178719 (Lasers4MaaS).
 
 ## Contact
 
-Berend Mintjes, Institute of Environmental Sciences (CML), Leiden University. ORCID: [0009-0008-3997-4351](https://orcid.org/0009-0008-3997-4351)
+Berend Mintjes, Institute of Environmental Sciences (CML), Leiden University. Email: b.a.mintjes@cml.leidenuniv.nl, ORCID: [0009-0008-3997-4351](https://orcid.org/0009-0008-3997-4351)

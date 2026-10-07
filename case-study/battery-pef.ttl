@@ -19,25 +19,25 @@
 # aggregated LCI of the product system is not stored in this file.
 ######################################################################
 
-@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pef#> .
+@prefix :        <https://w3id.org/pefdpp/cases/battery-pack/battery-pef#> .
 
 # — dataset-level prefixes (for cross-referencing activities) —
-@prefix cell:    <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-cell#> .
-@prefix module:  <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-module#> .
-@prefix pack:    <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack#> .
-@prefix braze:   <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/brazing#> .
-@prefix eol:     <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-eol#> .
-@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
+@prefix cell:    <https://w3id.org/pefdpp/cases/battery-pack/battery-cell#> .
+@prefix module:  <https://w3id.org/pefdpp/cases/battery-pack/battery-module#> .
+@prefix pack:    <https://w3id.org/pefdpp/cases/battery-pack/battery-pack#> .
+@prefix braze:   <https://w3id.org/pefdpp/cases/battery-pack/brazing#> .
+@prefix eol:     <https://w3id.org/pefdpp/cases/battery-pack/battery-eol#> .
+@prefix act:     <https://w3id.org/pefdpp/activity#> .
 
 # — ontology namespaces —
-@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
-@prefix ps:      <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
-@prefix prs:     <https://w3id.org/mintjesba/pefdpp/product-system#> .
-@prefix lcia:    <https://w3id.org/mintjesba/pefdpp/lcia#> .
-@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
-@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
-@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
-@prefix efic:    <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories#> .
+@prefix pefdpp:  <https://w3id.org/pefdpp/> .
+@prefix ps:      <https://w3id.org/pefdpp/pefstudy#> .
+@prefix prs:     <https://w3id.org/pefdpp/product-system#> .
+@prefix lcia:    <https://w3id.org/pefdpp/lcia#> .
+@prefix dataset: <https://w3id.org/pefdpp/dataset#> .
+@prefix dq:      <https://w3id.org/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/pefdpp/ef31-units#> .
+@prefix efic:    <https://w3id.org/pefdpp/skos/ef31-impactcategories#> .
 
 # — external namespaces —
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
@@ -51,7 +51,7 @@
 # Ontology declaration
 ######################################################################
 
-<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pef>
+<https://w3id.org/pefdpp/cases/battery-pack/battery-pef>
     a owl:Ontology ;
     owl:imports pefdpp: ;
     dcterms:title "Battery Pack PEF Study"@en ;
@@ -129,7 +129,7 @@
 :Goal
     a ps:Goal ;
     ps:intendedApplication "PEF following CFB-EV of NMC111 Li-ion vehicle battery, proof-of-concept for PEFDPP"^^xsd:string ;
-    ps:reasonForStudy "";
+    ps:reasonForStudy "Proof of concept for PEFDPP ontology.";
     ps:decisionContext     "PEF following CFB-EV, uses CFF, cut-off for background (ecoinvent3.12)"^^xsd:string ;
     ps:commissioner        <https://ror.org/027bh9e22> ;
     ps:verifier            <https://ror.org/02x681a42> .

@@ -36,8 +36,8 @@ g = Graph()
 for f in ontology_files + case_study_files:
     g.parse(f, format="turtle")
 
-FLOW = Namespace("https://w3id.org/mintjesba/pefdpp/flow#")
-ACT = Namespace("https://w3id.org/mintjesba/pefdpp/activity#")
+FLOW = Namespace("https://w3id.org/pefdpp/flow#")
+ACT = Namespace("https://w3id.org/pefdpp/activity#")
 
 # %% Set up all Brightway and ecoinvent requirements
 # %%% Set up brightway project (ecoinvent3.12 preloaded)
@@ -288,7 +288,7 @@ for fi, flow in list(resolved_bio.items())[:15]:
 #      resolved above into `resolved_bio`)
 from rdflib import RDFS
 
-DATASET = Namespace("https://w3id.org/mintjesba/pefdpp/dataset#")
+DATASET = Namespace("https://w3id.org/pefdpp/dataset#")
 DCTERMS = Namespace("http://purl.org/dc/terms/")
 OM = Namespace("http://www.ontology-of-units-of-measure.org/resource/om-2/")
 
@@ -969,7 +969,7 @@ for score, amount, act in ca.annotated_top_processes(lca, limit=15):
 # proper cut-at-foreground-boundary (cumulative, non-double-counting)
 # attribution instead -- that needs walking the solved supply chain, not just
 # this direct per-activity split.
-PRS = Namespace("https://w3id.org/mintjesba/pefdpp/product-system#")
+PRS = Namespace("https://w3id.org/pefdpp/product-system#")
 
 activity_to_stage = {}
 for al in g.subjects(RDF.type, PRS.ActivityLink):

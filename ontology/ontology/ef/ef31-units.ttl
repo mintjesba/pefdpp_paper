@@ -1,6 +1,6 @@
 
-@prefix efu: <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
-@prefix :    <https://w3id.org/mintjesba/pefdpp/> .
+@prefix efu: <https://w3id.org/pefdpp/ef31-units#> .
+@prefix :    <https://w3id.org/pefdpp/> .
 
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -9,9 +9,9 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 
-<https://w3id.org/mintjesba/pefdpp/ef31-units> a owl:Ontology;
+<https://w3id.org/pefdpp/ef31-units> a owl:Ontology;
     dcterms:title "EF 3.1 Units";
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/ef31-units/1.0.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/ef31-units/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;

@@ -1,6 +1,6 @@
 ##############################################################
 # PEFDPP Ontology — PEF Study Module
-# https://w3id.org/mintjesba/pefdpp/pefstudy
+# https://w3id.org/pefdpp/pefstudy
 # Covers: PEFStudy, Goal, Scope, FunctionalUnit,
 #         SystemBoundary, BoundaryType
 ##############################################################
@@ -14,20 +14,20 @@
 @prefix foaf:     <http://xmlns.com/foaf/0.1/> .
 @prefix prov:     <https://www.w3.org/TR/prov-o/> .
 @prefix om:       <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
-@prefix dq:       <https://w3id.org/mintjesba/pefdpp/dataquality#> .
-@prefix flow:     <https://w3id.org/mintjesba/pefdpp/flow#> .
-@prefix lcia:     <https://w3id.org/mintjesba/pefdpp/lcia#> .
-@prefix prs:       <https://w3id.org/mintjesba/pefdpp/product-system#> .
-@prefix ps:       <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
-@prefix :         <https://w3id.org/mintjesba/pefdpp/> .
+@prefix dq:       <https://w3id.org/pefdpp/dataquality#> .
+@prefix flow:     <https://w3id.org/pefdpp/flow#> .
+@prefix lcia:     <https://w3id.org/pefdpp/lcia#> .
+@prefix prs:       <https://w3id.org/pefdpp/product-system#> .
+@prefix ps:       <https://w3id.org/pefdpp/pefstudy#> .
+@prefix :         <https://w3id.org/pefdpp/> .
 
 ##############################################################
 # Ontology declaration
 ##############################################################
 
-<https://w3id.org/mintjesba/pefdpp/pefstudy>
+<https://w3id.org/pefdpp/pefstudy>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/pefstudy/1.0.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/pefstudy/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP PEF Study Module"@en ;
     dcterms:description "Classes and properties for the goal, scope, functional unit, and system boundary of a Product Environmental Footprint study."@en ;
@@ -36,10 +36,10 @@
     dcterms:created "2026-05-22"^^xsd:date ;
     dcterms:references <http://xmlns.com/foaf/0.1/> ;
     dcterms:references <http://www.ontology-of-units-of-measure.org/resource/om-2/> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/dataquality> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/flow> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/lcia> ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/product-system> ;
+    owl:imports <https://w3id.org/pefdpp/dataquality> ;
+    owl:imports <https://w3id.org/pefdpp/flow> ;
+    owl:imports <https://w3id.org/pefdpp/lcia> ;
+    owl:imports <https://w3id.org/pefdpp/product-system> ;
     .
 
 ##############################################################
@@ -51,7 +51,7 @@ ps:PEFStudy
     rdfs:label "PEF Study"@en ;
     skos:definition "A Product Environmental Footprint study, comprising a goal, scope, product system, LCI data, and LCIA results."@en ;
     skos:scopeNote "Use dq:hasDataQuality to associate a DataQuality assessment with this study."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -62,7 +62,7 @@ ps:Goal
     a owl:Class ;
     rdfs:label "Goal"@en ;
     skos:definition "The goal of a PEF study, describing its intended application, target audience, decision context, commissioner, and verifier."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -73,7 +73,7 @@ ps:Scope
     a owl:Class ;
     rdfs:label "Scope"@en ;
     skos:definition "The scope of a PEF study, defining the functional unit, system boundary, impact categories, assumptions, and limitations."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -84,7 +84,7 @@ ps:FunctionalUnit
     a owl:Class ;
     rdfs:label "Functional Unit"@en ;
     skos:definition "The quantified description of the performance of a product system for use as a reference unit in a PEF study, answering what is provided, how well, how much, and for how long."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -95,7 +95,7 @@ ps:SystemBoundary
     a owl:Class ;
     rdfs:label "System Boundary"@en ;
     skos:definition "The system boundary of a PEF study, specifying which life cycle stages and processes are included, the boundary type, cut-off criteria, and justification."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -106,21 +106,21 @@ ps:BoundaryType
     a owl:Class ;
     rdfs:label "Boundary Type"@en ;
     skos:definition "The type of system boundary used in a PEF study."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:CradleToGrave
     a ps:BoundaryType ;
     rdfs:label "Cradle-to-grave"@en ;
     skos:definition "System boundary encompassing all life cycle stages from raw material acquisition through end-of-life."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:CradleToGate
     a ps:BoundaryType ;
     rdfs:label "Cradle-to-gate"@en ;
     skos:definition "System boundary encompassing raw material acquisition and manufacturing, up to the factory gate, excluding distribution, use, and end-of-life."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -131,26 +131,26 @@ ps:AdditionalInformation
     rdfs:subClassOf prov:Entity ;
     rdfs:label "Additional Information"@en ;
     skos:definition "Additional Information included in the PEF Study."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:AdditionalInformationType
     a owl:Class ;
     rdfs:label "Additional Information Type"@en ;
     skos:definition "Type of Additional Information (technical/environmental)."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:AdditionalTechnicalInformation
     a ps:AdditionalInformationType ;
     rdfs:label "Additional Technical Information"@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:AdditionalEnvironmentalInformation
     a ps:AdditionalInformationType ;
     rdfs:label "Additional Environmental Information"@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -163,7 +163,7 @@ ps:hasGoal
     rdfs:domain ps:PEFStudy ;
     rdfs:range ps:Goal ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasScope
@@ -173,7 +173,7 @@ ps:hasScope
     rdfs:domain ps:PEFStudy ;
     rdfs:range ps:Scope ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasProductSystem
@@ -183,7 +183,7 @@ ps:hasProductSystem
     rdfs:domain ps:PEFStudy ;
     rdfs:range prs:ProductSystem ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasAggregatedLCI
@@ -192,7 +192,7 @@ ps:hasAggregatedLCI
     skos:definition "The aggregated LCI of the full PEF Study, expressed as a single LCIDataset wrapping one Activity containing the inputs and outputs of the full ProductSystem."@en ;
     rdfs:domain ps:PEFStudy ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasLCIAResult
@@ -202,7 +202,7 @@ ps:hasLCIAResult
     rdfs:domain ps:PEFStudy ;
     rdfs:range lcia:LCIAResult ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasContributionResult
@@ -211,7 +211,7 @@ ps:hasContributionResult
     skos:definition "A contribution result associated with this PEF study."@en ;
     rdfs:domain ps:PEFStudy ;
     rdfs:range lcia:ContributionResult ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -225,7 +225,7 @@ ps:commissioner
     rdfs:domain ps:Goal ;
     rdfs:range foaf:Agent ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:verifier
@@ -235,7 +235,7 @@ ps:verifier
     rdfs:domain ps:Goal ;
     rdfs:range foaf:Agent ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -249,7 +249,7 @@ ps:hasFunctionalUnit
     rdfs:domain ps:Scope ;
     rdfs:range ps:FunctionalUnit ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasSystemBoundary
@@ -259,7 +259,7 @@ ps:hasSystemBoundary
     rdfs:domain ps:Scope ;
     rdfs:range ps:SystemBoundary ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:includesImpactCategory
@@ -269,7 +269,7 @@ ps:includesImpactCategory
     rdfs:domain ps:Scope ;
     rdfs:range lcia:ImpactCategory ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasAdditionalInformation
@@ -278,7 +278,7 @@ ps:hasAdditionalInformation
     skos:definition "Additional information included in the scope of this PEF study."@en ;
     rdfs:domain ps:Scope ;
     rdfs:range ps:AdditionalInformation ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 
@@ -293,7 +293,7 @@ ps:hasReferenceFlow
     rdfs:domain ps:FunctionalUnit ;
     rdfs:range flow:Flow ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:howMuchProvided
@@ -303,7 +303,7 @@ ps:howMuchProvided
     rdfs:domain ps:FunctionalUnit ;
     rdfs:range om:Measure ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:howLongProvided
@@ -313,7 +313,7 @@ ps:howLongProvided
     rdfs:domain ps:FunctionalUnit ;
     rdfs:range om:Measure ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -327,7 +327,7 @@ ps:hasBoundaryType
     rdfs:domain ps:SystemBoundary ;
     rdfs:range ps:BoundaryType ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -339,7 +339,7 @@ ps:hasType
     skos:definition "The type of additional information (technical/environmental)."@en ;
     rdfs:domain ps:AdditionalInformation ;
     rdfs:range ps:AdditionalInformationType ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasTopic
@@ -349,7 +349,7 @@ ps:hasTopic
     skos:scopeNote "This should be a Concept in scheme PEFAdditionalInformationTopics"@en ;
     rdfs:domain ps:AdditionalInformation ;
     rdfs:range skos:Concept ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -363,7 +363,7 @@ ps:intendedApplication
     rdfs:domain ps:Goal ;
     rdfs:range xsd:string ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:decisionContext
@@ -372,7 +372,16 @@ ps:decisionContext
     skos:definition "The decision context for which this PEF study is conducted — the type of decision it is intended to support."@en ;
     rdfs:domain ps:Goal ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
+    .
+
+ps:reasonForStudy
+    a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "reason for study"@en ;
+    skos:definition "The reason for performing the PEF Study."@en ;
+    rdfs:domain ps:Goal ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -385,7 +394,7 @@ ps:hasAssumption
     skos:definition "Key assumptions made in this PEF study scope."@en ;
     rdfs:domain ps:Scope ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasLimitation
@@ -394,7 +403,7 @@ ps:hasLimitation
     skos:definition "Key limitations of this PEF study scope."@en ;
     rdfs:domain ps:Scope ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:biodiversityRelevance
@@ -403,7 +412,7 @@ ps:biodiversityRelevance
     skos:definition "A statement on the relevance of biodiversity impacts to this PEF study."@en ;
     rdfs:domain ps:Scope ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -417,7 +426,7 @@ ps:whatProvided
     rdfs:domain ps:FunctionalUnit ;
     rdfs:range xsd:string ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:howWellProvided
@@ -427,7 +436,7 @@ ps:howWellProvided
     rdfs:domain ps:FunctionalUnit ;
     rdfs:range xsd:string ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:notCoveredAspect
@@ -436,7 +445,7 @@ ps:notCoveredAspect
     skos:definition "An aspect of the function that is explicitly not covered by this functional unit."@en ;
     rdfs:domain ps:FunctionalUnit ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:RFtoFUConversion
@@ -446,7 +455,7 @@ ps:RFtoFUConversion
     rdfs:domain ps:FunctionalUnit ;
     rdfs:range xsd:double ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ##############################################################
@@ -460,7 +469,7 @@ ps:cutOffCriteria
     rdfs:domain ps:SystemBoundary ;
     rdfs:range xsd:string ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:hasJustification
@@ -470,7 +479,7 @@ ps:hasJustification
     rdfs:domain ps:SystemBoundary ;
     rdfs:range xsd:string ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:excludesActivity
@@ -479,7 +488,7 @@ ps:excludesActivity
     skos:definition "A description of an excluded activity or process."@en ;
     rdfs:domain ps:SystemBoundary ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
 
 ps:exclusionJustification
@@ -488,5 +497,5 @@ ps:exclusionJustification
     skos:definition "A justification for excluding an activity or process."@en ;
     rdfs:domain ps:SystemBoundary ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/pefstudy> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .

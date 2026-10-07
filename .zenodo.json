@@ -10,6 +10,15 @@
       "name": "Mintjes, Berend",
       "affiliation": "Institute of Environmental Sciences (CML), Leiden University",
       "orcid": "0009-0008-3997-4351"
+    },
+    {
+      "name": "Barilli, Francesco",
+      "affiliation": "Empa – Swiss Federal Laboratories for Materials Science and Technology, St. Gallen"
+    },
+    {
+      "name": "van Nielen, Sander",
+      "affiliation": "Institute of Environmental Sciences (CML), Leiden University",
+      "orcid": "0000-0002-5441-0836"
     }
   ],
   "keywords": [
@@ -23,8 +32,12 @@
     "batteries"
   ],
   "grants": [
-    {"id": "10.13039/501100000780::101058598"},
-    {"id": "10.13039/501100000780::101178719"}
+    {
+      "id": "00k4n6c32::101092281"
+    },
+    {
+      "id": "00k4n6c32::101178719"
+    }
   ],
   "related_identifiers": [
     {

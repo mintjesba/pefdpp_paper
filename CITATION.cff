@@ -1,16 +1,23 @@
 cff-version: 1.2.0
-message: "If you use this ontology or case study, please cite both the article and this archived version."
+message: "If you use this dataset, please cite the article below."
 title: "PEFDPP ontology and battery case study"
 version: "1.0.0"
 date-released: 2026-10-05
 license: CC-BY-4.0
 repository-code: "https://github.com/mintjesba/pefdpp_paper"
-url: "https://w3id.org/mintjesba/pefdpp/"
+url: "https://w3id.org/pefdpp/"
 type: dataset
 authors:
   - family-names: Mintjes
     given-names: Berend
     orcid: "https://orcid.org/0009-0008-3997-4351"
+    affiliation: "Institute of Environmental Sciences (CML), Leiden University"
+  - family-names: Barilli
+    given-names: Francesco
+    affiliation: "Empa – Swiss Federal Laboratories for Materials Science and Technology, St. Gallen"
+  - family-names: van Nielen
+    given-names: Sander
+    orcid: "https://orcid.org/0000-0002-5441-0836"
     affiliation: "Institute of Environmental Sciences (CML), Leiden University"
 preferred-citation:
   type: article
@@ -21,12 +28,13 @@ preferred-citation:
     - family-names: Mintjes
       given-names: Berend
       orcid: "https://orcid.org/0009-0008-3997-4351"
+    - family-names: Barilli
+      given-names: Francesco
     - family-names: Mondello
       given-names: Alice
     - family-names: van Nielen
       given-names: Sander
-    - family-names: Barilli
-      given-names: Francesco
+      orcid: "https://orcid.org/0000-0002-5441-0836"
     - family-names: Hischier
       given-names: Roland
     - family-names: Donati

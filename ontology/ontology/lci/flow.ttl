@@ -1,6 +1,6 @@
 ##############################################################
 # PEFDPP Ontology — Flow Module
-# https://w3id.org/mintjesba/pefdpp/flow
+# https://w3id.org/pefdpp/flow
 # Covers: Flow, ProductFlow, WasteFlow, ElementaryFlow,
 #         CFFScenario, CFFValue, EndOfLifeScenario,
 #         DerivationType
@@ -21,16 +21,16 @@
 @prefix dcterms:  <http://purl.org/dc/terms/> .
 @prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
 @prefix om:       <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
-@prefix flow:     <https://w3id.org/mintjesba/pefdpp/flow#> .
-@prefix :         <https://w3id.org/mintjesba/pefdpp/> .
+@prefix flow:     <https://w3id.org/pefdpp/flow#> .
+@prefix :         <https://w3id.org/pefdpp/> .
 
 ##############################################################
 # Ontology declaration
 ##############################################################
 
-<https://w3id.org/mintjesba/pefdpp/flow>
+<https://w3id.org/pefdpp/flow>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/flow/1.0.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/flow/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP Flow Module"@en ;
     dcterms:description "Classes and properties for flows in the PEFDPP ontology, including product, waste, and elementary flows, CFF parameters, and end-of-life scenarios."@en ;
@@ -52,7 +52,7 @@ flow:Flow
     rdfs:label "Flow"@en ;
     skos:definition "A material, energy, or elementary flow that is an input or output of an activity."@en ;
     skos:scopeNote "Assign a DataQuality to environmental flows using dq:hasDataQuality."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 ##############################################################
@@ -63,7 +63,7 @@ flow:FlowType
     a owl:Class ;
     rdfs:label "Flow Type"@en ;
     skos:definition "The type of flow, i.e. the substance being exchanged."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:ProductFlow
@@ -72,7 +72,7 @@ flow:ProductFlow
     rdfs:label "Product Flow"@en ;
     skos:definition "A flow representing a product. May be mapped to CPA classifications via skos:exactMatch or skos:closeMatch."@en ;
     skos:scopeNote "Assign an ILCDName using name:hasILCDName. Use skos:exactMatch, skos:closeMatch, or skos:broadMatch to link to concepts in external classification schemes such as CPA."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:WasteFlow
@@ -81,7 +81,7 @@ flow:WasteFlow
     rdfs:label "Waste Flow"@en ;
     skos:definition "A flow representing waste. May be mapped to EWC classifications via skos:exactMatch or skos:closeMatch."@en ;
     skos:scopeNote "Assign an ILCDName using name:hasILCDName. Use skos:exactMatch, skos:closeMatch, or skos:broadMatch to link to concepts in external classification schemes such as EWC."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:ElementaryFlow
@@ -91,7 +91,7 @@ flow:ElementaryFlow
     rdfs:label "Elementary Flow"@en ;
     skos:definition "A flow exchanged with the natural environment, drawn from the EF 3.1 elementary flows list."@en ;
     skos:scopeNote "Instances should use skos:inScheme to reference the EF3.1 ElementaryFlows classification scheme."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 ##############################################################
@@ -102,35 +102,35 @@ flow:DerivationType
     a owl:Class ;
     rdfs:label "Derivation Type"@en ;
     skos:definition "How the value of a flow was derived."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:Measured
     a flow:DerivationType ;
     rdfs:label "Measured"@en ;
     skos:definition "The flow value was obtained by direct measurement."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:Calculated
     a flow:DerivationType ;
     rdfs:label "Calculated"@en ;
     skos:definition "The flow value was derived by calculation from other data."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:Estimated
     a flow:DerivationType ;
     rdfs:label "Estimated"@en ;
     skos:definition "The flow value was estimated based on expert judgement or proxy data."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:Assumed
     a flow:DerivationType ;
     rdfs:label "Assumed"@en ;
     skos:definition "The flow value was assumed in the absence of measured or calculated data."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 ##############################################################
@@ -140,7 +140,7 @@ flow:CFFScenario
     a owl:Class ;
     rdfs:label "CFF Scenario"@en ;
     skos:definition "Circular Footprint Scenario (i.e. CFF parameters and Activities used) for a given flow."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 ##############################################################
@@ -151,7 +151,7 @@ flow:CFFValue
     a owl:Class ;
     rdfs:label "CFF Value"@en ;
     skos:definition "A single Circular Footprint Formula value, comprising a numeric value, a company-specific flag, and an optional justification."@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 ##############################################################
@@ -165,7 +165,7 @@ flow:hasFlowType
     rdfs:domain flow:Flow ;
     rdfs:range flow:FlowType ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:hasCFFScenario
@@ -173,7 +173,7 @@ flow:hasCFFScenario
     rdfs:label "has CFF scenario"@en ;
     rdfs:domain flow:Flow ;
     rdfs:range flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> .
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> .
 
 flow:contextualLabel
     a owl:DatatypeProperty, owl:FunctionalProperty ;
@@ -181,7 +181,7 @@ flow:contextualLabel
     skos:definition "The flow's specific use in this Activity."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:hasMeasure
@@ -191,7 +191,7 @@ flow:hasMeasure
     rdfs:domain flow:Flow ;
     rdfs:range om:Measure ;
     :PEFRequired true ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:hasDerivationType
@@ -200,7 +200,7 @@ flow:hasDerivationType
     skos:definition "How the value of this flow was derived."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range flow:DerivationType ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:isCompanySpecific
@@ -209,7 +209,7 @@ flow:isCompanySpecific
     skos:definition "Whether the flow is company-specific data."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range xsd:boolean ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:isSampled
@@ -218,7 +218,7 @@ flow:isSampled
     skos:definition "Whether the flow is obtained through sampling."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range xsd:boolean ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:transportEmptyReturns
@@ -227,7 +227,7 @@ flow:transportEmptyReturns
     skos:definition "The amount of empty returns for a transport flow."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range xsd:decimal ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:transportLoadingRate
@@ -236,7 +236,7 @@ flow:transportLoadingRate
     skos:definition "The loading rate for a transport flow."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range xsd:decimal ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 
@@ -246,7 +246,7 @@ flow:transportDistance
     skos:definition "The transport distance for a transport flow."@en ;
     rdfs:domain flow:Flow ;
     rdfs:range om:Measure ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 ##############################################################
@@ -258,7 +258,7 @@ flow:sourcedFrom
     skos:definition "The LCIDatabase declaring the FlowType"@en ;
     rdfs:domain flow:FlowType ;
     skos:scopeNote "Range dataset:LCIDataset - declared in pefdpp.ttl to avoid circular imports"@en ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:sameAsSecondaryFlowType
@@ -267,7 +267,7 @@ flow:sameAsSecondaryFlowType
     skos:definition "The equivalent secondary flow type (e.g. econinvent UUID)."@en ;
     rdfs:domain flow:FlowType ;
     rdfs:range xsd:string ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
     
 ##############################################################
@@ -279,7 +279,7 @@ flow:allocationFactorA
     skos:definition "Allocation factor of burdens and credits between supplier and user of recycled materials."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:allocationFactorB
@@ -288,7 +288,7 @@ flow:allocationFactorB
     skos:definition "Allocation factor of energy recovery processes."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:recycledContentRateR1
@@ -297,7 +297,7 @@ flow:recycledContentRateR1
     skos:definition "The proportion of recycled content in this product flow."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:recyclingRateR2
@@ -306,7 +306,7 @@ flow:recyclingRateR2
     skos:definition "Proportion of material being recycled."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:energyRecoveryRateR3
@@ -315,7 +315,7 @@ flow:energyRecoveryRateR3
     skos:definition "Proportion of material being sent to energy recovery."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:qualityRatioIn
@@ -324,7 +324,7 @@ flow:qualityRatioIn
     skos:definition "Quality ratio of recycled content and virgin material."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:qualityRatioOut
@@ -333,7 +333,7 @@ flow:qualityRatioOut
     skos:definition "Quality ratio of recycling output and virgin material."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:ERLowerHeatingValue
@@ -342,7 +342,7 @@ flow:ERLowerHeatingValue
     skos:definition "Lower heating value of the material in the product that is used for energy recovery."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:heatEREfficiency
@@ -351,7 +351,7 @@ flow:heatEREfficiency
     skos:definition "The efficiency of the energy recovery process for heat."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:electricityEREfficiency
@@ -360,7 +360,7 @@ flow:electricityEREfficiency
     skos:definition "The efficiency of the energy recovery process for electricity."@en ;
     rdfs:domain flow:CFFScenario ;
     rdfs:range flow:CFFValue ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 ##############################################################
@@ -374,7 +374,7 @@ flow:virginMaterialActivity
     skos:definition "The activity representing the production process for the virgin material content."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:recycledMaterialActivity
@@ -383,7 +383,7 @@ flow:recycledMaterialActivity
     skos:definition "The activity representing the production process for the recycled content."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:recyclingActivity
@@ -392,7 +392,7 @@ flow:recyclingActivity
     skos:definition "The activity representing the recycling process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:substitutedVirginActivity
@@ -401,7 +401,7 @@ flow:substitutedVirginActivity
     skos:definition "The activity representing the production process for virgin material substituted by output of recycling."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:energyRecoveryActivity
@@ -410,7 +410,7 @@ flow:energyRecoveryActivity
     skos:definition "The activity representing the energy recovery process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:substitutedHeatActivity
@@ -419,7 +419,7 @@ flow:substitutedHeatActivity
     skos:definition "The activity representing the production process for heat substituted by energy recovery."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:substitutedElectricityActivity
@@ -428,7 +428,7 @@ flow:substitutedElectricityActivity
     skos:definition "The activity representing the production process for electricity substituted by energy recovery."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:disposalActivity
@@ -437,7 +437,7 @@ flow:disposalActivity
     skos:definition "The activity representing the disposal process for this waste flow."@en ;
     skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en ;
     rdfs:domain flow:CFFScenario ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 ##############################################################
@@ -450,7 +450,7 @@ flow:hasValue
     skos:definition "The numeric value of this CFF parameter."@en ;
     rdfs:domain flow:CFFValue ;
     rdfs:range xsd:decimal ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:isCompanySpecific
@@ -459,7 +459,7 @@ flow:isCompanySpecific
     skos:definition "Indicates whether this CFF value is company-specific rather than a default value."@en ;
     rdfs:domain flow:CFFValue ;
     rdfs:range xsd:boolean ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .
 
 flow:hasJustification
@@ -468,5 +468,5 @@ flow:hasJustification
     skos:definition "A textual justification for a company-specific CFF value."@en ;
     rdfs:domain flow:CFFValue ;
     rdfs:range rdfs:Literal ;
-    rdfs:isDefinedBy <https://w3id.org/mintjesba/pefdpp/flow> ;
+    rdfs:isDefinedBy <https://w3id.org/pefdpp/flow> ;
     .

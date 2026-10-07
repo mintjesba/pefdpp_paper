@@ -1,12 +1,12 @@
-@prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack#> .
-@prefix ft:      <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/flowtypes#> .
-@prefix pefdpp:  <https://w3id.org/mintjesba/pefdpp/> .
-@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
-@prefix act:     <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix flow:    <https://w3id.org/mintjesba/pefdpp/flow#> .
-@prefix dq:      <https://w3id.org/mintjesba/pefdpp/dataquality#> .
-@prefix efu:     <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
-@prefix geo:     <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies#> .
+@prefix :        <https://w3id.org/pefdpp/cases/battery-pack/battery-pack#> .
+@prefix ft:      <https://w3id.org/pefdpp/cases/battery-pack/flowtypes#> .
+@prefix pefdpp:  <https://w3id.org/pefdpp/> .
+@prefix dataset: <https://w3id.org/pefdpp/dataset#> .
+@prefix act:     <https://w3id.org/pefdpp/activity#> .
+@prefix flow:    <https://w3id.org/pefdpp/flow#> .
+@prefix dq:      <https://w3id.org/pefdpp/dataquality#> .
+@prefix efu:     <https://w3id.org/pefdpp/ef31-units#> .
+@prefix geo:     <https://w3id.org/pefdpp/skos/pef-geographies#> .
 @prefix om:      <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -17,7 +17,7 @@
 # CASE STUDY - PackDataset
 ######################################################################
 
-<https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack>
+<https://w3id.org/pefdpp/cases/battery-pack/battery-pack>
     a owl:Ontology ;
     owl:imports pefdpp: ;
     dcterms:title "PackDataset — LCIDataset (case study)"@en ;
@@ -205,7 +205,10 @@ act:BatteryUseProxy a act:ActivityType ; rdfs:label "BatteryUseProxy"@en .
 ######################################################################
 ft:BatteryLiIonNMC111AtCustomer a flow:ProductFlow ;
     rdfs:label "battery, Li-ion, NMC111, at customer"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack#PackDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-pack#PackDataset> .
 ft:BatteryLiIonNMC111AtPlant a flow:ProductFlow ;
     rdfs:label "battery, Li-ion, NMC111, at plant"@en ;
-    flow:sourcedFrom <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pack#PackDataset> .
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-pack#PackDataset> .
+ft:BatteryUse a flow:ProductFlow ;
+    rdfs:label "battery, Li-ion, NMC111, use"@en ;
+    flow:sourcedFrom <https://w3id.org/pefdpp/cases/battery-pack/battery-pack#PackDataset> .

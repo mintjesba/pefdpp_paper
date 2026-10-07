@@ -1,5 +1,5 @@
-@prefix efi: <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories#> .
-@prefix :    <https://w3id.org/mintjesba/pefdpp/> .
+@prefix efi: <https://w3id.org/pefdpp/skos/ef31-impactcategories#> .
+@prefix :    <https://w3id.org/pefdpp/> .
 
 
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,9 +9,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories> a owl:Ontology;
+<https://w3id.org/pefdpp/skos/ef31-impactcategories> a owl:Ontology;
     dcterms:title "EF 3.1 Impact Category Indicators";
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories/1.0.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/skos/ef31-impactcategories/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;

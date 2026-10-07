@@ -1,15 +1,15 @@
-@prefix : <https://w3id.org/mintjesba/pefdpp/> .
-@prefix act: <https://w3id.org/mintjesba/pefdpp/activity#> .
-@prefix dataset: <https://w3id.org/mintjesba/pefdpp/dataset#> .
+@prefix : <https://w3id.org/pefdpp/> .
+@prefix act: <https://w3id.org/pefdpp/activity#> .
+@prefix dataset: <https://w3id.org/pefdpp/dataset#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dq: <https://w3id.org/mintjesba/pefdpp/dataquality#> .
-@prefix flow: <https://w3id.org/mintjesba/pefdpp/flow#> .
+@prefix dq: <https://w3id.org/pefdpp/dataquality#> .
+@prefix flow: <https://w3id.org/pefdpp/flow#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix lcia: <https://w3id.org/mintjesba/pefdpp/lcia#> .
+@prefix lcia: <https://w3id.org/pefdpp/lcia#> .
 @prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix ps: <https://w3id.org/mintjesba/pefdpp/pefstudy#> .
+@prefix ps: <https://w3id.org/pefdpp/pefstudy#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -1167,7 +1167,7 @@ ps:FunctionalUnit a owl:Class ;
     dcterms:title "PEFDPP Dataset Module"@en ;
     owl:imports :activity,
         :dataquality ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataset/0.1.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/dataset/0.1.0> ;
     owl:versionInfo "0.1.0" .
 
 flow:CFFValue a owl:Class ;
@@ -1205,7 +1205,7 @@ act:Activity a owl:Class ;
     dcterms:description "Classes and properties for representing data quality scores in the PEFDPP ontology, following the EF Data Quality Rating (DQR) approach."@en ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:title "PEFDPP Data Quality Module"@en ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataquality/0.1.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/dataquality/0.1.0> ;
     owl:versionInfo "0.1.0" .
 
 :product-system a owl:Ontology ;
@@ -1216,7 +1216,7 @@ act:Activity a owl:Class ;
     dcterms:references foaf: ;
     dcterms:title "PEFDPP Product System Module"@en ;
     owl:imports :activity ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/product-system/0.1.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/product-system/0.1.0> ;
     owl:versionInfo "0.1.0" .
 
 :activity a owl:Ontology ;
@@ -1228,7 +1228,7 @@ act:Activity a owl:Class ;
     dcterms:title "PEFDPP Activity Module"@en ;
     owl:imports :dataquality,
         :flow ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/activity/0.1.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/activity/0.1.0> ;
     owl:versionInfo "0.1.0" .
 
 :lcia a owl:Ontology ;
@@ -1239,7 +1239,7 @@ act:Activity a owl:Class ;
     dcterms:references om: ;
     dcterms:title "PEFDPP LCIA Module"@en ;
     owl:imports :flow ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/lcia/0.1.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/lcia/0.1.0> ;
     owl:versionInfo "0.1.0" .
 
 :pefstudy a owl:Ontology ;
@@ -1254,7 +1254,7 @@ act:Activity a owl:Class ;
         :flow,
         :lcia,
         :product-system ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/pefstudy/0.1.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/pefstudy/0.1.0> ;
     owl:versionInfo "0.1.0" .
 
 :flow a owl:Ontology ;
@@ -1265,6 +1265,6 @@ act:Activity a owl:Class ;
     dcterms:references <http://data.europa.eu/ux2/cpa21/>,
         <http://www.eionet.europa.eu/vocabulary/catalogs/waste/> ;
     dcterms:title "PEFDPP Flow Module"@en ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/flow/0.1.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/flow/0.1.0> ;
     owl:versionInfo "0.1.0" .
 

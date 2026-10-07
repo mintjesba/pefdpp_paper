@@ -1,11 +1,11 @@
-@prefix efm: <https://w3id.org/mintjesba/pefdpp/ef31-lciamethods#> .
+@prefix efm: <https://w3id.org/pefdpp/ef31-lciamethods#> .
 
-@prefix efu: <https://w3id.org/mintjesba/pefdpp/ef31-units#> .
-@prefix efic: <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories#> .
-@prefix efii: <https://w3id.org/mintjesba/pefdpp/ef31-impactindicators#> .
-@prefix lcia: <https://w3id.org/mintjesba/pefdpp/lcia#> .
+@prefix efu: <https://w3id.org/pefdpp/ef31-units#> .
+@prefix efic: <https://w3id.org/pefdpp/skos/ef31-impactcategories#> .
+@prefix efii: <https://w3id.org/pefdpp/ef31-impactindicators#> .
+@prefix lcia: <https://w3id.org/pefdpp/lcia#> .
 
-@prefix :     <https://w3id.org/mintjesba/pefdpp/> .
+@prefix :     <https://w3id.org/pefdpp/> .
 
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -14,18 +14,18 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<https://w3id.org/mintjesba/pefdpp/ef31-lciamethods>
+<https://w3id.org/pefdpp/ef31-lciamethods>
     a owl:Ontology ;
     dcterms:title "EF 3.1 Life Cycle Impact Assessment Ontology" ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/ef31-lciamethods/1.0.0> ;
+    owl:versionIRI <https://w3id.org/pefdpp/ef31-lciamethods/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:source "Environmental Footprint (EF) 3.1 reference package, European Commission Joint Research Centre"@en ;
-    owl:imports <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories> ,
-                <https://w3id.org/mintjesba/pefdpp/ef31-impactindicators> ,
-                <https://w3id.org/mintjesba/pefdpp/ef31-units> ,
-                <https://w3id.org/mintjesba/pefdpp/lcia> ;
+    owl:imports <https://w3id.org/pefdpp/skos/ef31-impactcategories> ,
+                <https://w3id.org/pefdpp/ef31-impactindicators> ,
+                <https://w3id.org/pefdpp/ef31-units> ,
+                <https://w3id.org/pefdpp/lcia> ;
 
         .
 
