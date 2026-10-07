@@ -1,0 +1,1270 @@
+@prefix : <https://w3id.org/pefdpp/> .
+@prefix act: <https://w3id.org/pefdpp/activity#> .
+@prefix dataset: <https://w3id.org/pefdpp/dataset#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dq: <https://w3id.org/pefdpp/dataquality#> .
+@prefix flow: <https://w3id.org/pefdpp/flow#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lcia: <https://w3id.org/pefdpp/lcia#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ps: <https://w3id.org/pefdpp/pefstudy#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+: a owl:Ontology ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:description "Ontology for Product Environmental Footprint input and output data in Digital Product Passports"@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:title "PEFDPP Ontology"@en ;
+    owl:imports :activity,
+        :dataquality,
+        :dataset,
+        :flow,
+        :lcia,
+        :pefstudy,
+        :product-system ;
+    owl:versionIRI :0.1.0 ;
+    owl:versionInfo "0.1.0" .
+
+act:EconomicAllocation a act:AllocationMethod ;
+    rdfs:label "Economic Allocation"@en ;
+    rdfs:isDefinedBy :activity ;
+    skos:definition "Allocation based on the relative economic value of co-products."@en .
+
+act:PhysicalAllocation a act:AllocationMethod ;
+    rdfs:label "Physical Allocation"@en ;
+    rdfs:isDefinedBy :activity ;
+    skos:definition "Allocation based on a physical relationship between co-products, such as mass or energy content."@en .
+
+act:allocatedBy a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "allocated by"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range act:AllocationMethod ;
+    skos:definition "The allocation method applied to this activity, if allocation has been performed."@en .
+
+act:allocationBasis a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "allocation basis"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range om:Quantity ;
+    skos:definition "The physical or economic quantity used as the basis for allocation."@en .
+
+act:hasTemporalScope a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has temporal scope"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range act:TemporalScope ;
+    skos:definition "The temporal scope of this activity."@en .
+
+act:inputOf a owl:ObjectProperty ;
+    rdfs:label "input of"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range flow:Flow ;
+    skos:definition "A flow that is an input to this activity."@en .
+
+act:isAllocated a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "is allocated"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Indicates whether allocation has been applied to this activity."@en .
+
+act:outputOf a owl:ObjectProperty ;
+    rdfs:label "output of"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range flow:Flow ;
+    skos:definition "A flow that is an output of this activity."@en .
+
+dq:DQRReasoning a owl:DatatypeProperty ;
+    rdfs:label "DQR reasoning"@en ;
+    rdfs:domain dq:DQRScore ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range xsd:string ;
+    skos:definition "A textual justification for the assigned DQR score."@en .
+
+dq:DQRValue a owl:DatatypeProperty ;
+    rdfs:label "DQR value"@en ;
+    rdfs:domain dq:DQRScore ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range xsd:integer ;
+    skos:definition "The numeric DQR score, expressed as an integer on the EF 1–5 scale."@en .
+
+dq:aggregateDQR a owl:DatatypeProperty ;
+    rdfs:label "aggregate DQR"@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range xsd:decimal ;
+    skos:definition "The aggregate Data Quality Rating score, calculated from the individual DQR scores."@en .
+
+dq:geographicalRepresentativeness a owl:ObjectProperty ;
+    rdfs:label "geographical representativeness"@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range dq:DQRScore ;
+    skos:definition "DQR score for the degree to which the data reflect the intended geography."@en .
+
+dq:overallUncertainty a owl:DatatypeProperty ;
+    rdfs:label "overall uncertainty"@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range xsd:decimal ;
+    skos:definition "A measure of the overall uncertainty associated with the data."@en .
+
+dq:precisionScore a owl:ObjectProperty ;
+    rdfs:label "precision score"@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range dq:DQRScore ;
+    skos:definition "DQR score for the degree of exactness and variability of the data."@en .
+
+dq:technologicalRepresentativeness a owl:ObjectProperty ;
+    rdfs:label "technological representativeness"@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range dq:DQRScore ;
+    skos:definition "DQR score for the degree to which the data reflect the actual technology used."@en .
+
+dq:timeRepresentativeness a owl:ObjectProperty ;
+    rdfs:label "time representativeness"@en ;
+    rdfs:domain dq:DataQuality ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range dq:DQRScore ;
+    skos:definition "DQR score for the degree to which the data reflect the intended time period."@en .
+
+dataset:DPP a dataset:DatasetType ;
+    rdfs:label "DPP"@en ;
+    rdfs:isDefinedBy :dataset ;
+    skos:definition "A Digital Product Passport dataset."@en .
+
+dataset:EFCompliant a dataset:EFComplianceLevel ;
+    rdfs:label "EF Compliant"@en ;
+    rdfs:isDefinedBy :dataset ;
+    skos:definition "The dataset fully complies with the EF methodology."@en .
+
+dataset:ILCDEntryLevelCompliant a dataset:EFComplianceLevel ;
+    rdfs:label "ILCD Entry Level Compliant"@en ;
+    rdfs:isDefinedBy :dataset ;
+    skos:definition "The dataset complies with the ILCD entry level requirements."@en .
+
+dataset:NotEFCompliant a dataset:EFComplianceLevel ;
+    rdfs:label "Not EF Compliant"@en ;
+    rdfs:isDefinedBy :dataset ;
+    skos:definition "The dataset does not comply with the EF methodology."@en .
+
+dataset:Secondary a dataset:DatasetType ;
+    rdfs:label "Secondary"@en ;
+    rdfs:isDefinedBy :dataset ;
+    skos:definition "A secondary dataset, not originating from a DPP."@en .
+
+dataset:containsActivity a owl:ObjectProperty ;
+    rdfs:label "contains activity"@en ;
+    rdfs:domain dataset:LCIDataset ;
+    rdfs:isDefinedBy :dataset ;
+    rdfs:range act:Activity ;
+    skos:definition "An activity contained within this LCI dataset."@en .
+
+dataset:hasComplianceLevel a owl:ObjectProperty ;
+    rdfs:label "has compliance level"@en ;
+    rdfs:domain dataset:LCIDataset ;
+    rdfs:isDefinedBy :dataset ;
+    rdfs:range dataset:EFComplianceLevel ;
+    skos:definition "The EF compliance level of this LCI dataset."@en .
+
+dataset:hasDatasetType a owl:ObjectProperty ;
+    rdfs:label "has dataset type"@en ;
+    rdfs:domain dataset:LCIDataset ;
+    rdfs:isDefinedBy :dataset ;
+    rdfs:range dataset:DatasetType ;
+    skos:definition "The type of this LCI dataset."@en .
+
+flow:Assumed a flow:DerivationType ;
+    rdfs:label "Assumed"@en ;
+    rdfs:isDefinedBy :flow ;
+    skos:definition "The flow value was assumed in the absence of measured or calculated data."@en .
+
+flow:Calculated a flow:DerivationType ;
+    rdfs:label "Calculated"@en ;
+    rdfs:isDefinedBy :flow ;
+    skos:definition "The flow value was derived by calculation from other data."@en .
+
+flow:Estimated a flow:DerivationType ;
+    rdfs:label "Estimated"@en ;
+    rdfs:isDefinedBy :flow ;
+    skos:definition "The flow value was estimated based on expert judgement or proxy data."@en .
+
+flow:Measured a flow:DerivationType ;
+    rdfs:label "Measured"@en ;
+    rdfs:isDefinedBy :flow ;
+    skos:definition "The flow value was obtained by direct measurement."@en .
+
+flow:contextualLabel a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "contextual label"@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range rdfs:Literal ;
+    skos:definition "The flow's specific use in this Activity."@en .
+
+flow:hasCFFParameters a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has CFF parameters"@en ;
+    rdfs:domain flow:ProductFlow ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFParameters ;
+    skos:definition "The Circular Footprint Formula parameters associated with this product flow."@en .
+
+flow:hasEndOfLifeScenario a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has end of life scenario"@en ;
+    rdfs:domain flow:WasteFlow ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:EndOfLifeScenario ;
+    skos:definition "The end-of-life scenario associated with this waste flow."@en .
+
+flow:virginEquivalent a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "virgin equivalent"@en ;
+    rdfs:domain flow:ProductFlow ;
+    rdfs:isDefinedBy :flow ;
+    skos:definition "The virgin material equivalent of this product flow, used in CFF calculations."@en .
+
+lcia:Characterised a lcia:LCIAResultType ;
+    rdfs:label "Characterised"@en ;
+    rdfs:isDefinedBy :lcia ;
+    skos:definition "An LCIA result expressed in the characterisation unit of the impact category, obtained by multiplying inventory flows by characterisation factors."@en .
+
+lcia:Normalised a lcia:LCIAResultType ;
+    rdfs:label "Normalised"@en ;
+    rdfs:isDefinedBy :lcia ;
+    skos:definition "A characterised LCIA result divided by a reference value (normalisation factor) to express it relative to a reference system."@en .
+
+lcia:SingleScore a lcia:LCIAResultType ;
+    rdfs:label "Single score"@en ;
+    rdfs:isDefinedBy :lcia ;
+    skos:definition "The sum of all weighted LCIA results across all impact categories, expressing the overall environmental performance as a single dimensionless score."@en .
+
+lcia:Weighted a lcia:LCIAResultType ;
+    rdfs:label "Weighted"@en ;
+    rdfs:isDefinedBy :lcia ;
+    skos:definition "A normalised LCIA result multiplied by a weighting factor reflecting the relative importance of the impact category."@en .
+
+ps:CradleToGate a ps:BoundaryType ;
+    rdfs:label "Cradle-to-gate"@en ;
+    rdfs:isDefinedBy :pefstudy ;
+    skos:definition "System boundary encompassing raw material acquisition and manufacturing, up to the factory gate, excluding distribution, use, and end-of-life."@en .
+
+ps:CradleToGrave a ps:BoundaryType ;
+    rdfs:label "Cradle-to-grave"@en ;
+    rdfs:isDefinedBy :pefstudy ;
+    skos:definition "System boundary encompassing all life cycle stages from raw material acquisition through end-of-life."@en .
+
+ps:Distribution a ps:LifeCycleStage ;
+    rdfs:label "Distribution"@en ;
+    rdfs:isDefinedBy :product-system ;
+    skos:definition "The life cycle stage covering transport and storage of the product from the production facility to the end user."@en .
+
+ps:EndOfLife a ps:LifeCycleStage ;
+    rdfs:label "End of life"@en ;
+    rdfs:isDefinedBy :product-system ;
+    skos:definition "The life cycle stage covering the collection, sorting, recycling, energy recovery, and disposal of the product at end of its service life."@en .
+
+ps:Manufacturing a ps:LifeCycleStage ;
+    rdfs:label "Manufacturing"@en ;
+    rdfs:isDefinedBy :product-system ;
+    skos:definition "The life cycle stage covering the transformation of raw and intermediate materials into the final product within the production facility."@en .
+
+ps:RawMaterialAcquisition a ps:LifeCycleStage ;
+    rdfs:label "Raw material acquisition"@en ;
+    rdfs:isDefinedBy :product-system ;
+    skos:definition "The life cycle stage covering the extraction of resources from nature and their pre-processing, up to the point of entry into the production facility."@en .
+
+ps:Use a ps:LifeCycleStage ;
+    rdfs:label "Use"@en ;
+    rdfs:isDefinedBy :product-system ;
+    skos:definition "The life cycle stage covering the use of the product by the end user over its service life."@en .
+
+ps:conformsToStandard a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "conforms to standard"@en ;
+    rdfs:domain ps:FunctionalUnit ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range dcterms:Standard ;
+    skos:definition "A standard or methodology that this functional unit or study conforms to."@en .
+
+ps:hasContributionResult a owl:ObjectProperty ;
+    rdfs:label "has contribution result"@en ;
+    rdfs:domain ps:PEFStudy ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range lcia:ContributionResult ;
+    skos:definition "A contribution result associated with this PEF study."@en .
+
+ps:hasLCIAResult a owl:ObjectProperty ;
+    rdfs:label "has LCIA result"@en ;
+    rdfs:domain ps:PEFStudy ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range lcia:LCIAResult ;
+    skos:definition "An LCIA result associated with this PEF study."@en .
+
+act:ActivityType a owl:Class ;
+    rdfs:label "Activity Type"@en ;
+    rdfs:isDefinedBy :activity ;
+    skos:definition "The type of activity. Instances should be mapped to the ILCD process category system using skos:exactMatch, skos:closeMatch, or skos:broadMatch."@en .
+
+act:Geography a owl:Class ;
+    rdfs:label "Geography"@en ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:subClassOf skos:Concept ;
+    skos:definition "A geographic location or region associated with an activity, drawn from the PEFGeographies classification scheme."@en ;
+    skos:scopeNote "Instances should use skos:inScheme to reference the PEFGeographies classification scheme."@en .
+
+act:endDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "end date"@en ;
+    rdfs:domain act:TemporalScope ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range xsd:date ;
+    skos:definition "The end date of the temporal scope of an activity."@en .
+
+act:hasActivityType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has activity type"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range act:ActivityType ;
+    skos:definition "The type of this activity."@en .
+
+act:hasDeterminingFlow a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has determining flow"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range flow:Flow ;
+    skos:definition "The flow that determines the reference quantity of this activity."@en .
+
+act:hasGeography a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has geography"@en ;
+    rdfs:domain act:Activity ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range act:Geography ;
+    skos:definition "The geography associated with this activity."@en .
+
+act:startDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "start date"@en ;
+    rdfs:domain act:TemporalScope ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:range xsd:date ;
+    skos:definition "The start date of the temporal scope of an activity."@en .
+
+dq:hasDataQuality a owl:ObjectProperty ;
+    rdfs:label "has data quality"@en ;
+    rdfs:isDefinedBy :dataquality ;
+    rdfs:range dq:DataQuality ;
+    skos:definition "Associates an Activity, LCIDataset, or PEFStudy with its data quality assessment."@en .
+
+flow:ElementaryFlow a owl:Class ;
+    rdfs:label "Elementary Flow"@en ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:subClassOf skos:Concept,
+        flow:FlowType ;
+    skos:definition "A flow exchanged with the natural environment, drawn from the EF 3.1 elementary flows list."@en ;
+    skos:scopeNote "Instances should use skos:inScheme to reference the EF3.1 ElementaryFlows classification scheme."@en .
+
+flow:WasteFlow a owl:Class ;
+    rdfs:label "Waste Flow"@en ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:subClassOf flow:FlowType ;
+    skos:definition "A flow representing waste. May be mapped to EWC classifications via skos:exactMatch or skos:closeMatch."@en ;
+    skos:scopeNote "Use skos:exactMatch, skos:closeMatch, or skos:broadMatch to link to concepts in external classification schemes such as EWC."@en .
+
+flow:cffAllocationFactorA a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "CFF allocation factor A"@en ;
+    rdfs:domain flow:CFFParameters ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "CFF allocation factor A, representing the burden allocated to the first use of a material."@en .
+
+flow:cffAllocationFactorB a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "CFF allocation factor B"@en ;
+    rdfs:domain flow:CFFParameters ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "CFF allocation factor B, representing the burden allocated to end-of-life treatment."@en .
+
+flow:disposalActivity a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "disposal activity"@en ;
+    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range act:Activity ;
+    skos:definition "The activity representing the disposal process for this waste flow."@en ;
+    skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en .
+
+flow:energyRecoveryActivity a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "energy recovery activity"@en ;
+    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range act:Activity ;
+    skos:definition "The activity representing the energy recovery process for this waste flow."@en ;
+    skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en .
+
+flow:energyRecoveryRate a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "energy recovery rate"@en ;
+    rdfs:domain flow:CFFParameters ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "The proportion of this product flow that undergoes energy recovery at end of life."@en .
+
+flow:eolCffAllocationFactorB a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "end-of-life CFF allocation factor B"@en ;
+    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "CFF allocation factor B applied at end of life for this waste flow."@en .
+
+flow:eolEnergyRecoveryRate a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "end-of-life energy recovery rate"@en ;
+    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "The proportion of this waste flow that undergoes energy recovery at end of life."@en .
+
+flow:eolRecyclingRate a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "end-of-life recycling rate"@en ;
+    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "The proportion of this waste flow that is recycled at end of life."@en .
+
+flow:hasDerivationType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has derivation type"@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:DerivationType ;
+    skos:definition "How the value of this flow was derived."@en .
+
+flow:hasFlowType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has flow type"@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:FlowType ;
+    skos:definition "The type of this flow."@en .
+
+flow:hasJustification a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has justification"@en ;
+    rdfs:domain flow:CFFValue ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range rdfs:Literal ;
+    skos:definition "A textual justification for a company-specific CFF value."@en .
+
+flow:hasMeasure a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has measure"@en ;
+    rdfs:domain flow:Flow ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range om:Measure ;
+    skos:definition "The quantitative measure of this flow, including numerical value and unit."@en .
+
+flow:hasValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has value"@en ;
+    rdfs:domain flow:CFFValue ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range xsd:decimal ;
+    skos:definition "The numeric value of this CFF parameter."@en .
+
+flow:isCompanySpecific a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "is company specific"@en ;
+    rdfs:domain flow:CFFValue ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Indicates whether this CFF value is company-specific rather than a default value."@en .
+
+flow:recyclabilityRate a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "recyclability rate"@en ;
+    rdfs:domain flow:CFFParameters ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "The proportion of this product flow that is recyclable at end of life."@en .
+
+flow:recycledContentRate a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "recycled content rate"@en ;
+    rdfs:domain flow:CFFParameters ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "The proportion of recycled content in this product flow."@en .
+
+flow:recyclingActivity a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "recycling activity"@en ;
+    rdfs:domain flow:EndOfLifeScenario ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:range act:Activity ;
+    skos:definition "The activity representing the recycling process for this waste flow."@en ;
+    skos:scopeNote "Range: act:Activity — declared in pefdpp.ttl to avoid circular import."@en .
+
+lcia:ImpactAssessmentMethod a owl:Class ;
+    rdfs:label "Impact Assessment Method"@en ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty rdfs:label ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty owl:versionInfo ] ;
+    skos:definition "The characterisation method used to calculate results for an impact category, e.g. IPCC AR6 for climate change or ReCiPe for particulate matter."@en .
+
+lcia:ImpactIndicatorUnit a owl:Class ;
+    rdfs:label "Impact Indicator Unit"@en ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:subClassOf om:Unit ;
+    skos:definition "The unit of measurement for an impact category indicator, e.g. kg CO2 eq. for climate change or mol H+ eq. for acidification."@en .
+
+lcia:calculatedByMethod a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "calculated by method"@en ;
+    rdfs:domain lcia:ImpactCategory ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range lcia:ImpactAssessmentMethod ;
+    skos:definition "The impact assessment method used to calculate results for this impact category."@en .
+
+lcia:contributionShare a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "contribution share"@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range xsd:decimal ;
+    skos:definition "The fractional share (0.0–1.0) of this contribution result relative to the total LCIA result for its impact category."@en .
+
+lcia:forActivityLink a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "for activity link"@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range ps:ActivityLink ;
+    skos:definition "The activity link to which this contribution result is attributed."@en ;
+    skos:scopeNote "Range: ps:ActivityLink — declared in pefdpp.ttl to avoid circular import."@en .
+
+lcia:forElementaryFlow a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "for elementary flow"@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range flow:ElementaryFlow ;
+    skos:definition "The elementary flow to which this contribution result is attributed."@en .
+
+lcia:forImpactCategory a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "for impact category"@en ;
+    rdfs:domain lcia:LCIAResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range lcia:ImpactCategory ;
+    skos:definition "The impact category to which this LCIA result corresponds."@en .
+
+lcia:forLifeCycleStage a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "for life cycle stage"@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range ps:LifeCycleStage ;
+    skos:definition "The life cycle stage to which this contribution result is attributed."@en ;
+    skos:scopeNote "Range: ps:LifeCycleStage — declared in pefdpp.ttl to avoid circular import."@en .
+
+lcia:forSpecificCFFValue a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "for specific CFF value"@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range flow:CFFValue ;
+    skos:definition "The specific CFF parameter value to which this contribution result is attributed, used in contribution analysis of circular footprint formula terms."@en .
+
+lcia:hasIndicatorUnit a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has indicator unit"@en ;
+    rdfs:domain lcia:ImpactCategory ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range lcia:ImpactIndicatorUnit ;
+    skos:definition "The unit in which the characterised result for this impact category is expressed."@en .
+
+lcia:hasLCIAResultType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has LCIA result type"@en ;
+    rdfs:domain lcia:LCIAResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range lcia:LCIAResultType ;
+    skos:definition "The type of this LCIA result — characterised, normalised, weighted, or single score."@en .
+
+lcia:hasMeasure a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has measure"@en ;
+    rdfs:domain lcia:LCIAResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range om:Measure ;
+    skos:definition "The numeric value and unit of this LCIA result."@en .
+
+lcia:isMostRelevant a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "is most relevant"@en ;
+    rdfs:domain lcia:ContributionResult ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Indicates whether this contribution is among the most relevant contributions to the total impact of its impact category, as defined by the PEF relevance threshold."@en .
+
+ps:biodiversityRelevance a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "biodiversity relevance"@en ;
+    rdfs:domain ps:Scope ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "A statement on the relevance of biodiversity impacts to this PEF study."@en .
+
+ps:commissioner a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "commissioner"@en ;
+    rdfs:domain ps:Goal ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range foaf:Agent ;
+    skos:definition "The organisation or person who commissioned this PEF study."@en .
+
+ps:cutOffCriteria a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "cut-off criteria"@en ;
+    rdfs:domain ps:SystemBoundary ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "The criteria applied to determine which processes or flows are excluded from the system boundary."@en .
+
+ps:decisionContext a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "decision context"@en ;
+    rdfs:domain ps:Goal ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "The decision context for which this PEF study is conducted — the type of decision it is intended to support."@en .
+
+ps:forActivity a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "for activity"@en ;
+    rdfs:domain ps:ActivityLink ;
+    rdfs:isDefinedBy :product-system ;
+    rdfs:range act:Activity ;
+    skos:definition "The activity that this activity link references within the product system."@en .
+
+ps:hasActivityLink a owl:ObjectProperty ;
+    rdfs:label "has activity link"@en ;
+    rdfs:domain ps:ProductSystem ;
+    rdfs:isDefinedBy :product-system ;
+    rdfs:range ps:ActivityLink ;
+    skos:definition "An activity link connecting this product system to a modelled activity."@en .
+
+ps:hasAssumption a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has assumption"@en ;
+    rdfs:domain ps:Scope ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "Key assumptions made in this PEF study scope."@en .
+
+ps:hasBoundaryType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has boundary type"@en ;
+    rdfs:domain ps:SystemBoundary ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range ps:BoundaryType ;
+    skos:definition "The type of system boundary applied in this PEF study."@en .
+
+ps:hasFunctionalUnit a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has functional unit"@en ;
+    rdfs:domain ps:Scope ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range ps:FunctionalUnit ;
+    skos:definition "The functional unit of this PEF study scope."@en .
+
+ps:hasGoal a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has goal"@en ;
+    rdfs:domain ps:PEFStudy ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range ps:Goal ;
+    skos:definition "The goal of this PEF study."@en .
+
+ps:hasLifeCycleStage a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has life cycle stage"@en ;
+    rdfs:domain ps:ActivityLink ;
+    rdfs:isDefinedBy :product-system ;
+    rdfs:range ps:LifeCycleStage ;
+    skos:definition "The life cycle stage to which this activity link belongs."@en .
+
+ps:hasLimitation a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has limitation"@en ;
+    rdfs:domain ps:Scope ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "Key limitations of this PEF study scope."@en .
+
+ps:hasProductSystem a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has product system"@en ;
+    rdfs:domain ps:PEFStudy ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range ps:ProductSystem ;
+    skos:definition "The product system modelled in this PEF study."@en .
+
+ps:hasReferenceFlow a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has reference flow"@en ;
+    rdfs:domain ps:FunctionalUnit ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range flow:Flow ;
+    skos:definition "The reference flow quantifying the functional unit — the flow to which all other flows are scaled."@en .
+
+ps:hasScalingFactor a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has scaling factor"@en ;
+    rdfs:domain ps:ActivityLink ;
+    rdfs:isDefinedBy :product-system ;
+    rdfs:range xsd:decimal ;
+    skos:definition "The factor by which the activity's flows are scaled relative to the functional unit. Defaults to 1.0 if not specified."@en .
+
+ps:hasScope a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has scope"@en ;
+    rdfs:domain ps:PEFStudy ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range ps:Scope ;
+    skos:definition "The scope of this PEF study."@en .
+
+ps:hasSystemBoundary a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has system boundary"@en ;
+    rdfs:domain ps:Scope ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range ps:SystemBoundary ;
+    skos:definition "The system boundary of this PEF study scope."@en .
+
+ps:hasSystemDiagram a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has system diagram"@en ;
+    rdfs:domain ps:ProductSystem ;
+    rdfs:isDefinedBy :product-system ;
+    rdfs:range foaf:Image ;
+    skos:definition "An image representing the system diagram of this product system."@en .
+
+ps:howLongProvided a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "how long provided"@en ;
+    rdfs:domain ps:FunctionalUnit ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range om:Measure ;
+    skos:definition "The duration over which the function is provided, expressed as an om:Measure."@en .
+
+ps:howMuchProvided a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "how much provided"@en ;
+    rdfs:domain ps:FunctionalUnit ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range om:Measure ;
+    skos:definition "The quantity of the function provided, expressed as an om:Measure."@en .
+
+ps:howWellProvided a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "how well provided"@en ;
+    rdfs:domain ps:FunctionalUnit ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "A description of the quality or performance level at which the function is provided."@en .
+
+ps:includesImpactCategory a owl:ObjectProperty ;
+    rdfs:label "includes impact category"@en ;
+    rdfs:domain ps:Scope ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range lcia:ImpactCategory ;
+    skos:definition "An impact category included in the scope of this PEF study."@en .
+
+ps:intendedApplication a owl:DatatypeProperty ;
+    rdfs:label "intended application"@en ;
+    rdfs:domain ps:Goal ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "A description of the intended application of this PEF study."@en .
+
+ps:notCoveredAspect a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "not covered aspect"@en ;
+    rdfs:domain ps:FunctionalUnit ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "An aspect of the function that is explicitly not covered by this functional unit."@en .
+
+ps:systemBoundaryJustification a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "system boundary justification"@en ;
+    rdfs:domain ps:SystemBoundary ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "A justification for the chosen system boundary."@en .
+
+ps:verifier a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "verifier"@en ;
+    rdfs:domain ps:Goal ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range foaf:Agent ;
+    skos:definition "The organisation or person who verified this PEF study."@en .
+
+ps:whatProvided a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "what provided"@en ;
+    rdfs:domain ps:FunctionalUnit ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:range xsd:string ;
+    skos:definition "A description of what function or service the product system provides."@en .
+
+flow:ProductFlow a owl:Class ;
+    rdfs:label "Product Flow"@en ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:subClassOf flow:FlowType ;
+    skos:definition "A flow representing a product or co-product. May be mapped to CPA classifications via skos:exactMatch or skos:closeMatch."@en ;
+    skos:scopeNote "Use skos:exactMatch, skos:closeMatch, or skos:broadMatch to link to concepts in external classification schemes such as CPA."@en .
+
+act:AllocationMethod a owl:Class ;
+    rdfs:label "Allocation Method"@en ;
+    rdfs:isDefinedBy :activity ;
+    skos:definition "The method used to allocate environmental burdens between co-products of an activity."@en .
+
+act:TemporalScope a owl:Class ;
+    rdfs:label "Temporal Scope"@en ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty act:startDate ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty act:endDate ] ;
+    skos:definition "The time period covered by an activity, defined by a start and end date."@en .
+
+dataset:DatasetType a owl:Class ;
+    rdfs:label "Dataset Type"@en ;
+    rdfs:isDefinedBy :dataset ;
+    skos:definition "The type of LCI dataset, indicating whether it is a Digital Product Passport dataset or a secondary dataset."@en .
+
+dataset:LCIDataset a owl:Class ;
+    rdfs:label "LCI Dataset"@en ;
+    rdfs:isDefinedBy :dataset ;
+    rdfs:subClassOf dcat:Dataset ;
+    skos:definition "A dataset containing life cycle inventory data, conforming to either a DPP or secondary data format."@en ;
+    skos:scopeNote "Use dq:hasDataQuality to associate a DataQuality assessment with this dataset."@en .
+
+ps:BoundaryType a owl:Class ;
+    rdfs:label "Boundary Type"@en ;
+    rdfs:isDefinedBy :pefstudy ;
+    skos:definition "The type of system boundary used in a PEF study."@en .
+
+ps:ProductSystem a owl:Class ;
+    rdfs:label "Product System"@en ;
+    rdfs:isDefinedBy :product-system ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasActivityLink ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasSystemDiagram ] ;
+    skos:definition "The set of activities and flows modelled in a PEF study, linked together to represent the life cycle of a product."@en .
+
+dataset:EFComplianceLevel a owl:Class ;
+    rdfs:label "EF Compliance Level"@en ;
+    rdfs:isDefinedBy :dataset ;
+    skos:definition "The level of compliance of an LCI dataset with the EF (Environmental Footprint) methodology."@en .
+
+flow:FlowType a owl:Class ;
+    rdfs:label "Flow Type"@en ;
+    rdfs:isDefinedBy :flow ;
+    skos:definition "The type of flow — product, waste, or elementary."@en .
+
+lcia:ImpactCategory a owl:Class ;
+    rdfs:label "Impact Category"@en ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty rdfs:label ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:calculatedByMethod ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:hasIndicatorUnit ] ;
+    skos:definition "An environmental impact category assessed in an LCIA, such as climate change, acidification, or water use. Corresponds to one of the 16 EF impact categories."@en .
+
+ps:SystemBoundary a owl:Class ;
+    rdfs:label "System Boundary"@en ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasBoundaryType ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:cutOffCriteria ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:systemBoundaryJustification ] ;
+    skos:definition "The system boundary of a PEF study, specifying which life cycle stages and processes are included, the boundary type, cut-off criteria, and justification."@en .
+
+flow:DerivationType a owl:Class ;
+    rdfs:label "Derivation Type"@en ;
+    rdfs:isDefinedBy :flow ;
+    skos:definition "How the value of a flow was derived."@en .
+
+lcia:LCIAResult a owl:Class ;
+    rdfs:label "LCIA Result"@en ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:hasMeasure ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:forImpactCategory ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:hasLCIAResultType ] ;
+    skos:definition "A Life Cycle Impact Assessment result for a specific impact category in a PEF study, expressed as a measure and associated with a result type."@en .
+
+lcia:LCIAResultType a owl:Class ;
+    rdfs:label "LCIA Result Type"@en ;
+    rdfs:isDefinedBy :lcia ;
+    skos:definition "The type of LCIA result — whether it is a characterised, normalised, weighted, or single score result."@en .
+
+ps:ActivityLink a owl:Class ;
+    rdfs:label "Activity Link"@en ;
+    rdfs:isDefinedBy :product-system ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:forActivity ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasLifeCycleStage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasScalingFactor ] ;
+    skos:definition "A link between a product system and an activity, specifying the activity's role in the system, its scaling factor, and the life cycle stage it belongs to."@en .
+
+ps:Goal a owl:Class ;
+    rdfs:label "Goal"@en ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:intendedApplication ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:decisionContext ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty dcterms:audience ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:commissioner ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:verifier ] ;
+    skos:definition "The goal of a PEF study, describing its intended application, target audience, decision context, commissioner, and verifier."@en .
+
+ps:PEFStudy a owl:Class ;
+    rdfs:label "PEF Study"@en ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasGoal ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasScope ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasProductSystem ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty dq:hasDataQuality ] ;
+    skos:definition "A Product Environmental Footprint study, comprising a goal, scope, product system, LCI data, and LCIA results."@en ;
+    skos:scopeNote "Use dq:hasDataQuality to associate a DataQuality assessment with this study."@en .
+
+dq:DQRScore a owl:Class ;
+    rdfs:label "DQR Score"@en ;
+    rdfs:isDefinedBy :dataquality ;
+    skos:definition "A single Data Quality Rating score for one quality dimension, comprising a numeric value and optional reasoning."@en .
+
+flow:CFFParameters a owl:Class ;
+    rdfs:label "CFF Parameters"@en ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:recycledContentRate ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:recyclabilityRate ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:energyRecoveryRate ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:cffAllocationFactorA ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:cffAllocationFactorB ] ;
+    skos:definition "The set of Circular Footprint Formula parameters associated with a product flow."@en .
+
+dq:DataQuality a owl:Class ;
+    rdfs:label "Data Quality"@en ;
+    rdfs:isDefinedBy :dataquality ;
+    skos:definition "A structured assessment of the quality of data associated with an Activity or LCIDataset, composed of individual DQR scores and aggregate indicators."@en .
+
+flow:EndOfLifeScenario a owl:Class ;
+    rdfs:label "End of Life Scenario"@en ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:eolRecyclingRate ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:eolEnergyRecoveryRate ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:eolCffAllocationFactorB ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:recyclingActivity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:energyRecoveryActivity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:disposalActivity ] ;
+    skos:definition "The end-of-life scenario for a waste flow, describing recycling, energy recovery, and disposal rates and associated activities."@en .
+
+lcia:ContributionResult a owl:Class ;
+    rdfs:label "Contribution Result"@en ;
+    rdfs:isDefinedBy :lcia ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:forLifeCycleStage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:forActivityLink ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:forElementaryFlow ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:forSpecificCFFValue ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:isMostRelevant ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty lcia:contributionShare ],
+        lcia:LCIAResult ;
+    skos:definition "A disaggregated LCIA result showing the contribution of a specific life cycle stage, activity, elementary flow, or CFF value to the total impact of an impact category."@en .
+
+ps:LifeCycleStage a owl:Class ;
+    rdfs:label "Life Cycle Stage"@en ;
+    rdfs:isDefinedBy :product-system ;
+    skos:definition "A stage of the product life cycle as defined in the PEF methodology."@en .
+
+ps:Scope a owl:Class ;
+    rdfs:label "Scope"@en ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasFunctionalUnit ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasSystemBoundary ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:includesImpactCategory ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasAssumption ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasLimitation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:biodiversityRelevance ] ;
+    skos:definition "The scope of a PEF study, defining the functional unit, system boundary, impact categories, assumptions, and limitations."@en .
+
+flow:Flow a owl:Class ;
+    rdfs:label "Flow"@en ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:hasFlowType ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:hasMeasure ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:hasDerivationType ] ;
+    skos:definition "A material, energy, or elementary flow that is an input or output of an activity."@en .
+
+ps:FunctionalUnit a owl:Class ;
+    rdfs:label "Functional Unit"@en ;
+    rdfs:isDefinedBy :pefstudy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:whatProvided ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:howWellProvided ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:howMuchProvided ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:howLongProvided ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:hasReferenceFlow ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ps:notCoveredAspect ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty dcterms:conformsTo ] ;
+    skos:definition "The quantified description of the performance of a product system for use as a reference unit in a PEF study, answering what is provided, how well, how much, and for how long."@en .
+
+:dataset a owl:Ontology ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:description "Classes and properties for LCI datasets in the PEFDPP ontology."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:references dcat: ;
+    dcterms:title "PEFDPP Dataset Module"@en ;
+    owl:imports :activity,
+        :dataquality ;
+    owl:versionIRI <https://w3id.org/pefdpp/dataset/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+flow:CFFValue a owl:Class ;
+    rdfs:label "CFF Value"@en ;
+    rdfs:isDefinedBy :flow ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:isCompanySpecific ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:hasJustification ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty flow:hasValue ] ;
+    skos:definition "A single Circular Footprint Formula value, comprising a numeric value, a company-specific flag, and an optional justification."@en .
+
+act:Activity a owl:Class ;
+    rdfs:label "Activity"@en ;
+    rdfs:isDefinedBy :activity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty act:hasActivityType ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty act:hasGeography ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty act:hasDeterminingFlow ] ;
+    skos:definition "A unit process or activity within the life cycle inventory, characterised by its type, geography, temporal scope, and data quality."@en ;
+    skos:scopeNote "Use dq:hasDataQuality to associate a DataQuality assessment with this activity."@en .
+
+:dataquality a owl:Ontology ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:description "Classes and properties for representing data quality scores in the PEFDPP ontology, following the EF Data Quality Rating (DQR) approach."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:title "PEFDPP Data Quality Module"@en ;
+    owl:versionIRI <https://w3id.org/pefdpp/dataquality/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+:product-system a owl:Ontology ;
+    dcterms:created "2026-05-22"^^xsd:date ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:description "Classes and properties for modelling the product system of a PEF study, including activity links, life cycle stages, and system diagrams."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:references foaf: ;
+    dcterms:title "PEFDPP Product System Module"@en ;
+    owl:imports :activity ;
+    owl:versionIRI <https://w3id.org/pefdpp/product-system/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+:activity a owl:Ontology ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:description "Classes and properties for activities in the PEFDPP ontology, including geography, temporal scope, and allocation."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:references om: ;
+    dcterms:title "PEFDPP Activity Module"@en ;
+    owl:imports :dataquality,
+        :flow ;
+    owl:versionIRI <https://w3id.org/pefdpp/activity/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+:lcia a owl:Ontology ;
+    dcterms:created "2026-05-22"^^xsd:date ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:description "Classes and properties for Life Cycle Impact Assessment results in the PEFDPP ontology, including impact categories, assessment methods, indicator units, result types, and contribution analysis."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:references om: ;
+    dcterms:title "PEFDPP LCIA Module"@en ;
+    owl:imports :flow ;
+    owl:versionIRI <https://w3id.org/pefdpp/lcia/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+:pefstudy a owl:Ontology ;
+    dcterms:created "2026-05-22"^^xsd:date ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:description "Classes and properties for the goal, scope, functional unit, and system boundary of a Product Environmental Footprint study."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:references om:,
+        foaf: ;
+    dcterms:title "PEFDPP PEF Study Module"@en ;
+    owl:imports :dataquality,
+        :flow,
+        :lcia,
+        :product-system ;
+    owl:versionIRI <https://w3id.org/pefdpp/pefstudy/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+:flow a owl:Ontology ;
+    dcterms:created "2026-05-11"^^xsd:date ;
+    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:description "Classes and properties for flows in the PEFDPP ontology, including product, waste, and elementary flows, CFF parameters, and end-of-life scenarios."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:references <http://data.europa.eu/ux2/cpa21/>,
+        <http://www.eionet.europa.eu/vocabulary/catalogs/waste/> ;
+    dcterms:title "PEFDPP Flow Module"@en ;
+    owl:versionIRI <https://w3id.org/pefdpp/flow/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+

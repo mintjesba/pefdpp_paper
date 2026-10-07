@@ -180,7 +180,7 @@ act:BatteryUseProxy a act:ActivityType ; rdfs:label "BatteryUseProxy"@en .
 :BatteryUseProxyAct_flow0_BatteryUse
     a flow:Flow ;
     flow:hasFlowType ft:BatteryUse ;
-    flow:contextualLabel "battery use (proxy)" ;
+    flow:contextualLabel "battery use (proxy)"@en ;
     act:outputOf :BatteryUseProxyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1.0"^^xsd:decimal ] ;
     .

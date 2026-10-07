@@ -215,7 +215,7 @@ act:startDate
     rdfs:label "start date"@en ;
     skos:definition "The start date of the temporal scope of an activity."@en ;
     rdfs:domain act:TemporalScope ;
-    rdfs:range xsd:dateTime ;
+    rdfs:range xsd:date ;
     rdfs:isDefinedBy <https://w3id.org/pefdpp/activity> ;
     .
 
@@ -224,6 +224,6 @@ act:endDate
     rdfs:label "end date"@en ;
     skos:definition "The end date of the temporal scope of an activity."@en ;
     rdfs:domain act:TemporalScope ;
-    rdfs:range xsd:dateTime ;
+    rdfs:range xsd:date ;
     rdfs:isDefinedBy <https://w3id.org/pefdpp/activity> ;
     .

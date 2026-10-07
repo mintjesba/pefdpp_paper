@@ -59,14 +59,14 @@ act:MetalTreatment a act:ActivityType ; rdfs:label "Metal Treatment"@en .
 :BatteryDisassemblyAct_flow0_EoLBatteryDisassemblyRef
     a flow:Flow ;
     flow:hasFlowType ft:EoLBatteryDisassembly ;
-    flow:contextualLabel "EoL treatment of kg battery pack" ;
+    flow:contextualLabel "EoL treatment of kg battery pack"@en ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "1"^^xsd:decimal ] .
 
 :BatteryDisassemblyAct_flow1_BatteryCellToTreatment
     a flow:Flow ;
     flow:hasFlowType ft:BatteryCellToTreatment ;
-    flow:contextualLabel "pyrometallurgical treatment of battery cells" ;
+    flow:contextualLabel "pyrometallurgical treatment of battery cells"@en ;
     act:outputOf :BatteryDisassemblyAct ;
     flow:hasMeasure [ a om:Measure ; om:hasUnit efu:Kilogram ; om:hasNumericalValue "0.72590929"^^xsd:decimal ] .
 

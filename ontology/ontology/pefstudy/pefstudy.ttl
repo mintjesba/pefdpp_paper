@@ -453,7 +453,7 @@ ps:RFtoFUConversion
     rdfs:label "reference flow to FU conversion"@en ;
     skos:definition "The conversion factor to go from reference flow to Functional Unit."@en ;
     rdfs:domain ps:FunctionalUnit ;
-    rdfs:range xsd:decimal ;
+    rdfs:range xsd:double ;
     :PEFRequired true ;
     rdfs:isDefinedBy <https://w3id.org/pefdpp/pefstudy> ;
     .
