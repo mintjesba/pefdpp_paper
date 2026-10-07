@@ -25,7 +25,6 @@ ontology/
     ef/                         EF 3.1 units, impact indicators and LCIA methods
     skos/                       SKOS vocabularies: EF 3.1 elementary flows and impact
                                 categories, PEF geographies, additional-information topics
-  docs/diagrams/                Diagrams of the input and output sides of the ontology
 case-study/
   lcidatasets/
     dpp/                        Foreground LCI datasets as they would be carried in DPPs
@@ -71,7 +70,7 @@ The script adds the case-study foreground databases to the `ecoinvent312` projec
 
 ## Licence
 
-- Ontology and case-study data (`*.ttl`, diagrams): [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+- Ontology and case-study data (`*.ttl`): [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
 - Code (`case-study/calculations/project-setup.py`): MIT licence
 
 See [LICENSE](LICENSE).
