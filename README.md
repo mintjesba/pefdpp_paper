@@ -6,7 +6,7 @@ This repository contains the **PEFDPP ontology**, an OWL 2 DL ontology for encod
 
 Ontology version: **1.0.0**. Namespace: `https://w3id.org/pefdpp/`
 
-Note: the namespace currently does not resolve yet, and the ontology files should be loaded separately.
+Note: the namespace does not resolve yet, and the ontology files should be loaded separately.
 
 ## Contents
 
