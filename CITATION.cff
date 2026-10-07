@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this dataset, please cite the article below."
 title: "PEFDPP ontology and battery case study"
 version: "1.0.0"
-date-released: 2026-10-05
+date-released: 2026-10-07
 license: CC-BY-4.0
 repository-code: "https://github.com/mintjesba/pefdpp_paper"
 url: "https://w3id.org/pefdpp/"
