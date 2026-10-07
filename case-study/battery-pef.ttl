@@ -346,7 +346,7 @@
     lcia:forImpactCategory efic:LandUse ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DimensionlessPoint ;
-                      om:hasNumericalValue "0.6305"^^xsd:double ] .
+                      om:hasNumericalValue "0.6304"^^xsd:double ] .
 
 :LCIA_ResourceUseMineralsAndMetals
     a lcia:LCIAResult ;
@@ -396,7 +396,7 @@
     lcia:forImpactCategory efic:ParticulateMatter ;
     lcia:hasLCIAResultType lcia:Characterised ;
     lcia:hasMeasure [ a om:Measure ; om:hasUnit efu:DiseaseIncidence ;
-                      om:hasNumericalValue "1.305E-08"^^xsd:double ] .
+                      om:hasNumericalValue "1.304E-08"^^xsd:double ] .
 
 :LCIA_EutrophicationMarine
     a lcia:LCIAResult ;
