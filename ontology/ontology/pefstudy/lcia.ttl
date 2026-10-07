@@ -23,11 +23,11 @@
 
 <https://w3id.org/mintjesba/pefdpp/lcia>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/lcia/0.1.0> ;
-    owl:versionInfo "0.1.0" ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/lcia/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP LCIA Module"@en ;
     dcterms:description "Classes and properties for Life Cycle Impact Assessment results in the PEFDPP ontology, including impact categories, assessment methods, indicator units, result types, and contribution analysis."@en ;
-    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-22"^^xsd:date ;
     dcterms:references <http://www.ontology-of-units-of-measure.org/resource/om-2/> ;

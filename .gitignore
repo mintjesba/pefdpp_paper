@@ -4,3 +4,5 @@ text_coding/pef_recommendation*
 case-study/calculations/pefdpp-env
 .claude
 .vscode
+__pycache__/
+ontology/docs/diagrams/.$*

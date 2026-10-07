@@ -17,7 +17,11 @@
 <https://w3id.org/mintjesba/pefdpp/ef31-lciamethods>
     a owl:Ontology ;
     dcterms:title "EF 3.1 Life Cycle Impact Assessment Ontology" ;
-    dcterms:creator "Berend Mintjes - Leiden University" ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/ef31-lciamethods/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:source "Environmental Footprint (EF) 3.1 reference package, European Commission Joint Research Centre"@en ;
     owl:imports <https://w3id.org/mintjesba/pefdpp/skos/ef31-impactcategories> ,
                 <https://w3id.org/mintjesba/pefdpp/ef31-impactindicators> ,
                 <https://w3id.org/mintjesba/pefdpp/ef31-units> ,

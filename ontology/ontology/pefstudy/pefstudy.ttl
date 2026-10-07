@@ -27,7 +27,7 @@
 
 <https://w3id.org/mintjesba/pefdpp/pefstudy>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/pefstudy/0.1.0> ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/pefstudy/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP PEF Study Module"@en ;
     dcterms:description "Classes and properties for the goal, scope, functional unit, and system boundary of a Product Environmental Footprint study."@en ;

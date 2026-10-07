@@ -23,11 +23,11 @@
 
 <https://w3id.org/mintjesba/pefdpp/activity>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/activity/0.1.0> ;
-    owl:versionInfo "0.1.0" ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/activity/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP Activity Module"@en ;
     dcterms:description "Classes and properties for activities in the PEFDPP ontology, including geography, temporal scope, and allocation."@en ;
-    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-11"^^xsd:date ;
     dcterms:references <http://www.ontology-of-units-of-measure.org/resource/om-2/> ;

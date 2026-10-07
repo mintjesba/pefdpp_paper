@@ -11,7 +11,11 @@
 
 <https://w3id.org/mintjesba/pefdpp/ef31-units> a owl:Ontology;
     dcterms:title "EF 3.1 Units";
-    dcterms:creator "Berend Mintjes - Leiden University" .
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/ef31-units/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:source "Environmental Footprint (EF) 3.1 reference package, European Commission Joint Research Centre"@en .
 
 ######################################################################
 # ELEMENTARY FLOW UNITS

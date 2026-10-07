@@ -19,11 +19,11 @@
 
 <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies/0.1.0> ;
-    owl:versionInfo "0.1.0" ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/skos/pef-geographies/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
     dcterms:title "PEF Geographies"@en ;
     dcterms:description "SKOS concept scheme of geographic regions used in PEF life cycle inventory data. Countries are thin concepts delegating identity to the EU Publications Office authority list via skos:exactMatch. Ecoinvent supranational regions and electricity grids are defined here."@en ;
-    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-12"^^xsd:date ;
     dcterms:source <https://eplca.jrc.ec.europa.eu/> ;

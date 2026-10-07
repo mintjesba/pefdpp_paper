@@ -1,0 +1,37 @@
+{
+  "title": "PEFDPP ontology and battery case study",
+  "version": "1.0.0",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "description": "<p>The PEFDPP ontology is an OWL 2 DL ontology for encoding Product Environmental Footprint (PEF)-compliant life cycle assessment data in Digital Product Passports (DPPs). It covers life cycle inventory data, modelling assumptions (including Circular Footprint Formula parameters), data quality, and PEF study outputs, with SKOS vocabularies for EF 3.1 elementary flows and impact categories.</p><p>This record also contains a proof-of-concept case study of an NMC111 Li-ion electric vehicle battery pack, together with the Python script used to build the product system in Brightway and calculate the EF 3.1 results. Reproducing the calculation requires an ecoinvent 3.12 licence; no ecoinvent data are included.</p><p>Ontology and data are licensed under CC BY 4.0; the code is licensed under MIT.</p>",
+  "creators": [
+    {
+      "name": "Mintjes, Berend",
+      "affiliation": "Institute of Environmental Sciences (CML), Leiden University",
+      "orcid": "0009-0008-3997-4351"
+    }
+  ],
+  "keywords": [
+    "Product Environmental Footprint",
+    "Digital Product Passport",
+    "Life Cycle Assessment",
+    "ontology",
+    "OWL",
+    "semantic web",
+    "Circular Footprint Formula",
+    "batteries"
+  ],
+  "grants": [
+    {"id": "10.13039/501100000780::101058598"},
+    {"id": "10.13039/501100000780::101178719"}
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/mintjesba/pefdpp_paper",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng"
+}

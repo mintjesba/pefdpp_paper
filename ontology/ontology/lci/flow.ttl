@@ -30,11 +30,11 @@
 
 <https://w3id.org/mintjesba/pefdpp/flow>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/flow/0.1.0> ;
-    owl:versionInfo "0.1.0" ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/flow/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP Flow Module"@en ;
     dcterms:description "Classes and properties for flows in the PEFDPP ontology, including product, waste, and elementary flows, CFF parameters, and end-of-life scenarios."@en ;
-    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-11"^^xsd:date ;
     dcterms:references <http://data.europa.eu/ux2/cpa21/> ;

@@ -1,0 +1,13 @@
+# Environment for case-study/calculations/project-setup.py
+# Versions as used for the article (conda-forge, Python 3.11).
+name: pefdpp-case-study
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - brightway2=2.4.7
+  - bw2data=3.6.6
+  - bw2calc=1.8.2
+  - bw2io=0.8.12
+  - bw2analyzer=0.10
+  - rdflib=7.6.0

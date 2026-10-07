@@ -15,9 +15,8 @@
 #   ImpactCategory → calculatedByMethod, hasIndicatorUnit
 #   LCIAResult     → forImpactCategory, hasMeasure
 #
-# Placeholders: fill in every "TODO" before treating as complete.
-# LCIA result values are initialised to 0.0 — replace with computed results.
-# hasAggregatedLCI points to a stub; replace with the generated aggregated LCI.
+# hasAggregatedLCI points to an abridged placeholder dataset; the full
+# aggregated LCI of the product system is not stored in this file.
 ######################################################################
 
 @prefix :        <https://w3id.org/mintjesba/pefdpp/cases/battery-pack/battery-pef#> .
@@ -116,7 +115,7 @@
     dcterms:description "Draft JRC technical report providing methodological guidelines for calculating and verifying the carbon footprint of electric vehicle batteries under Article 7 of Regulation (EU) 2023/1542 (EU Batteries Regulation), based on the PEF method and the PEFCR for batteries." ;
     dcterms:source <https://eplca.jrc.ec.europa.eu/permalink/battery/GRB-CBF_CarbonFootprintRules-EV_June_2023.pdf> .
 
-# Stub — replace with the generated aggregated LCI once available
+# Abridged placeholder for the aggregated LCI (see header note)
 :AggregatedLCI a dataset:LCIDataset ;
     dcterms:title "Aggregated LCI — Battery Pack (abridged)"@en ;
     dataset:containsActivity :AggregatedLCIAct .

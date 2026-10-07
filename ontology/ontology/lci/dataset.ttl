@@ -22,11 +22,11 @@
 
 <https://w3id.org/mintjesba/pefdpp/dataset>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataset/0.1.0> ;
-    owl:versionInfo "0.1.0" ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataset/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP Dataset Module"@en ;
     dcterms:description "Classes and properties for LCI datasets in the PEFDPP ontology."@en ;
-    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-11"^^xsd:date ;
     dcterms:references <http://www.w3.org/ns/dcat#> ;

@@ -18,11 +18,11 @@
 
 <https://w3id.org/mintjesba/pefdpp/dataquality>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataquality/0.1.0> ;
-    owl:versionInfo "0.1.0" ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/dataquality/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP Data Quality Module"@en ;
     dcterms:description "Classes and properties for representing data quality scores in the PEFDPP ontology, following the EF Data Quality Rating (DQR) approach."@en ;
-    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-11"^^xsd:date ;
     .

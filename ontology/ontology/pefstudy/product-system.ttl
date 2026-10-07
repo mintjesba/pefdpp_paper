@@ -22,11 +22,11 @@
 
 <https://w3id.org/mintjesba/pefdpp/product-system>
     a owl:Ontology ;
-    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/product-system/0.1.0> ;
-    owl:versionInfo "0.1.0" ;
+    owl:versionIRI <https://w3id.org/mintjesba/pefdpp/product-system/1.0.0> ;
+    owl:versionInfo "1.0.0" ;
     dcterms:title "PEFDPP Product System Module"@en ;
     dcterms:description "Classes and properties for modelling the product system of a PEF study, including activity links, life cycle stages, and system diagrams."@en ;
-    dcterms:creator <https://orcid.org/YOUR-ORCID> ;
+    dcterms:creator <https://orcid.org/0009-0008-3997-4351> ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:created "2026-05-22"^^xsd:date ;
     dcterms:references <http://xmlns.com/foaf/0.1/> ;

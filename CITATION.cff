@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this ontology or case study, please cite both the article and this archived version."
+title: "PEFDPP ontology and battery case study"
+version: "1.0.0"
+date-released: 2026-10-05
+license: CC-BY-4.0
+repository-code: "https://github.com/mintjesba/pefdpp_paper"
+url: "https://w3id.org/mintjesba/pefdpp/"
+type: dataset
+authors:
+  - family-names: Mintjes
+    given-names: Berend
+    orcid: "https://orcid.org/0009-0008-3997-4351"
+    affiliation: "Institute of Environmental Sciences (CML), Leiden University"
+preferred-citation:
+  type: article
+  title: "Integrating Product Environmental Footprint and Digital Product Passports: A Data Model for Traceable, Reusable Environmental Performance Information"
+  journal: "Journal of Circular Economy"
+  year: 2026
+  authors:
+    - family-names: Mintjes
+      given-names: Berend
+      orcid: "https://orcid.org/0009-0008-3997-4351"
+    - family-names: Mondello
+      given-names: Alice
+    - family-names: van Nielen
+      given-names: Sander
+    - family-names: Barilli
+      given-names: Francesco
+    - family-names: Hischier
+      given-names: Roland
+    - family-names: Donati
+      given-names: Franco
+    - family-names: Mogollón
+      given-names: José M.

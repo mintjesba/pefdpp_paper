@@ -1,0 +1,21 @@
+# Files marked export-ignore are kept in the git repository but left out of
+# GitHub release archives, and therefore out of the Zenodo record.
+
+# Not part of the published release
+text_coding/ export-ignore
+validate_thorough.py export-ignore
+pefdpp-merged.ttl export-ignore
+ontology/ontology_merge.py export-ignore
+case-study/calculations/__pycache__/ export-ignore
+
+# Empty placeholder files and duplicate or temporary diagram files
+ontology/LICENSE export-ignore
+ontology/NOTICE export-ignore
+ontology/docs/index.html export-ignore
+ontology/docs/diagrams/diagrams-* export-ignore
+ontology/docs/diagrams/diagrams.drawio.pdf export-ignore
+ontology/docs/diagrams/.$* export-ignore
+
+# Repository housekeeping
+.gitignore export-ignore
+.gitattributes export-ignore
